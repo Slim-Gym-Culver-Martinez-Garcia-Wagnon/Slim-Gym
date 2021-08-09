@@ -25,12 +25,12 @@ public class Gym_Equipment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Gym_Equipment getGym_equipment() {
+        return gym_equipment;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setGym_equipment(Gym_Equipment gym_equipment) {
+        this.gym_equipment = gym_equipment;
     }
 
     public Gym getGym() {
