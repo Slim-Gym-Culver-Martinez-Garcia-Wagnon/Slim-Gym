@@ -3,8 +3,8 @@ package com.capstone.slimgym.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="posts")
-public class Post {
+@Table(name="gym")
+public class Gym {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -19,16 +19,16 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Post() {
+    public Gym() {
     }
 
-    public Post(String title, String body, User user) {
+    public Gym(String title, String body, User user) {
         this.title = title;
         this.body = body;
         this.user = user;
     }
 
-    public Post(long id, String title, String body, User user) {
+    public Gym(long id, String title, String body, User user) {
         this.id = id;
         this.title = title;
         this.body = body;

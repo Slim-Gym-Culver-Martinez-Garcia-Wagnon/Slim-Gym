@@ -1,6 +1,6 @@
 package com.capstone.slimgym.controllers;
 
-import com.capstone.slimgym.models.Post;
+import com.capstone.slimgym.models.Gym;
 import com.capstone.slimgym.models.User;
 import com.capstone.slimgym.repositories.PostRepository;
 import com.capstone.slimgym.repositories.UserRepository;
@@ -31,13 +31,13 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable long id, Model model) {
-        Post post = postDao.getById(id);
+        Gym gym = postDao.getById(id);
         boolean isPostOwner = false;
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            isPostOwner = currentUser.getId() == post.getUser().getId();
+            isPostOwner = currentUser.getId() == gym.getUser().getId();
         }
-        model.addAttribute("post", post);
+        model.addAttribute("post", gym);
         model.addAttribute("isPostOwner", isPostOwner);
         return "posts/show";
     }
@@ -45,9 +45,9 @@ public class PostController {
     @GetMapping("/posts/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Post post = postDao.getById(id);
-        if (currentUser.getId() == post.getUser().getId()) {
-            model.addAttribute("post", post);
+        Gym gym = postDao.getById(id);
+        if (currentUser.getId() == gym.getUser().getId()) {
+            model.addAttribute("post", gym);
             return "posts/edit";
         } else {
             return "redirect:/posts/" + id;
@@ -55,12 +55,12 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPost(@PathVariable long id, @ModelAttribute Post post) {
+    public String editPost(@PathVariable long id, @ModelAttribute Gym gym) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Post postFromDB = postDao.getById(id);
-        if (user.getId() == postFromDB.getUser().getId()) {
-            post.setUser(user);
-            postDao.save(post);
+        Gym gymFromDB = postDao.getById(id);
+        if (user.getId() == gymFromDB.getUser().getId()) {
+            gym.setUser(user);
+            postDao.save(gym);
         }
         return "redirect:/posts/" + id;
     }
@@ -68,24 +68,24 @@ public class PostController {
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Post post = postDao.getById(id);
-        if (currentUser.getId() == post.getUser().getId()) {
-            postDao.delete(post);
+        Gym gym = postDao.getById(id);
+        if (currentUser.getId() == gym.getUser().getId()) {
+            postDao.delete(gym);
         }
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("post", new Post());
+        model.addAttribute("post", new Gym());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
+    public String createPost(@ModelAttribute Gym gym) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(user);
-        postDao.save(post);
+        gym.setUser(user);
+        postDao.save(gym);
         return "redirect:/posts";
     }
 }
