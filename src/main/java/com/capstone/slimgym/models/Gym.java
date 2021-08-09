@@ -1,6 +1,7 @@
 package com.capstone.slimgym.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="gym")
@@ -9,46 +10,35 @@ public class Gym {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 125)
-    private String title;
-
-    @Column(nullable = false, length = 200)
-    private String body;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(nullable = false, length = 240)
+    private String name;
+
+    @Column(nullable = false, length = 240)
+    private String address;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = false, length = 240)
+    private String equipment;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
+    private List<Picture> pictures;
+
+
+
     public Gym() {
     }
 
-    public Gym(String title, String body, User user) {
-        this.title = title;
-        this.body = body;
-        this.user = user;
-    }
-
-    public Gym(long id, String title, String body, User user) {
-        this.id = id;
-        this.title = title;
-        this.body = body;
-        this.user = user;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
+    public Gym(String name, String address, String description, String equipment) {
+        this.name = name;
+        this.address = address;
+        this.description = description;
+        this.equipment = equipment;
     }
 
     public long getId() {
@@ -65,6 +55,45 @@ public class Gym {
 
     public void setUser(User user) {
         this.user = user;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <th:block th:include="partials/styles.html :: styles"/>
+</head>
+<body>
+<th:block th:replace="partials/navbar.html :: navbar"/>
+<h1>Create an account</h1>
+<form th:action="@{/sign-up}" method="POST" th:object="${user}">
+    <label for="first_name">First Name</label>
+    <input id="first_name" th:field="*{first_name}" />
+
+    <label for="last_name">Last Name</label>
+    <input id="last_name" th:field="*{last_name}" />
+
+    <label for="emergency_first_name">First Name</label>
+    <input id="emergency_first_name" th:field="*{emergency_first_name}" />
+
+    <label for="emergency_last_name">Last Name</label>
+    <input id="emergency_last_name" th:field="*{emergency_last_name}" />
+
+    <label for="emergency_phone_number">Last Name</label>
+    <input id="emergency_phone_number" th:field="*{emergency_phone_number}" />
+
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}" />
+
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}" />
+
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}" />
+
+    <input value="Sign me up!" type="submit" />
+</form>
+<th:block th:include="partials/scripts.html :: script"/>
+</body>
+</html>
