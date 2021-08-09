@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostRepository extends JpaRepository<Gym, Long> {
     Gym findById(long id);
-    Gym findByTitle(String title);
+    Gym findByName(String name);
 }

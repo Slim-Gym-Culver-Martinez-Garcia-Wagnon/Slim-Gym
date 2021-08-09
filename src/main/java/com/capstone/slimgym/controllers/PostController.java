@@ -25,8 +25,8 @@ public class PostController {
 
     @GetMapping("/posts")
     public String viewPosts(Model model) {
-        model.addAttribute("posts", postDao.findAll());
-        return "posts/index";
+        model.addAttribute("gyms", postDao.findAll());
+        return "/index";
     }
 
     @GetMapping("/posts/{id}")
