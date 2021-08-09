@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <title>GoogleMaps Test</title>
 </head>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key="+ +"&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsja5qGJUGO7Ly0q89b5DaLBaxFNzOnJY&callback=initMap">
+    let map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+        });
+    }
+
+</script>
 <body>
+
 
 </body>
 </html>
