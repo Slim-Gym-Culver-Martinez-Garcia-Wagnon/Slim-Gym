@@ -2,6 +2,9 @@ package com.capstone.slimgym.models;
 
 import javax.persistence.*;
 
+
+@Entity
+@Table(name="reviews")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,9 +14,9 @@ public class Review {
     @JoinColumn(name = "user_id")
     private User user;
 
-//    @ManyToOne
-//    @JoinColumn(name="gym_id")
-//    private Gym gym;
+    @ManyToOne
+    @JoinColumn(name="gym_id")
+    private Gym gym;
 
     @Column(nullable = false, length = 125)
     private int rating;
@@ -49,13 +52,13 @@ public class Review {
         this.user = user;
     }
 
-//    public Gym getGym() {
-//        return gym;
-//    }
-//
-//    public void setGym(Gym gym) {
-//        this.gym = gym;
-//    }
+    public Gym getGym() {
+        return gym;
+    }
+
+    public void setGym(Gym gym) {
+        this.gym = gym;
+    }
 
     public int getRating() {
         return rating;

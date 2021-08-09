@@ -1,9 +1,9 @@
 package com.capstone.slimgym.repositories;
 
-import com.capstone.slimgym.models.Post;
+import com.capstone.slimgym.models.Gym;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PostRepository extends JpaRepository<Post, Long> {
-    Post findById(long id);
-    Post findByTitle(String title);
+public interface PostRepository extends JpaRepository<Gym, Long> {
+    Gym findById(long id);
+    Gym findByTitle(String title);
 }

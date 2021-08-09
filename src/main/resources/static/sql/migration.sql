@@ -48,6 +48,7 @@ CREATE TABLE schedule
     id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id INT UNSIGNED NOT NULL,
     gym_id INT UNSIGNED NOT NULL,
+    date DATE,
     start_time TIME,
     end_time TIME,
     PRIMARY KEY (id),
