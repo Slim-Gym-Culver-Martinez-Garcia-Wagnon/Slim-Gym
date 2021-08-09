@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
     <meta charset="UTF-8"/>
     <title>Edit your profile</title>
 </head>
 <body>
+<h2>Edit your profile:</h2>
+<form th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
+    <label for="email">Change your email:</label>
+    <input th:value="*{email}" id="email" th:field="*{email}" />
+    <br>
+    <label for="password">Change your password:</label>
+    <input th:value="*{password}" id="password" th:field="*{password}" />
+    <br>
+    <label for="profile_pic">Change your profile photo: </label>
+    <input th:value="*{profile_pic}" id="profile_pic" th:field="*{profile_pic}" />
+    <br>
+    <label for="emergency_contact">Update your emergency contact: </label>
+    <input th:value="*{emergency_first_name}" id="emergency_contact" th:field="*{emergency_first_name}" />
+    <input th:value="*{emergency_last_name}" id="emergency_contact" th:field="*{emergency_last_name}" />
+    <input th:value="*{emergency_phone_number}" id="emergency_contact" th:field="*{emergency_phone_number}" />
 
+    <button type="submit">Edit</button>
+</form>
+
+
+<th:block th:include="partials/scripts.html :: script"></th:block>
 </body>
 </html>
