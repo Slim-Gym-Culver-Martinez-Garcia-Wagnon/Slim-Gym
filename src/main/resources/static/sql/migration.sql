@@ -20,7 +20,7 @@ CREATE TABLE users
     username VARCHAR(240) NOT NULL,
     email    VARCHAR(240) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    profile_pic VARCHAR(240) NOT NULL,
+    profile_pic VARCHAR(240),
     emergency_first_name VARCHAR(240) NOT NULL,
     emergency_last_name VARCHAR(240) NOT NULL,
     emergency_phone_number INT UNSIGNED NOT NULL,
