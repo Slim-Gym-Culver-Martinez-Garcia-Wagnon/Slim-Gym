@@ -10,8 +10,8 @@ INSERT INTO schedule(user_id, gym_id, start_time, end_time)
 VALUES ('1', '1', '1:00', '2:00');
 
 INSERT INTO gym(user_id, name, address, description, equipment)
-VALUES ('1', 'Square Space',  '1010 State Square', 'Perfect gym for powerlifters', 'Weights, Treadmills'),
-        ('1', 'Square Space',  '1010 State Square', 'Perfect gym for powerlifters', 'Weights, Treadmills');
+VALUES ('1', 'Square Space',  '600 Navarro St #600', 'Perfect gym for powerlifters', 'Weights, Treadmills'),
+        ('1', 'Home Fitness',  '14610 Huebner Rd #110', 'Perfect gym for powerlifters', 'Weights, Treadmills');
 
 INSERT INTO pictures(gym_id, url)
 VALUES ('1','https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lifefitness.com%2Fen-us%2Fblog%2Fhow-build-home-gym-your-garage&psig=AOvVaw37_LcMwNeoi3_Sv8UNpMeX&ust=1628564912800000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCLC86Jz7ovICFQAAAAAdAAAAABAD');
