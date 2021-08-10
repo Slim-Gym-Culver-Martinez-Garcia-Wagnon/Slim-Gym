@@ -37,9 +37,9 @@ public class PostController {
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             isPostOwner = currentUser.getId() == gym.getUser().getId();
         }
-        model.addAttribute("post", gym);
-        model.addAttribute("isPostOwner", isPostOwner);
-        return "posts/show";
+        model.addAttribute("gyms", gym);
+//        model.addAttribute("isPostOwner", isPostOwner);
+        return "gym-page";
     }
 
     @GetMapping("/posts/{id}/edit")
