@@ -58,7 +58,7 @@ public class UserController {
         User updateUser = users.findById(user.getId());
 //        user.setUser(updateUser);
         users.save(updateUser);
-        return "login";
+        return "redirect:login";
     }
 
 }

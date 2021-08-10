@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
+
     <meta charset="UTF-8"/>
     <title>Edit your profile</title>
+    <th:block th:include="partials/styles.html :: styles" />
 </head>
 <body>
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <h2>Edit your profile:</h2>
 <form th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
     <label for="email">Change your email:</label>
@@ -17,15 +19,18 @@
     <label for="profile_pic">Change your profile photo: </label>
     <input th:value="*{profile_pic}" id="profile_pic" th:field="*{profile_pic}" />
     <br>
-    <label for="emergency_contact">Update your emergency contact: </label>
-    <input th:value="*{emergency_first_name}" id="emergency_contact" th:field="*{emergency_first_name}" />
-    <input th:value="*{emergency_last_name}" id="emergency_contact" th:field="*{emergency_last_name}" />
-    <input th:value="*{emergency_phone_number}" id="emergency_contact" th:field="*{emergency_phone_number}" />
+    <p>Update your emergency contact:</p>
+    <label for="emergency_first_name">First Name: </label>
+    <input th:value="*{emergency_first_name}" id="emergency_first_name" th:field="*{emergency_first_name}" />
+    <label for="emergency_last_name">Last Name: </label>
+    <input th:value="*{emergency_last_name}" id="emergency_last_name" th:field="*{emergency_last_name}" />
+    <label for="emergency_phone_number">Phone Number: </label>
+    <input th:value="*{emergency_phone_number}" id="emergency_phone_number" th:field="*{emergency_phone_number}" />
 
-    <button type="submit">Edit</button>
+    <button type="submit">Save Changes</button>
 </form>
 
 
-<th:block th:include="partials/scripts.html :: script"></th:block>
+<th:block th:include="partials/scripts.html :: script" />
 </body>
 </html>
