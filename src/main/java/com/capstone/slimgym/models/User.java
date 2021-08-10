@@ -18,7 +18,7 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false, length = 255)
+    @Column(length = 255)
     private String profile_pic;
     @Column(nullable = false, length = 240)
     private String emergency_first_name;
