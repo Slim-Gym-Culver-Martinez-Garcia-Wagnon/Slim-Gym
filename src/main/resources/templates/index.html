@@ -1,29 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsja5qGJUGO7Ly0q89b5DaLBaxFNzOnJY&callback=initMap"
-            type="text/javascript"></script>
+<!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsja5qGJUGO7Ly0q89b5DaLBaxFNzOnJY&callback=initMap"-->
+<!--            type="text/javascript"></script>-->
     <style>
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-    #map {
-      height: 100%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
+        /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+        #map {
+            height: 75%;
+            width: 75%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: "Roboto", "sans-serif";
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+    </style>
 </head>
 <body>
-<div id="map" style="width: 75%"></div>
+
+<div id="floating-panel">
+    <input id="address" type="textbox" value="Sydney, NSW" />
+    <input id="submit" type="button" value="Geocode" />
+</div>
+<div id="map"></div>
+
 <div th:each="gym : ${gyms}">
     <div class="card offwhite-body">
         <div class="card-content preview-post">
@@ -33,33 +56,42 @@
         <div class="small-space" />
     </div>
 </div>
+
+
+
 <script>
-
-    var address = "";
-
     function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
-            center: {lat: -34.397, lng: 150.644}
+            center: { lat: -34.397, lng: 150.644 },
         });
-        geocoder = new google.maps.Geocoder();
-        codeAddress(geocoder, map);
+        const geocoder = new google.maps.Geocoder();
+        document.getElementById("submit").addEventListener("click", () => {
+            geocodeAddress(geocoder, map);
+        });
     }
 
-    function codeAddress(geocoder, map) {
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === 'OK') {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
+    function geocodeAddress(geocoder, resultsMap) {
+        const address = document.getElementById("address").value;
+        geocoder
+            .geocode({ address: address })
+            .then(({ results }) => {
+                resultsMap.setCenter(results[0].geometry.location);
+                new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location,
                 });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-            }
-        });
+            })
+            .catch((e) =>
+                alert("Geocode was not successful for the following reason: " + e)
+            );
     }
+
 </script>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsja5qGJUGO7Ly0q89b5DaLBaxFNzOnJY&callback=initMap&libraries=&v=weekly"
+        async
+></script>
 
 
 </body>
