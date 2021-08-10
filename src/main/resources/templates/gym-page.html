@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="partials/styles.html :: styles"></th:block>
+    <meta charset="UTF-8"/>
+    <title>Gym page</title>
+</head>
+<body>
+<!--<div th:each="gym : ${gyms}">-->
+<!--    <p th:text="${gym.name}" />-->
+<!--    <p th:text="${gym.description}" />-->
+<!--</div>-->
+
+<h1>Gym page</h1>
+<div th:each="gym : ${gyms}">
+    <div class="card offwhite-body">
+        <div class="card-content preview-post">
+            <h4 class="card-title" th:text="${gym.name}" />
+            <p th:text="${gym.description}" />
+            <p th:text="${gym.address}" />
+        </div>
+        <div class="small-space" />
+    </div>
+</div>
+
+
+<th:block th:include="partials/scripts.html :: script"></th:block>
+</body>
+</html>
