@@ -21,6 +21,16 @@
         </div>
         <div class="small-space" />
     </div>
+    <div th:each="review : ${reviews}">
+        <div class="card offwhite-body">
+            <div class="card-content preview-post">
+                <h4 class="card-title" th:text="${review.rating}" />
+                <p th:text="${review.body}" />
+                <img th:src="@{${review.picture}}" />
+            </div>
+            <div class="small-space" />
+        </div>
+    </div>
 </div>
 
 

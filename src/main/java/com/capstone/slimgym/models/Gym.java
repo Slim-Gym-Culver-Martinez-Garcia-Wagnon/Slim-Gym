@@ -29,7 +29,8 @@ public class Gym {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
     private List<Picture> pictures;
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
+    private List<Review> reviews;
 
     public Gym() {
     }
