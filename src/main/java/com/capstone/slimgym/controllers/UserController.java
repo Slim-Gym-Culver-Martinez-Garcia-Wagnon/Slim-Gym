@@ -2,6 +2,7 @@ package com.capstone.slimgym.controllers;
 
 import com.capstone.slimgym.models.User;
 import com.capstone.slimgym.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,4 +33,11 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
+
+//    @GetMapping("/user_profile")
+//    public String userProfile(Model model) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("user",users.findByUsername(user));
+//        return "/user_profile";
+//    }
 }

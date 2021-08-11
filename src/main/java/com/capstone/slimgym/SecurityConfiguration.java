@@ -36,21 +36,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/posts")
+                .defaultSuccessUrl("/user_profile")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/", "/posts")
                 .permitAll()
+                /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/posts/create")
-                .authenticated()
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/",
+                        "/posts/create",
+                        "/user_profile",
+                        "/posts/{id}/edit",
+                        "/posts/{id}/delete",
                         "/sign-up",
                         "/js/**",
                         "/css/**",

@@ -6,6 +6,7 @@
     <title>Title</title>
 </head>
 <body>
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <h1>LOGIN</h1>
 
 <i class="fas fa-user-circle"></i>
@@ -13,17 +14,17 @@
 <form action="" th:action="@{/login}" method="post">
     <div class="row">
         <div class="input-field col s12">
-            <input id="username" name="username" type="text" class="validate" placeholder="Username/Email" />
-            <label for="username"></label>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Username" />
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
-            <input id="password" name="password" type="password" class="validate" placeholder="Password" />
-            <label for="password"></label>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Password" />
         </div>
     </div>
-    <button type="submit" value="Log In" class="waves-effect waves-purple btn-small indigo accent-3">Log In</button>
+    <button type="submit" value="Login" class="btn-small btn-secondary">Log In</button>
 </form>
 
 
