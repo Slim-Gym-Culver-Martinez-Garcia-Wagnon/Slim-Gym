@@ -34,7 +34,7 @@ CREATE TABLE reviews
     gym_id INT UNSIGNED NOT NULL,
     rating INT UNSIGNED NOT NULL,
     body TEXT NOT NULL,
-    picture VARCHAR(255) NOT NULL,
+    picture VARCHAR(500) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
         ON DELETE CASCADE,

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
     <meta charset="UTF-8"/>
     <title>Gym page</title>
+    <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
 <!--<div th:each="gym : ${gyms}">-->
@@ -18,13 +18,17 @@
             <h4 class="card-title" th:text="${gym.name}" />
             <p th:text="${gym.description}" />
             <p th:text="${gym.address}" />
+            <p th:text="${gym.equipment}" />
         </div>
         <div class="small-space" />
     </div>
     <div th:each="review : ${reviews}">
         <div class="card offwhite-body">
             <div class="card-content preview-post">
-                <h4 class="card-title" th:text="${review.rating}" />
+                <h4>User rating: </h4>
+                <h4 th:text="${review.rating}" />
+                <h4>Review by: </h4>
+                <h4 class="card-title" th:text="${review.getUser().getUsername()}" />
                 <p th:text="${review.body}" />
                 <img th:src="@{${review.picture}}" />
             </div>
@@ -34,6 +38,6 @@
 </div>
 
 
-<th:block th:include="partials/scripts.html :: script"></th:block>
+<th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
