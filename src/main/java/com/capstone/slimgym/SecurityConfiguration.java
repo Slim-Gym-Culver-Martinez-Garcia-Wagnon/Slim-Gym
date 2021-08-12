@@ -38,28 +38,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .defaultSuccessUrl("/profile")
                 .permitAll()
+
                 .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
+                    .logout()
+                    .logoutSuccessUrl("/login?logout")
+                    .permitAll()
+
                 .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/posts/create")
-                .authenticated()
+                    .authorizeRequests()
+                    .antMatchers(
+                            "/posts/create", "/profile")
+                    .authenticated()
+
                 .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/",
-                        "/posts",
-                        "/posts/{id}",
-                        "/index",
-                        "/sign-up",
-                        "/gym-page",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**")
-                .permitAll()
-                .anyRequest().authenticated();
+                    .authorizeRequests()
+                    .antMatchers(
+                            "/",
+                            "/posts",
+                            "/posts/{id}",
+                            "/sign-up",
+                            "/gym-page",
+                            "/js/**",
+                            "/css/**",
+                            "/img/**")
+                    .permitAll()
+                    .anyRequest().authenticated();
     }
 }
