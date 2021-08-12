@@ -8,14 +8,16 @@ import com.capstone.slimgym.repositories.PostRepository;
 import com.capstone.slimgym.repositories.ReviewRepository;
 import com.capstone.slimgym.repositories.ScheduleRepository;
 import com.capstone.slimgym.repositories.UserRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -51,17 +53,19 @@ public class PostController {
         }
         model.addAttribute("gyms", gym);
         model.addAttribute("reviews", reviews);
+        model.addAttribute("schedule", new Schedule());
         return "gym-page";
     }
 
-    @PostMapping("/post/{id}")
-    public String singlePost(@PathVariable long id, @ModelAttribute Gym gym) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    @PostMapping("/posts/{id}")
+    public String singlePost(@PathVariable long id, @ModelAttribute Schedule schedule) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Gym gymFromDb = postDao.getById(id);
+        User user = userDao.getById((long) 1);
         List<Review> reviews = reviewDao.findAllByGymId(id);
-        boolean isPostOwner = false;
-
-
+        schedule.setGym(gymFromDb);
+        schedule.setUser(user);
+        scheduleDao.save(schedule);
         return "gym-page";
     }
 

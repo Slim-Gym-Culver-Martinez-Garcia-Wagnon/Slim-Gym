@@ -10,5 +10,4 @@ import java.util.List;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Long>{
         List<Schedule> findAllByGymId(Long gymId);
-        Schedule createSession(Long gymId, Long userId, Time startTime, Time endTime, Date date);
 }

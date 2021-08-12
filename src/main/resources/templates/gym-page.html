@@ -6,44 +6,41 @@
     <title>Gym page</title>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js" integrity="sha256-9+heQ0nDVUAhO3sCt1pKLQSmV0gSo7QcQmtJ2ZCT55g=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css" integrity="sha256-z7G6BBWwBOXahthaod21GyxfNhxiQFBVn6WQYHRs9W8=" crossorigin="anonymous">
-    <script>
+    <script th:inline="javascript">
 
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                footerToolbar: {
-                    center: 'addEventButton'
-                },
-                customButtons: {
-                    addEventButton: {
-                        text: 'Schedule a session',
-                        click: function() {
-                            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-                            if (!isNaN(date.valueOf())) { // valid?
-                                calendar.addEvent({
-                                    title: 'dynamic event',
-                                    start: date,
-                                    allDay: false
-                                });
-                                alert('Great. Now, update your database...');
-                            } else {
-                                alert('Invalid date.');
-                            }
-                        }
-                    }
-                }
+                initialView: 'dayGridMonth'
+                // footerToolbar: {
+                //     center: 'addEventButton'
+                // },
+                // customButtons: {
+                //     addEventButton: {
+                //         text: 'Schedule a session',
+                //         click: action="@{/post/{id}}", function() {
+                //             var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                //             var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+                //
+                //             if (!isNaN(date.valueOf())) { // valid?
+                //                 calendar.addEvent({
+                //                     title: 'dynamic event',
+                //                     start: date,
+                //                     allDay: false
+                //                 });
+                //                 alert('Great. Now, update your database...');
+                //             } else {
+                //                 alert('Invalid date.');
+                //             }
+                //         }
+                //     }
+                // }
             });
 
             calendar.render();
         });
 
-        $(window).scroll(function(){
-            $("#calendar").stop().animate({"marginTop": ($(window).scrollTop()) + "px", "marginLeft":($(window).scrollLeft()) + "px"}, "slow" );
-        });
 
     </script>
 </head>
@@ -63,7 +60,33 @@
         </div>
         <div class="small-space" />
     </div>
-    <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
+    <div>
+        <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
+            <div class="card-content">
+                <form th:action="@{/posts/{id}(id=${gym.id})}" method="post" th:object="${schedule}">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
+                            <label for="Date">Choose a Date</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="start_time" name="start_time" type="Time" th:field="*{start_time}"/>
+                            <label for="start_time">Start Time</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="end_time" name="end_time" type="Time" th:field="*{start_time}"/>
+                            <label for="end_time">End Time</label>
+                        </div>
+                    </div>
+                    <button type="submit" value="submit" class="btn">Submit</button>
+                </form>
+            </div>
+
+    </div>
     <div th:each="review : ${reviews}">
         <div class="card offwhite-body">
             <div class="card-content preview-post">
