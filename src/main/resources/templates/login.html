@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="partials/styles.html :: styles"/>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <h1>LOGIN</h1>
 
 <i class="fas fa-user-circle"></i>

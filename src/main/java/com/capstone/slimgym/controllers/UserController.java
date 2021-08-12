@@ -1,6 +1,5 @@
 package com.capstone.slimgym.controllers;
 
-import com.capstone.slimgym.models.Gym;
 import com.capstone.slimgym.models.User;
 import com.capstone.slimgym.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -58,7 +57,25 @@ public class UserController {
         User updateUser = users.findById(user.getId());
 //        user.setUser(updateUser);
         users.save(updateUser);
-        return "redirect:login";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/profile")
+    public String userProfile(){
+        return "profile";
+    }
+
+        @GetMapping("/user/{id}/profile")
+    public String userProfile(@PathVariable long id, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User updatedUser =  users.getById(id);
+            if(user == updatedUser) {
+                model.addAttribute("user", users.getById(id));
+                model.addAttribute("id", id);
+                return "profile";
+            } else {
+                return "redirect:/login";
+            }
     }
 
 }
