@@ -32,6 +32,9 @@ public class Gym {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
     private List<Review> reviews;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gym")
+    private List<Schedule> schedules;
+
     public Gym() {
     }
 
@@ -96,5 +99,13 @@ public class Gym {
 
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }
