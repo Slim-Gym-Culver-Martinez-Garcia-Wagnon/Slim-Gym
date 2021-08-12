@@ -1,6 +1,7 @@
 package com.capstone.slimgym.controllers;
 
 import com.capstone.slimgym.models.User;
+import com.capstone.slimgym.repositories.ReviewRepository;
 import com.capstone.slimgym.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private final UserRepository users;
-    private final PasswordEncoder passwordEncoder;
+    private UserRepository users;
+    private ReviewRepository reviewDao;
+    private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, ReviewRepository reviewDao) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.reviewDao = reviewDao;
     }
 
     @GetMapping("/sign-up")
@@ -61,21 +64,26 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String userProfile(){
+    public String userProfile(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long userId = user.getId();
+        model.addAttribute("reviews", reviewDao.findByUserId(userId));
         return "profile";
     }
 
-        @GetMapping("/user/{id}/profile")
-    public String userProfile(@PathVariable long id, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User updatedUser =  users.getById(id);
-            if(user == updatedUser) {
-                model.addAttribute("user", users.getById(id));
-                model.addAttribute("id", id);
-                return "profile";
-            } else {
-                return "redirect:/login";
-            }
-    }
+
+
+//        @GetMapping("/user/{id}/profile")
+//    public String userProfile(@PathVariable long id, Model model) {
+//        User user = users.getById(id);
+//        boolean theUser = false;
+//            if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+//                User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//                theUser = currentUser.getId() == user.getUsername().findById();
+//            }
+//            model.addAttribute("user", user);
+//            model.addAttribute("theUser", theUser);
+//            return "profile";
+//    }
 
 }
