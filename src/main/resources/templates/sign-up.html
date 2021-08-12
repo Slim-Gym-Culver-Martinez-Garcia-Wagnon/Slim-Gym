@@ -15,15 +15,6 @@
     <label for="last_name">Last Name</label>
     <input id="last_name" th:field="*{last_name}" />
 
-    <label for="emergency_first_name">First Name</label>
-    <input id="emergency_first_name" th:field="*{emergency_first_name}" />
-
-    <label for="emergency_last_name">Last Name</label>
-    <input id="emergency_last_name" th:field="*{emergency_last_name}" />
-
-    <label for="emergency_phone_number">Last Name</label>
-    <input id="emergency_phone_number" th:field="*{emergency_phone_number}" />
-
     <label for="username">Username</label>
     <input id="username" th:field="*{username}" />
 
@@ -32,6 +23,16 @@
 
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
+
+
+    <label for="emergency_first_name">Emergency First Name</label>
+    <input id="emergency_first_name" th:field="*{emergency_first_name}" />
+
+    <label for="emergency_last_name">EmergencyLast Name</label>
+    <input id="emergency_last_name" th:field="*{emergency_last_name}" />
+
+    <label for="emergency_phone_number">Emergency Phone Number</label>
+    <input id="emergency_phone_number" th:field="*{emergency_phone_number}" />
 
     <input value="Sign me up!" type="submit" />
 </form>
