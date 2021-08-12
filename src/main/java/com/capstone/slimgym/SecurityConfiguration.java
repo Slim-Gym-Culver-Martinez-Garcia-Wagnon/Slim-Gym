@@ -53,9 +53,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/",
                         "/posts",
                         "/posts/{id}",
+                        "/posts/create",
                         "/index",
                         "/sign-up",
                         "/gym-page",
+                        "/add-gym",
                         "/js/**",
                         "/css/**",
                         "/img/**")
