@@ -51,17 +51,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authenticated()
 
                 .and()
-                    .authorizeRequests()
-                    .antMatchers(
-                            "/",
-                            "/posts",
-                            "/posts/{id}",
-                            "/sign-up",
-                            "/gym-page",
-                            "/js/**",
-                            "/css/**",
-                            "/img/**")
-                    .permitAll()
-                    .anyRequest().authenticated();
+                  .authorizeRequests()
+                  .antMatchers(
+                          "/",
+                          "/posts",
+                          "/posts/{id}",
+                          "/posts/create",
+                          "/index",
+                          "/sign-up",
+                          "/gym-page",
+                          "/add-gym",
+                          "/js/**",
+                          "/css/**",
+                          "/img/**")
+                  .permitAll()
+                  .anyRequest().authenticated();
+
     }
 }
