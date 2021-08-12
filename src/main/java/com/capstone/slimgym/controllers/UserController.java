@@ -57,12 +57,12 @@ public class UserController {
         User updateUser = users.findById(user.getId());
 //        user.setUser(updateUser);
         users.save(updateUser);
-        return "redirect:login";
+        return "redirect:/login";
     }
 
     @GetMapping("/profile")
     public String userProfile(){
-        return "/profile";
+        return "profile";
     }
 
         @GetMapping("/user/{id}/profile")
@@ -72,9 +72,9 @@ public class UserController {
             if(user == updatedUser) {
                 model.addAttribute("user", users.getById(id));
                 model.addAttribute("id", id);
-                return "/profile";
+                return "profile";
             } else {
-                return "login";
+                return "redirect:/login";
             }
     }
 
