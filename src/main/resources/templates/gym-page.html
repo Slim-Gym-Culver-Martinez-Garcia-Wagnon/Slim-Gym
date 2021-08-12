@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="partials/styles.html :: styles"></th:block>
     <meta charset="UTF-8"/>
     <title>Gym page</title>
+
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js" integrity="sha256-9+heQ0nDVUAhO3sCt1pKLQSmV0gSo7QcQmtJ2ZCT55g=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css" integrity="sha256-z7G6BBWwBOXahthaod21GyxfNhxiQFBVn6WQYHRs9W8=" crossorigin="anonymous">
     <script th:inline="javascript">
@@ -43,6 +43,9 @@
 
 
     </script>
+
+    <th:block th:include="partials/styles.html :: styles"/>
+
 </head>
 <body class="d-flex">
 <!--<div th:each="gym : ${gyms}">-->
@@ -57,6 +60,7 @@
             <h4 class="card-title" th:text="${gym.name}" />
             <p th:text="${gym.description}" />
             <p th:text="${gym.address}" />
+            <p th:text="${gym.equipment}" />
         </div>
         <div class="small-space" />
     </div>
@@ -90,7 +94,10 @@
     <div th:each="review : ${reviews}">
         <div class="card offwhite-body">
             <div class="card-content preview-post">
-                <h4 class="card-title" th:text="${review.rating}" />
+                <h4>User rating: </h4>
+                <h4 th:text="${review.rating}" />
+                <h4>Review by: </h4>
+                <h4 class="card-title" th:text="${review.getUser().getUsername()}" />
                 <p th:text="${review.body}" />
                 <img style="height: 250px; width: 250px" th:src="@{${review.picture}}" />
             </div>
@@ -100,6 +107,6 @@
 </div>
 
 
-<th:block th:include="partials/scripts.html :: script"></th:block>
+<th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>

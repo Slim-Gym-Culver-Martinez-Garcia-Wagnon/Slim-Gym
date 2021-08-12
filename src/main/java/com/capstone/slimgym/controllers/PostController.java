@@ -38,7 +38,7 @@ public class PostController {
     @GetMapping("/posts")
     public String viewPosts(Model model) {
         model.addAttribute("gyms", postDao.findAll());
-        return "/index";
+        return "index";
     }
 
     @GetMapping("/posts/{id}")
@@ -105,7 +105,7 @@ public class PostController {
     @GetMapping("/posts/create")
     public String showCreateForm(Model model) {
         model.addAttribute("post", new Gym());
-        return "posts/create";
+        return "add-gym";
     }
 
     @PostMapping("/posts/create")
