@@ -9,8 +9,8 @@ VALUES ('1', '1', '4', 'This gym was fantastic! Had all the equipment I needed t
 INSERT INTO reviews(user_id, gym_id, rating, body, picture)
 VALUES ('2', '1', '3', 'This gym was ok! A little dirty.', 'https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80');
 
-INSERT INTO schedule(user_id, gym_id, start_time, end_time)
-VALUES ('1', '1', '1:00', '2:00');
+INSERT INTO schedule(user_id, gym_id,date,  start_time, end_time)
+VALUES ('1', '1', '2021-08-12' ,'1:00', '2:00');
 
 INSERT INTO gym(user_id, name, address, description, equipment)
 VALUES ('1', 'Square Space',  '600 Navarro St #600', 'Perfect gym for powerlifters', 'Weights, Treadmills'),
