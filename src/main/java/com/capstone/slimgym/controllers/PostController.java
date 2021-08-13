@@ -8,16 +8,11 @@ import com.capstone.slimgym.repositories.PostRepository;
 import com.capstone.slimgym.repositories.ReviewRepository;
 import com.capstone.slimgym.repositories.ScheduleRepository;
 import com.capstone.slimgym.repositories.UserRepository;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -39,6 +34,20 @@ public class PostController {
     public String viewPosts(Model model) {
         model.addAttribute("gyms", postDao.findAll());
         return "index";
+    }
+
+    @GetMapping("/posts/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("post", new Gym());
+        return "add-gym";
+    }
+
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Gym gym) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        gym.setUser(user);
+        postDao.save(gym);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}")
@@ -105,17 +114,27 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/create")
-    public String showCreateForm(Model model) {
-        model.addAttribute("post", new Gym());
-        return "add-gym";
+    @GetMapping("/review/create")
+    public String showReview(Model model){
+        model.addAttribute("review", new Review());
+        return "create-review";
     }
 
-    @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Gym gym) {
+    @PostMapping("/review/create")
+    public String createReview(@ModelAttribute Review review){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        gym.setUser(user);
-        postDao.save(gym);
-        return "redirect:/posts";
+        review.setUser(user);
+        reviewDao.save(review);
+        return "redirect:/gym-page";
+    }
+
+    @PostMapping("/review/{id}/delete")
+    public String deleteReview(@PathVariable long id) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Review review = reviewDao.getById(id);
+        if (currentUser.getId() == review.getUser().getId()) {
+            reviewDao.delete(review);
+        }
+        return "redirect:/gym-page";
     }
 }
