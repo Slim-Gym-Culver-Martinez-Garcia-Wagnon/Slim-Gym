@@ -8,34 +8,69 @@
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h1>Create an account</h1>
+
+    <label for="profile_pic">Select a profile photo: </label>
+    <input type="hidden" id="profile_pic">
+    <button id="test">Upload</button>
+
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="first_name">First Name</label>
     <input id="first_name" th:field="*{first_name}" />
-
+    <br>
     <label for="last_name">Last Name</label>
     <input id="last_name" th:field="*{last_name}" />
-
+    <br>
     <label for="username">Username</label>
     <input id="username" th:field="*{username}" />
-
+    <br>
     <label for="email">Email</label>
     <input id="email" th:field="*{email}" />
-
+    <br>
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
+    <br>
+<!--    <input id="profile_pic" type="hidden" th:field="*{profile_pic}">-->
+<!--    <button id="test">Upload</button>-->
+<!--    <div id="profile_pic">the url</div>-->
 
 
+
+    <br>
     <label for="emergency_first_name">Emergency First Name</label>
     <input id="emergency_first_name" th:field="*{emergency_first_name}" />
-
+    <br>
     <label for="emergency_last_name">EmergencyLast Name</label>
     <input id="emergency_last_name" th:field="*{emergency_last_name}" />
-
+    <br>
     <label for="emergency_phone_number">Emergency Phone Number</label>
     <input id="emergency_phone_number" th:field="*{emergency_phone_number}" />
-
+    <br>
     <input value="Sign me up!" type="submit" />
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script>
+    const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
+    $("#test").click(function () {
+        client.pick({
+            accept: 'image/*',
+            maxFiles: 1,
+            //Taking the result object in as 'result'
+        }).then(function (result) {
+            //Putting the result in a string, and printing it to the console
+            console.log(JSON.stringify(result));
+            //print out the url of uploaded photo
+            console.log(result.filesUploaded[0].url);
+            var profile_pic = result.filesUploaded[0].url;
+            $("#profile_pic").text(profile_pic);
+        });
+
+    });
+
+</script>
 <th:block th:include="partials/scripts.html :: script"/>
+
 </body>
 </html>
