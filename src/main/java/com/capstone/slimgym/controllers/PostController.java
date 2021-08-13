@@ -59,9 +59,8 @@ public class PostController {
 
     @PostMapping("/posts/{id}")
     public String singlePost(@PathVariable long id, @ModelAttribute Schedule schedule) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Gym gymFromDb = postDao.getById(id);
-        User user = userDao.getById((long) 1);
         List<Review> reviews = reviewDao.findAllByGymId(id);
         schedule.setGym(gymFromDb);
         schedule.setUser(user);
