@@ -8,6 +8,8 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name="schedule")
+//uniqueConstraints = {
+//        @UniqueConstraint(columnNames = {"user_id", "event_id"})}
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
