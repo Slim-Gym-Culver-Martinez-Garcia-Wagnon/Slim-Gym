@@ -31,13 +31,14 @@
                 <h4 class="card-title" th:text="${review.getUser().getUsername()}" />
                 <p th:text="${review.body}" />
                 <img th:src="@{${review.picture}}" />
+                <button class="upload">Upload</button>
             </div>
             <div class="small-space" />
         </div>
     </div>
 </div>
 
-
 <th:block th:include="partials/scripts.html :: script"/>
+
 </body>
 </html>

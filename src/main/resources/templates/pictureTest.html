@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<!-- api Key: AR2VI3jLQyWEkkv3AJ6Psz-->
+<button id="test">Upload</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
+<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script>
+    const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
+    $("#test").click(function () {
+        // client.picker().open();
+        // const options = {
+        //     onUploadDone: file => {
+        //         console.log('working')
+        //     }
+        // };
+        // client.picker(options).open();
+        client.pick({
+            accept: 'image/*',
+            maxFiles: 1,
+            //Taking the result object in as 'result'
+        }).then(function (result) {
+            //Putting the result in a string, and printing it to the console
+            console.log(JSON.stringify(result));
+            //print out the url of uploaded photo
+            console.log(result.filesUploaded[0].url);
+        });
+
+    });
+
+</script>
+</body>
+</html>
