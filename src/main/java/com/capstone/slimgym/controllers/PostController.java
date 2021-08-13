@@ -54,7 +54,7 @@ public class PostController {
     public String singlePost(@PathVariable long id, Model model) {
         Gym gym = postDao.getById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Schedule> schedules = scheduleDao.findAllByGymId(id);
+//        List<Schedule> schedules = scheduleDao.findAllByGymId(id);
         List<Review> reviews = reviewDao.findAllByGymId(id);
         boolean isPostOwner = false;
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
@@ -69,13 +69,15 @@ public class PostController {
         return "gym-page";
     }
 
-    @PostMapping("/posts/{id}")
-    public String singlePost(@PathVariable long id, Model model, @ModelAttribute Schedule schedule) {
-        Gym gymFromDb = postDao.getById(id);
+    @PostMapping("/posts/{gym_id}")
+    public String singlePost(@PathVariable long gym_id, Model model, @ModelAttribute Schedule schedule) {
+        Gym gymFromDb = postDao.getById(gym_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List <Schedule> Listie = scheduleDao.findAll();
-        schedule.setId((long) Listie.size() + 1);
+//        List <Schedule> Listie = scheduleDao.findAll();
+//        schedule.setId((long) Listie.size() + 1);
+        System.out.println(schedule.getId());
         schedule.setGym(gymFromDb);
+        System.out.println(schedule.getId());
         schedule.setUser(user);
         scheduleDao.save(schedule);
         return "redirect:/posts";
