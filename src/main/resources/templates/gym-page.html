@@ -67,8 +67,8 @@
     <div>
         <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
             <div class="card-content">
-                <form th:action="@{/posts/{id}(id=${gym.id})}" method="post" th:object="${schedule}">
-                    <div class="row">
+                <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}">
+                    <div class = "row">
                         <div class="input-field col s12">
                             <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
                             <label for="Date">Choose a Date</label>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="end_time" name="end_time" type="Time" th:field="*{start_time}"/>
+                            <input id="end_time" name="end_time" type="Time" th:field="*{end_time}"/>
                             <label for="end_time">End Time</label>
                         </div>
                     </div>

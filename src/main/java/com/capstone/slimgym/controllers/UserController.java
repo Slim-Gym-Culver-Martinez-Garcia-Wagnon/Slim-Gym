@@ -64,10 +64,10 @@ public class UserController {
 
     @PostMapping("/user/edit/update/{id}")
     public String editUser(@PathVariable long id, @ModelAttribute User user) {
-        User updateUser = users.findById(user.getId());
-//        user.setUser(updateUser);
-        users.save(updateUser);
-        return "redirect:/login";
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getFirst_name());
+        users.save(user);
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile")

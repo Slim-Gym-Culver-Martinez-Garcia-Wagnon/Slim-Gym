@@ -53,6 +53,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable long id, Model model) {
         Gym gym = postDao.getById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Schedule> schedules = scheduleDao.findAllByGymId(id);
         List<Review> reviews = reviewDao.findAllByGymId(id);
         boolean isPostOwner = false;
@@ -61,20 +62,23 @@ public class PostController {
             isPostOwner = currentUser.getId() == gym.getUser().getId();
         }
         model.addAttribute("gyms", gym);
-        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
         model.addAttribute("schedule", new Schedule());
+        model.addAttribute("reviews", reviews);
+
         return "gym-page";
     }
 
     @PostMapping("/posts/{id}")
-    public String singlePost(@PathVariable long id, @ModelAttribute Schedule schedule) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String singlePost(@PathVariable long id, Model model, @ModelAttribute Schedule schedule) {
         Gym gymFromDb = postDao.getById(id);
-        List<Review> reviews = reviewDao.findAllByGymId(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List <Schedule> Listie = scheduleDao.findAll();
+        schedule.setId((long) Listie.size() + 1);
         schedule.setGym(gymFromDb);
         schedule.setUser(user);
         scheduleDao.save(schedule);
-        return "gym-page";
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")

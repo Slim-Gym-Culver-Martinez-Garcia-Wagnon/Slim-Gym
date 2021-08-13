@@ -11,7 +11,5 @@ import java.util.List;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Long>{
         List<Schedule> findAllByGymId(Long gymId);
-
         List<Schedule> findAllByGymUser(User user);
-
 }
