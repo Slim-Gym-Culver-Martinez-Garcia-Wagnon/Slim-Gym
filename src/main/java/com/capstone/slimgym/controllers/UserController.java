@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
+
     private UserRepository users;
     private ReviewRepository reviewDao;
     private PasswordEncoder passwordEncoder;
@@ -43,13 +44,13 @@ public class UserController {
     public String userToEdit(@PathVariable long id, Model model) {
 //        checks to see if the user is logged in and has authentication
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User updatedUser =  users.getById(id);
-        if(user == updatedUser){
+        long userId = user.getId();
+        if(id == userId){
             model.addAttribute("user", users.getById(id));
             model.addAttribute("id", id);
             return "editUser";
         }
-        else {
+        else{
             return "login";
         }
     }

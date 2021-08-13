@@ -46,6 +46,18 @@ public class PostController {
         }
         model.addAttribute("gyms", gym);
         model.addAttribute("reviews", reviews);
+        model.addAttribute("schedule", new Schedule());
+        return "gym-page";
+    }
+
+    @PostMapping("/posts/{id}")
+    public String singlePost(@PathVariable long id, @ModelAttribute Schedule schedule) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Gym gymFromDb = postDao.getById(id);
+        List<Review> reviews = reviewDao.findAllByGymId(id);
+        schedule.setGym(gymFromDb);
+        schedule.setUser(user);
+        scheduleDao.save(schedule);
         return "gym-page";
     }
 
