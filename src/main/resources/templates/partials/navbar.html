@@ -35,7 +35,7 @@
                                         <a onclick="document.getElementById('form1').submit();" class="dropdown-item">Log-Out</a></form>
                                 </li>
                                 <li sec:authorize="!isAuthenticated()"><a class="dropdown-item" href="/sign-up">Create an Account</a></li>
-                                <li><a class="dropdown-item" href="#">View Profile Page</a></li>
+                                <li sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/profile">View Profile Page</a></li>
                                 <li><a class="dropdown-item" href="#">About Us</a></li>
                                 <li><a class="dropdown-item" href="#">Help</a></li>
                             </ul>
