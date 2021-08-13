@@ -30,6 +30,8 @@ public class User {
     private List<Gym> gyms;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Review> reviews;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Schedule> schedules;
 
     public User() {
     }
@@ -44,6 +46,7 @@ public class User {
         profile_pic = copy.profile_pic;
         gyms = copy.gyms;
         reviews = copy.reviews;
+        schedules = copy.schedules;
         emergency_first_name = copy.emergency_first_name;
         emergency_last_name = copy.emergency_last_name;
         emergency_phone_number = copy.emergency_phone_number;
@@ -161,5 +164,13 @@ public class User {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }
