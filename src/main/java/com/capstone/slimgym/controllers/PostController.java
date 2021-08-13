@@ -8,16 +8,11 @@ import com.capstone.slimgym.repositories.PostRepository;
 import com.capstone.slimgym.repositories.ReviewRepository;
 import com.capstone.slimgym.repositories.ScheduleRepository;
 import com.capstone.slimgym.repositories.UserRepository;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -41,9 +36,24 @@ public class PostController {
         return "index";
     }
 
+    @GetMapping("/posts/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("post", new Gym());
+        return "add-gym";
+    }
+
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Gym gym) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        gym.setUser(user);
+        postDao.save(gym);
+        return "redirect:/posts";
+    }
+
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable long id, Model model) {
         Gym gym = postDao.getById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Schedule> schedules = scheduleDao.findAllByGymId(id);
         List<Review> reviews = reviewDao.findAllByGymId(id);
         boolean isPostOwner = false;
@@ -52,21 +62,23 @@ public class PostController {
             isPostOwner = currentUser.getId() == gym.getUser().getId();
         }
         model.addAttribute("gyms", gym);
-        model.addAttribute("reviews", reviews);
+        model.addAttribute("user", user);
         model.addAttribute("schedule", new Schedule());
+        model.addAttribute("reviews", reviews);
+
         return "gym-page";
     }
 
     @PostMapping("/posts/{id}")
-    public String singlePost(@PathVariable long id, @ModelAttribute Schedule schedule) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String singlePost(@PathVariable long id, Model model, @ModelAttribute Schedule schedule) {
         Gym gymFromDb = postDao.getById(id);
-        User user = userDao.getById((long) 1);
-        List<Review> reviews = reviewDao.findAllByGymId(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List <Schedule> Listie = scheduleDao.findAll();
+        schedule.setId((long) Listie.size() + 1);
         schedule.setGym(gymFromDb);
         schedule.setUser(user);
         scheduleDao.save(schedule);
-        return "gym-page";
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")
@@ -102,17 +114,27 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/create")
-    public String showCreateForm(Model model) {
-        model.addAttribute("post", new Gym());
-        return "add-gym";
+    @GetMapping("/review/create")
+    public String showReview(Model model){
+        model.addAttribute("review", new Review());
+        return "create-review";
     }
 
-    @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Gym gym) {
+    @PostMapping("/review/create")
+    public String createReview(@ModelAttribute Review review){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        gym.setUser(user);
-        postDao.save(gym);
-        return "redirect:/posts";
+        review.setUser(user);
+        reviewDao.save(review);
+        return "redirect:/gym-page";
+    }
+
+    @PostMapping("/review/{id}/delete")
+    public String deleteReview(@PathVariable long id) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Review review = reviewDao.getById(id);
+        if (currentUser.getId() == review.getUser().getId()) {
+            reviewDao.delete(review);
+        }
+        return "redirect:/gym-page";
     }
 }
