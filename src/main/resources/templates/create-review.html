@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Review</title>
+    <th:block th:include="partials/styles.html :: styles"/>
+
+</head>
+<body>
+<th:block th:replace="partials/navbar.html :: navbar"/>
+<form th:action="@{/review/create}" method="POST" th:object="${review}">
+
+    <label for="rating">Rating</label>
+    <input id="rating" th:field="*{rating}" />
+
+    <label for="body">Review</label>
+    <input id="body" th:field="*{body}" />
+
+    <label for="picture">Review Pictures</label>
+    <input id="picture" th:field="*{picture}" />
+
+    <input value="create review" type="submit" />
+</form>
+
+<th:block th:include="partials/scripts.html :: script"/>
+</body>
+</html>

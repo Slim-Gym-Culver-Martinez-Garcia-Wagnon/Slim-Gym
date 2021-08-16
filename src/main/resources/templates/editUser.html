@@ -12,16 +12,11 @@
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h2>Edit your profile:</h2>
 <form th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
-    <fieldset disabled>
-        <div class="mb-3">
-            <label for="first_name" class="form-label"></label>
-            <input th:value="*{first_name}" type="text" id="first_name" class="form-control" th:field="*{first_name}">
-        </div>
-        <div class="mb-3">
-            <label for="last_name" class="form-label"></label>
-            <input th:value="*{last_name}" type="text" id="last_name" class="form-control" th:field="*{last_name}">
-        </div>
-    </fieldset>
+
+            <input th:value="*{first_name}" type="hidden" id="first_name" class="form-control" th:field="*{first_name}" >
+            <input th:value="*{last_name}" type="hidden" id="last_name" class="form-control" th:field="*{last_name}" >
+        <input th:value="*{username}" type="hidden" id="username" class="form-control" th:field="*{username}" >
+
     <div class="mb-3">
         <label for="email" class="form-label">Email address: </label>
         <input class="form-control" id="email" th:value="*{email}" th:field="*{email}"/>
