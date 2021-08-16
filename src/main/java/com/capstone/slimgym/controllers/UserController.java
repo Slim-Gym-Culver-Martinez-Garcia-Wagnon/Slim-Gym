@@ -60,8 +60,17 @@ public class UserController {
     @PostMapping("/user/edit/update/{id}")
     public String editUser(@PathVariable long id, @ModelAttribute User user) {
         User updateUser = users.findById(user.getId());
-//        user.setUser(updateUser);
-        users.save(updateUser);
+        user.setFirst_name(updateUser.getFirst_name());
+        user.setLast_name(updateUser.getLast_name());
+        user.setUsername(updateUser.getUsername());
+        user.setId(id);
+        if(user.getPassword().isEmpty()){
+            user.setPassword(updateUser.getPassword());
+        }else{
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+        }
+        users.save(user);
         return "redirect:/login";
     }
 

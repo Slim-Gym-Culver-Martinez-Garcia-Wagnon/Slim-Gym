@@ -25,7 +25,7 @@ public class User {
     @Column(nullable = false, length = 240)
     private String emergency_last_name;
     @Column(nullable = false)
-    private int emergency_phone_number;
+    private long emergency_phone_number;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Gym> gyms;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -142,11 +142,11 @@ public class User {
         this.emergency_last_name = emergency_last_name;
     }
 
-    public int getEmergency_phone_number() {
+    public long getEmergency_phone_number() {
         return emergency_phone_number;
     }
 
-    public void setEmergency_phone_number(int emergency_phone_number) {
+    public void setEmergency_phone_number(long emergency_phone_number) {
         this.emergency_phone_number = emergency_phone_number;
     }
 
