@@ -15,7 +15,7 @@ INSERT INTO schedule(user_id, gym_id,date,  start_time, end_time)
 VALUES ('1', '1', '2021-08-12' ,'1:00', '2:00');
 
 INSERT INTO pictures(gym_id, url)
-VALUES ('1','https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lifefitness.com%2Fen-us%2Fblog%2Fhow-build-home-gym-your-garage&psig=AOvVaw37_LcMwNeoi3_Sv8UNpMeX&ust=1628564912800000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCLC86Jz7ovICFQAAAAAdAAAAABAD');
+VALUES ('1','https://classpass-res.cloudinary.com/image/upload/q_auto,f_auto/sedot2xnfrii7rdoekl5.jpg');
 
 INSERT INTO equipment(name)
 VALUES ('bench press'),

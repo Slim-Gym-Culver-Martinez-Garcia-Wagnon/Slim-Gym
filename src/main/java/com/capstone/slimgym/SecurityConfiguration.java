@@ -56,6 +56,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                   .authorizeRequests()
                   .antMatchers(
                           "/",
+                          "/search",
+                          "/search/results",
                           "/posts",
                           "/posts/{id}",
                           "/index",

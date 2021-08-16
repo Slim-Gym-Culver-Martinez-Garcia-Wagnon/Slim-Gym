@@ -13,4 +13,9 @@ public interface PostRepository extends JpaRepository<Gym, Long> {
     Gym findByUser(User user);
 
     Gym findByName(String name);
+
+    List <Gym> findAllByNameContaining(String name);
+    List <Gym> findAllByUserId(Long id);
+
+    List <Gym> findAllByAddress(String address);
 }
