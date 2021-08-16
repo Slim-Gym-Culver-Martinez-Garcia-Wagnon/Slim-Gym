@@ -54,13 +54,13 @@
 <!--</div>-->
 
 <h1 style="text-align: center">Gym page</h1>
-<div class="col-6" th:each="gym : ${gyms}">
+<div class="col-6" >
     <div class="card offwhite-body">
         <div class="card-content preview-post">
-            <h4 class="card-title" th:text="${gym.name}"></h4>
-            <p th:text="${gym.description}"></p>
-            <p th:text="${gym.address}"></p>
-            <p th:text="${gym.equipment}"></p>
+            <h4 class="card-title" th:text="${gyms.name}"></h4>
+            <p th:text="${gyms.description}"></p>
+            <p th:text="${gyms.address}"></p>
+            <p th:text="${gyms.equipment}"></p>
         </div>
         <div class="small-space"></div>
     </div>
