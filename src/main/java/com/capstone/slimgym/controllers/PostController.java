@@ -65,6 +65,7 @@ public class PostController {
         model.addAttribute("user", user);
         model.addAttribute("schedule", new Schedule());
         model.addAttribute("reviews", reviews);
+        model.addAttribute("isPostOwner", isPostOwner);
 
         return "gym-page";
     }
