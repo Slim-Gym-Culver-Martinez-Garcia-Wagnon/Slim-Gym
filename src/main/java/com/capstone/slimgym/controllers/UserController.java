@@ -65,10 +65,21 @@ public class UserController {
 
     @PostMapping("/user/edit/update/{id}")
     public String editUser(@PathVariable long id, @ModelAttribute User user) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(user.getFirst_name());
+
+        User updateUser = users.findById(user.getId());
+        user.setFirst_name(updateUser.getFirst_name());
+        user.setLast_name(updateUser.getLast_name());
+        user.setUsername(updateUser.getUsername());
+        user.setId(id);
+        if(user.getPassword().isEmpty()){
+            user.setPassword(updateUser.getPassword());
+        }else{
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+        }
         users.save(user);
-        return "redirect:/profile";
+        return "redirect:/login";
+
     }
 
     @GetMapping("/profile")
