@@ -35,9 +35,10 @@
         <input type="password" class="form-control" id="confirm_password">
     </div>
     <div class="mb-3">
-        <label for="profile_pic" class="form-label">Profile photo: </label>
-        <input th:value="*{profile_pic}" type="text" class="form-control" id="profile_pic" th:field="*{profile_pic}">
-        <button id="test">Upload</button>
+        <img th:src="*{profile_pic}" alt="User profile picture">
+        <label for="fileupload">Select a file to upload</label>
+        <input th:value="*{profile_pic}" type="hidden" id="fileupload" th:field="*{profile_pic}">
+        <button id="picker" type="button">Pick file</button>
     </div>
 
     <p>Update your emergency contact:</p>
@@ -56,38 +57,61 @@
         <input th:value="*{emergency_phone_number}" type="text" class="form-control" id="emergency_phone_number"
                th:field="*{emergency_phone_number}">
     </div>
-
-    <!--    <label for="first_name"></label>-->
-    <!--    <input th:value="*{first_name}" id="first_name" th:field="*{first_name}" />-->
-    <!--    <label for="last_name"></label>-->
-    <!--    <input th:value="*{last_name}" id="last_name" th:field="*{last_name}" />-->
-    <!--    <label for="email">Change your email:</label>-->
-    <!--    <input th:value="*{email}" id="email" th:field="*{email}" />-->
-    <!--    <br>-->
-    <!--    <label for="password">Change your password:</label>-->
-    <!--    <input th:value="*{password}" id="password" th:field="*{password}" />-->
-    <!--    <br>-->
-    <!--    <label for="profile_pic">Change your profile photo: </label>-->
-    <!--    <input th:value="*{profile_pic}" id="profile_pic" th:field="*{profile_pic}"/>-->
-    <!--    <br>-->
-    <!--    <label for="emergency_first_name">First Name: </label>-->
-    <!--    <input th:value="*{emergency_first_name}" id="emergency_first_name" th:field="*{emergency_first_name}"/>-->
-    <!--    <label for="emergency_last_name">Last Name: </label>-->
-    <!--    <input th:value="*{emergency_last_name}" id="emergency_last_name" th:field="*{emergency_last_name}"/>-->
-    <!--    <label for="emergency_phone_number">Phone Number: </label>-->
-    <!--    <input th:value="*{emergency_phone_number}" id="emergency_phone_number" th:field="*{emergency_phone_number}"/>-->
-
     <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>
 
-<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
-<!--<script>-->
-<!--    const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');-->
-<!--    $("#test").click(function () {-->
-<!--        client.picker().open();-->
-<!--    });-->
-<!--</script>-->
-<!--<th:block th:include="partials/scripts.html :: script"/>-->
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script>
+    // Set up the picker
+    const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
+    const options = {
+        onUploadDone: updateForm,
+        maxSize: 10 * 1024 * 1024,
+        accept: 'image/*',
+        uploadInBackground: false,
+    };
+    const picker = client.picker(options);
+
+    // Get references to the DOM elements
+
+    const form = document.getElementById('pick-form');
+    const fileInput = document.getElementById('fileupload');
+    const btn = document.getElementById('picker');
+    const nameBox = document.getElementById('nameBox');
+    const urlBox = document.getElementById('urlBox');
+
+    // Add our event listeners
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        picker.open();
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Submitting: ' + fileInput.value);
+    });
+
+    // Helper to overwrite the field input value
+
+    function updateForm(result) {
+        const fileData = result.filesUploaded[0];
+        fileInput.value = fileData.url;
+
+        // Some ugly DOM code to show some data.
+        const name = document.createTextNode('Selected: ' + fileData.filename);
+        const url = document.createElement('a');
+        url.href = fileData.url;
+        url.appendChild(document.createTextNode(fileData.url));
+        nameBox.appendChild(name);
+        urlBox.appendChild(document.createTextNode('Uploaded to: '));
+        urlBox.appendChild(url);
+    };
+
+</script>
+<th:block th:include="partials/scripts.html :: script"/>
 
 </body>
 </html>
