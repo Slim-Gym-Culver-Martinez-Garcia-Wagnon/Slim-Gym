@@ -9,9 +9,9 @@
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h1>Create an account</h1>
 
-    <label for="profile_pic">Select a profile photo: </label>
-    <input type="hidden" id="profile_pic">
-    <button id="test">Upload</button>
+<!--<label for="profile_pic">Select a profile photo: </label>-->
+<!--<input type="hidden" id="profile_pic">-->
+<!--<button id="test">Upload</button>-->
 
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="first_name">First Name</label>
@@ -19,6 +19,8 @@
     <br>
     <label for="last_name">Last Name</label>
     <input id="last_name" th:field="*{last_name}" />
+    <br>
+
     <br>
     <label for="username">Username</label>
     <input id="username" th:field="*{username}" />
@@ -29,11 +31,13 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
     <br>
-<!--    <input id="profile_pic" type="hidden" th:field="*{profile_pic}">-->
-<!--    <button id="test">Upload</button>-->
-<!--    <div id="profile_pic">the url</div>-->
 
-
+    <form>
+        <label for="fileupload">Select a file to upload</label>
+        <input type="hidden" id="fileupload">
+        <button id="picker" type="button">Pick file</button>
+        <input type="submit" value="Submit">
+    </form>
 
     <br>
     <label for="emergency_first_name">Emergency First Name</label>
@@ -50,24 +54,71 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
         integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<!--<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>-->
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script>
-    const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
-    $("#test").click(function () {
-        client.pick({
-            accept: 'image/*',
-            maxFiles: 1,
-            //Taking the result object in as 'result'
-        }).then(function (result) {
-            //Putting the result in a string, and printing it to the console
-            console.log(JSON.stringify(result));
-            //print out the url of uploaded photo
-            console.log(result.filesUploaded[0].url);
-            var profile_pic = result.filesUploaded[0].url;
-            $("#profile_pic").text(profile_pic);
-        });
+    // const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
+    // $("#test").click(function () {
+    //     client.pick({
+    //         accept: 'image/*',
+    //         maxFiles: 1,
+    //         //Taking the result object in as 'result'
+    //     }).then(function (result) {
+    //         //Putting the result in a string, and printing it to the console
+    //         console.log(JSON.stringify(result));
+    //         //print out the url of uploaded photo
+    //         console.log(result.filesUploaded[0].url);
+    //         var profile_pic = result.filesUploaded[0].url;
+    //         $("#profile_pic").text(profile_pic);
+    //     });
+    //
+    // });
 
+    // Set up the picker
+    const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
+    const options = {
+        onUploadDone: updateForm,
+        maxSize: 10 * 1024 * 1024,
+        accept: 'image/*',
+        uploadInBackground: false,
+    };
+    const picker = client.picker(options);
+
+    // Get references to the DOM elements
+
+    const form = document.getElementById('pick-form');
+    const fileInput = document.getElementById('fileupload');
+    const btn = document.getElementById('picker');
+    const nameBox = document.getElementById('nameBox');
+    const urlBox = document.getElementById('urlBox');
+
+    // Add our event listeners
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        picker.open();
     });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Submitting: ' + fileInput.value);
+    });
+
+    // Helper to overwrite the field input value
+
+    function updateForm (result) {
+        const fileData = result.filesUploaded[0];
+        fileInput.value = fileData.url;
+
+        // Some ugly DOM code to show some data.
+        const name = document.createTextNode('Selected: ' + fileData.filename);
+        const url = document.createElement('a');
+        url.href = fileData.url;
+        url.appendChild(document.createTextNode(fileData.url));
+        nameBox.appendChild(name);
+        urlBox.appendChild(document.createTextNode('Uploaded to: '));
+        urlBox.appendChild(url);
+    };
 
 </script>
 <th:block th:include="partials/scripts.html :: script"/>
