@@ -42,6 +42,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         users.save(user);
+        System.out.println(user.getProfile_pic());
         return "redirect:/login";
     }
 
