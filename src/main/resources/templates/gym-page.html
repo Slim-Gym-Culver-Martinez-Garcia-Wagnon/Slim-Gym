@@ -44,6 +44,7 @@
 
     </script>
 
+
     <th:block th:include="partials/styles.html :: styles"/>
 
 </head>
@@ -115,6 +116,12 @@
             <div class="small-space"></div>
         </div>
     </div>
+</div>
+
+<div th:if="${isPostOwner}">
+    <form th:action="@{/posts/{id}/delete(id = ${gyms.id})}" method="post">
+        <button>Delete Gym</button>
+    </form>
 </div>
 
 <th:block th:include="partials/scripts.html :: script"/>
