@@ -8,6 +8,8 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name="schedule")
+//uniqueConstraints = {
+//        @UniqueConstraint(columnNames = {"user_id", "event_id"})}
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +31,28 @@ public class Schedule {
 
     @Column
     private String end_time;
+
+    public Schedule() {
+    }
+
+
+    public Schedule(long id, User user, Gym gym, Date date, String start_time, String end_time) {
+        this.id = id;
+        this.user = user;
+        this.gym = gym;
+        this.date = date;
+        this.start_time = start_time;
+        this.end_time = end_time;
+    }
+
+    public Schedule(Schedule copy) {
+        id = copy.id;
+        user = copy.user;
+        gym = copy.gym;
+        date = copy.date;
+        start_time = copy.start_time;
+        end_time = copy.end_time;
+    }
 
     public long getId() {
         return id;
