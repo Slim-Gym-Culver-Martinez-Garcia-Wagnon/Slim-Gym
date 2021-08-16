@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--<head th:replace="partials :: head ('Search Songs')" />-->
+<body class="main">
+<!--<script th:replace="partials :: j-query" />-->
+<!--<nav th:replace="partials :: navbar" />-->
+<header></header>
+<main class="container">
+<!--    <div class="card bluer-back facebook-800-text">-->
+<!--        <div class="card-image">-->
+<!--            <img src="../static/img/tuuna-bar.png" th:src="@{/img/tuuna-bar.png}" alt="colorful bar" />-->
+<!--        </div>-->
+<!--        <div class="card-content">-->
+<!--            <h3 class="card-title">Look at what we found!</h3>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div th:each="gym : ${searchResults}" >
+<!--        <a th:href="@{'/songs/' + ${song.id}}">-->
+            <div>
+<!--                <div class="card-image" th:each="picture : ${pictures}">-->
+<!--                    <div th:if="${picture.gym_id} == ${gym.id}">-->
+<!--                        <img style="height: 250px; width: 250px" alt="colqorful bar"  src="https://classpass-res.cloudinary.com/image/upload/q_auto,f_auto/sedot2xnfrii7rdoekl5.jpg"/>-->
+<!--                    </div>-->
+
+                </div>
+                <div class="card-content preview-song">
+                    <h4 class="card-title" th:text="${gym.name}" />
+                    <p th:text="${gym.description}" />
+<!--                    <a  th:href="@{/users/{id}(id=${song.user.id})}"><span class="right">Composed by user...<span class="down-for-tonight-text" th:text="${song.user.username}" /></span> </a>-->
+                </div>
+                <div class="small-space" />
+            </div>
+        </a>
+    </div>
+</main>
+<!--<footer th:replace="partials :: blue-footer" />-->
+<!--<script th:replace="partials :: m-script" />-->
+<!--<script th:replace="partials :: modals-js" />-->
+<script>
+    $('select').formSelect();
+</script>
+</body>
+</html>

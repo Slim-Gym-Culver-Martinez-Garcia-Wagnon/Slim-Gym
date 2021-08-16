@@ -42,8 +42,25 @@
                         </div>
                     </li>
                 </ul>
-                <input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form action="" th:action="@{/search}" method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p class="bluer-text">Search Options</p>
+                            <select id="search-params" name="search-params" class="browser-default cyan lighten-5 move-it bluer-text">
+                                <option value="1">General Search</option>
+                                <option value="2">Gym Name</option>
+                                <option value="3">Gym Owner</option>
+                                <option value="4">Gym Address</option>
+                                <option value="5">Gym Equipment</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="query" name="query" type="text" class="validate" />
+                            <label for="query">Query</label>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </nav>
