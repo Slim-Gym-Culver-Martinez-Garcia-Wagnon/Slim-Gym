@@ -102,16 +102,22 @@
                 <h4>User rating: </h4>
                 <h4 th:text="${review.rating}"></h4>
                 <h4>Review by: </h4>
-                <h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
-                <p th:text="${review.body}"></p>
+
+                <h4 class="card-title" th:text="${review.getUser().getUsername()}" />
+                <p th:text="${review.body}" />
+
+                <img th:src="@{${review.picture}}" />
+                <button class="upload">Upload</button>
+
                 <img style="height: 250px; width: 250px" th:src="@{${review.picture}}" />
+
             </div>
             <div class="small-space"></div>
         </div>
     </div>
 </div>
 
-
 <th:block th:include="partials/scripts.html :: script"/>
+
 </body>
 </html>

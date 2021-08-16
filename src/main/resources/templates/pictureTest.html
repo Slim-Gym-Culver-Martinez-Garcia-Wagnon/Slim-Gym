@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <th:block th:include="partials/styles.html :: styles"/>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
 </head>
 <body>
-<th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Create an account</h1>
-
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="first_name">First Name</label>
-    <input id="first_name" th:field="*{first_name}"/>
-    <br>
-    <label for="last_name">Last Name</label>
-    <input id="last_name" th:field="*{last_name}"/>
-    <br>
-
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}"/>
-    <br>
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}"/>
-    <br>
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}"/>
-    <br>
-
+<!-- api Key: AR2VI3jLQyWEkkv3AJ6Psz-->
+<!--<button id="test">Upload</button>-->
+<!--<div id="profile_pic">the url</div>-->
+<form>
     <label for="fileupload">Select a file to upload</label>
-    <input type="hidden" id="fileupload" th:field="*{profile_pic}">
+    <input type="hidden" id="fileupload">
     <button id="picker" type="button">Pick file</button>
-
-    <br>
-    <label for="emergency_first_name">Emergency First Name</label>
-    <input id="emergency_first_name" th:field="*{emergency_first_name}"/>
-    <br>
-    <label for="emergency_last_name">EmergencyLast Name</label>
-    <input id="emergency_last_name" th:field="*{emergency_last_name}"/>
-    <br>
-    <label for="emergency_phone_number">Emergency Phone Number</label>
-    <input id="emergency_phone_number" th:field="*{emergency_phone_number}"/>
-    <br>
-    <input value="Sign me up!" type="submit"/>
+    <input type="submit" value="Submit">
 </form>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
         integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<!--<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>-->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script>
+    // const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
+    // $("#test").click(function () {
+    //     client.pick({
+    //         accept: 'image/*',
+    //         maxFiles: 1,
+    //     }).then(function (result) {
+    //         console.log(JSON.stringify(result));
+    //         //print out the url of uploaded photo
+    //         console.log(result.filesUploaded[0].url);
+    //         var profile_pic = result.filesUploaded[0].url;
+    //         $("#profile_pic").text(profile_pic);
+    //     });
+    //
+    // });
+
+
     // Set up the picker
     const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
     const options = {
@@ -80,7 +69,7 @@
 
     // Helper to overwrite the field input value
 
-    function updateForm(result) {
+    function updateForm (result) {
         const fileData = result.filesUploaded[0];
         fileInput.value = fileData.url;
 
@@ -93,9 +82,6 @@
         urlBox.appendChild(document.createTextNode('Uploaded to: '));
         urlBox.appendChild(url);
     };
-
 </script>
-<th:block th:include="partials/scripts.html :: script"/>
-
 </body>
 </html>
