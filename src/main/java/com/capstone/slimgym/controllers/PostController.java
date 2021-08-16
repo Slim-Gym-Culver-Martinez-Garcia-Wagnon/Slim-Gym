@@ -39,7 +39,7 @@ public class PostController {
     @GetMapping("/posts/create")
     public String showCreateForm(Model model) {
         model.addAttribute("post", new Gym());
-        return "add-gym";
+        return "gym/add-gym";
     }
 
     @PostMapping("/posts/create")
@@ -66,11 +66,11 @@ public class PostController {
         model.addAttribute("schedule", new Schedule());
         model.addAttribute("reviews", reviews);
 
-        return "gym-page";
+        return "gym/gym-page";
     }
 
     @PostMapping("/posts/{gym_id}")
-    public String singlePost(@PathVariable long gym_id, Model model, @ModelAttribute Schedule schedule) {
+    public String singlePost(@PathVariable long gym_id, @ModelAttribute Schedule schedule) {
         Gym gymFromDb = postDao.getById(gym_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        List <Schedule> Listie = scheduleDao.findAll();
@@ -116,18 +116,22 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/review/create")
-    public String showReview(Model model){
+    @GetMapping("/posts/{id}/review-create")
+    public String showReview(@PathVariable long id, Model model){
+        Gym gym = postDao.getById(id);
+        model.addAttribute("gyms", gym);
         model.addAttribute("review", new Review());
-        return "create-review";
+        return "gym/create-review";
     }
 
-    @PostMapping("/review/create")
-    public String createReview(@ModelAttribute Review review){
+    @PostMapping("/posts/{id}/review-create")
+    public String createReview(@ModelAttribute Review review, @PathVariable long id){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Gym gym = postDao.getById(id);
         review.setUser(user);
+        review.setGym(gym);
         reviewDao.save(review);
-        return "redirect:/gym-page";
+        return "redirect:/posts/" + id;
     }
 
     @PostMapping("/review/{id}/delete")
