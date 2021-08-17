@@ -11,8 +11,10 @@ import com.capstone.slimgym.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.util.List;
 
 @Controller
@@ -71,17 +73,41 @@ public class PostController {
     }
 
     @PostMapping("/posts/{gym_id}")
-    public String singlePost(@PathVariable long gym_id, @ModelAttribute Schedule schedule) {
+    public String singlePost(@PathVariable long gym_id, @ModelAttribute Schedule schedule, BindingResult result, Model model) {
         Gym gymFromDb = postDao.getById(gym_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        List <Schedule> Listie = scheduleDao.findAll();
 //        schedule.setId((long) Listie.size() + 1);
-        System.out.println(schedule.getId());
         schedule.setGym(gymFromDb);
-        System.out.println(schedule.getId());
         schedule.setUser(user);
-        scheduleDao.save(schedule);
-        return "redirect:/posts";
+        System.out.println(schedule.getDate());
+        for (Schedule scheduleLoop : scheduleDao.findAll()){
+            //Checks to see if the user selected date is equal to any scheduled sessions and if the gym id's of the schedules match
+            if(schedule.getDate().compareTo(scheduleLoop.getDate()) == 0 && schedule.getGym().getId() == scheduleLoop.getGym().getId()) {
+                System.out.println("Nice");
+                // if selected start time or end time is the same as a scheduled session
+                if(schedule.getStart_time().equals(scheduleLoop.getStart_time()) || schedule.getEnd_time().equals(scheduleLoop.getEnd_time())){
+                    result.hasErrors();
+                }
+                //if the start time is before a scheduled start time and the end time is after a scheduled end time
+                if(Double.parseDouble(schedule.getStart_time()) < Double.parseDouble(scheduleLoop.getStart_time()) && Double.parseDouble(schedule.getEnd_time()) > Double.parseDouble(scheduleLoop.getEnd_time())){
+                    result.hasErrors();
+                }
+                // if the start time is before a scheduled start time and the end time is before a scheduled end time
+                if(Double.parseDouble(schedule.getStart_time()) < Double.parseDouble(scheduleLoop.getStart_time()) && Double.parseDouble(schedule.getEnd_time()) < Double.parseDouble(scheduleLoop.getEnd_time())){
+                    result.hasErrors();
+                }
+                // if the start time is after a scheduled start time and the end time if before a scheduled end time
+                if(Double.parseDouble(schedule.getStart_time()) > Double.parseDouble(scheduleLoop.getStart_time()) && Double.parseDouble(schedule.getEnd_time()) < Double.parseDouble(scheduleLoop.getEnd_time())){
+                    result.hasErrors();
+                }
+                else {
+                    System.out.println("Also nice");
+                    scheduleDao.save(schedule);
+
+                }
+            }
+        }
+        return "redirect.posts/" + gym_id;
     }
 
     @GetMapping("/posts/{id}/edit")

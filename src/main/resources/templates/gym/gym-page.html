@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">>
 <head>
     <meta charset="UTF-8"/>
     <title>Gym page</title>
@@ -65,10 +65,15 @@
         </div>
         <div class="small-space"></div>
     </div>
-    <div>
+    <div sec:authorize="isAuthenticated()">
         <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
             <div class="card-content">
                 <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}">
+                    <div th:if="${#fields.hasAnyErrors()}">
+                        <ul>
+                            <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+                        </ul>
+                    </div>
                     <div class = "row">
                         <div class="input-field col s12">
                             <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
