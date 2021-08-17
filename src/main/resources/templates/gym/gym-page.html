@@ -104,10 +104,10 @@
                 <h4 th:text="${review.rating}"></h4>
                 <h4>Review by: </h4>
 
-                <h4 class="card-title" th:text="${review.getUser().getUsername()}" />
-                <p th:text="${review.body}" />
+                <h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
+                <p th:text="${review.body}"></p>
 
-                <img th:src="@{${review.picture}}" />
+                <img th:src="@{${review.picture}}"  alt="picture review"/>
                 <button class="upload">Upload</button>
 
                 <img style="height: 250px; width: 250px" th:src="@{${review.picture}}" />
@@ -118,7 +118,7 @@
     </div>
 </div>
 
-<div th:if="${isPostOwner}">
+<div th:if="${!isPostOwner}">
     <form th:action="@{/posts/{id}/delete(id = ${gyms.id})}" method="post">
         <button>Delete Gym</button>
     </form>
