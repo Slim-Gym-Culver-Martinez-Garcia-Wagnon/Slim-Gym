@@ -1,5 +1,7 @@
 package com.capstone.slimgym.controllers;
 
+import com.capstone.slimgym.models.Gym;
+import com.capstone.slimgym.models.Review;
 import com.capstone.slimgym.models.User;
 import com.capstone.slimgym.repositories.PostRepository;
 import com.capstone.slimgym.repositories.ReviewRepository;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -85,9 +89,19 @@ public class UserController {
     @GetMapping("/profile")
     public String userProfile(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("reviews", reviewDao.findByUser(user));
-        model.addAttribute("gyms", postDao.findByUser(user));
+        Gym gyms = postDao.getById(user.getId());
+        User userOwner = users.findById(user.getId());
+        List<Review> reviews = reviewDao.findByUserId(user.getId());
+        boolean isOwner = true;
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            isOwner = currentUser.getId() == gyms.getUser().getId();
+        }
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("gyms", gyms);
         model.addAttribute("events", scheduleDao.findAllByGymUser(user));
+        model.addAttribute("user", userOwner);
+        model.addAttribute("isOwner", isOwner);
         return "user/profile";
     }
 
