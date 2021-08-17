@@ -8,7 +8,7 @@
 </head>
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<form th:action="@{/review/create}" method="POST" th:object="${review}">
+<form th:action="@{/posts/{id}/review-create(id=${gyms.id})}" method="POST" th:object="${review}">
 
     <label for="rating">Rating</label>
     <input id="rating" th:field="*{rating}" />
