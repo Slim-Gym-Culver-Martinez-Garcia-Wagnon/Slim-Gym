@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.util.List;
 
 @Controller
@@ -80,6 +81,36 @@ public class PostController {
         schedule.setGym(gymFromDb);
         System.out.println(schedule.getId());
         schedule.setUser(user);
+        boolean scheduleError;
+        for(Schedule currentSchedule : scheduleDao.findAll()){
+            if(schedule.getDate().equals(currentSchedule.getDate())){
+                System.out.println(schedule.getDate());
+                System.out.println("DateDate");
+                boolean start
+                //User selected Start time
+                String[] startTime = schedule.getStart_time().split(":");
+                String startHours = startTime[0];
+                String startMinutes = startTime[1];
+                //User selected End time
+                String[] endTime = schedule.getStart_time().split(":");
+                String endHours = startTime[0];
+                String endMinutes = startTime[1];
+                //Scheduled event Start time
+                String[] loopStartTime = currentSchedule.getStart_time().split(":");
+                String loopStartHours = startTime[0];
+                String loopStartMinutes = startTime[1];
+                //Scheduled event End time
+                String[] loopEndTime = currentSchedule.getEnd_time().split(":");
+                String loopEndHours = startTime[0];
+                String loopEndMinutes = startTime[1];
+
+                System.out.println(Integer.parseInt(endHours));
+
+                if(Integer.parseInt(endHours) > Integer.parseInt(loopEndHours) || Integer.parseInt(startHours) > Integer.parseInt(loopStartHours)){
+
+                }
+            }
+        }
         scheduleDao.save(schedule);
         return "redirect:/posts";
     }
