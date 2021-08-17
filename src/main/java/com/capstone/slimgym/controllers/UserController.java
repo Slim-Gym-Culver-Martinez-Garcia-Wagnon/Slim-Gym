@@ -34,7 +34,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
-        return "sign-up";
+        return "user/sign-up";
     }
 
     @PostMapping("/sign-up")
@@ -55,10 +55,10 @@ public class UserController {
         if(id == userId){
             model.addAttribute("user", users.getById(id));
             model.addAttribute("id", id);
-            return "editUser";
+            return "user/editUser";
         }
         else{
-            return "login";
+            return "user/login";
         }
     }
 
@@ -88,7 +88,7 @@ public class UserController {
         model.addAttribute("reviews", reviewDao.findByUser(user));
         model.addAttribute("gyms", postDao.findByUser(user));
         model.addAttribute("events", scheduleDao.findAllByGymUser(user));
-        return "profile";
+        return "user/profile";
     }
 
 }

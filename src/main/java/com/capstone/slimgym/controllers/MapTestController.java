@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MapTestController {
     @GetMapping("/maptest")
     public String maptestpage(){
-        return "maptest";
+        return "testing/maptest";
     }
 }
