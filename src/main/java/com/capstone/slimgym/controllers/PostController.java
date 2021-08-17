@@ -72,10 +72,10 @@ public class PostController {
     }
 
     @PostMapping("/posts/{gym_id}")
-    public String singlePost(@PathVariable long gym_id, @ModelAttribute Schedule schedule) {
+    public String singlePost(@PathVariable long gym_id, @ModelAttribute Schedule schedule, Model model) {
         Gym gymFromDb = postDao.getById(gym_id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        List <Schedule> Listie = scheduleDao.findAll();
+//        List <Schedule> Listie = scheduleDao.findAll();e
 //        schedule.setId((long) Listie.size() + 1);
         System.out.println(schedule.getId());
         schedule.setGym(gymFromDb);
@@ -84,9 +84,6 @@ public class PostController {
         boolean scheduleError;
         for(Schedule currentSchedule : scheduleDao.findAll()){
             if(schedule.getDate().equals(currentSchedule.getDate())){
-                System.out.println(schedule.getDate());
-                System.out.println("DateDate");
-                boolean start
                 //User selected Start time
                 String[] startTime = schedule.getStart_time().split(":");
                 String startHours = startTime[0];
@@ -106,13 +103,29 @@ public class PostController {
 
                 System.out.println(Integer.parseInt(endHours));
 
-                if(Integer.parseInt(endHours) > Integer.parseInt(loopEndHours) || Integer.parseInt(startHours) > Integer.parseInt(loopStartHours)){
-
+                if(Integer.parseInt(endHours) > Integer.parseInt(loopStartHours) || Integer.parseInt(startHours) > Integer.parseInt(loopEndHours)){
+                    scheduleError = true;
+                    model.addAttribute("error", scheduleError);
+                    return "redirect:/posts/" + gym_id;
+                }
+                if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) && Integer.parseInt(startMinutes) == Integer.parseInt(loopStartMinutes)){
+                    scheduleError = true;
+                    model.addAttribute("error", scheduleError);
+                    return "redirect:/posts/" + gym_id;
+                }
+                if(Integer.parseInt(endHours) == Integer.parseInt(loopStartHours) && Integer.parseInt(endMinutes) == Integer.parseInt(loopEndMinutes) ){
+                    scheduleError = true;
+                    model.addAttribute("error", scheduleError);
+                    return "redirect:/posts/" + gym_id;
+                }
+                else{
+                    scheduleError = false;
+                    scheduleDao.save(schedule);
                 }
             }
         }
-        scheduleDao.save(schedule);
-        return "redirect:/posts";
+
+        return "redirect:/posts/" + gym_id;
     }
 
     @GetMapping("/posts/{id}/edit")
