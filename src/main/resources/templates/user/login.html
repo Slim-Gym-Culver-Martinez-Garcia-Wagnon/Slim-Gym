@@ -11,6 +11,13 @@
 
 <i class="fas fa-user-circle"></i>
 
+<div th:if="${param.error}">
+    Invalid Username and Password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+
 <form action="" th:action="@{/login}" method="post">
     <div class="row">
         <div class="input-field col s12">
