@@ -116,32 +116,4 @@ public class PostController {
         }
         return "redirect:/posts";
     }
-
-    @GetMapping("/posts/{id}/review-create")
-    public String showReview(@PathVariable long id, Model model){
-        Gym gym = postDao.getById(id);
-        model.addAttribute("gyms", gym);
-        model.addAttribute("review", new Review());
-        return "gym/create-review";
-    }
-
-    @PostMapping("/posts/{id}/review-create")
-    public String createReview(@ModelAttribute Review review, @PathVariable long id){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Gym gym = postDao.getById(id);
-        review.setUser(user);
-        review.setGym(gym);
-        reviewDao.save(review);
-        return "redirect:/posts/" + id;
-    }
-
-    @PostMapping("/review/{id}/delete")
-    public String deleteReview(@PathVariable long id) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Review review = reviewDao.getById(id);
-        if (currentUser.getId() == review.getUser().getId()) {
-            reviewDao.delete(review);
-        }
-        return "redirect:/gym-page";
-    }
 }

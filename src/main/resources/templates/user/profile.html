@@ -8,7 +8,40 @@
 </head>
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
+<h1>Hello, <span th:text="${user.first_name}"></span></h1>
 you are the master here
+
+<div th:if="${isOwner}">
+
+    <div th:each="gyms : ${gyms}">
+        <div class="card offwhite-body">
+            <div class="card-content preview-post">
+                <h4 class="gym-name card-title" th:text="${gyms.name}"></h4>
+                <p th:text="${gyms.description}"></p>
+                <p class="gym-address" th:text="${gyms.address}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="review : ${reviews}">
+        <div class="card offwhite-body">
+            <div class="card-content preview-post">
+                <h4>User rating: </h4>
+                <h4 th:text="${review.rating}"></h4>
+                <h4>Review by: </h4>
+                <h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
+                <p th:text="${review.body}"></p>
+                <img th:src="@{${review.picture}}" alt="picture review"/>
+                <button class="upload">Upload</button>
+                <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+            </div>
+            <div class="small-space"></div>
+        </div>
+        <form th:action="@{/review/{id}/delete(id = ${gyms.id})}" method="post">
+            <button>Delete Review</button>
+        </form>
+    </div>
+</div>
 
 
 <th:block th:include="partials/scripts.html :: script"/>
