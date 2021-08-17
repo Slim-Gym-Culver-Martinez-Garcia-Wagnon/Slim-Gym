@@ -1,5 +1,6 @@
 package com.capstone.slimgym.models;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import java.util.List;
 @Entity
@@ -8,14 +9,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "First name cannot be empty.")
     @Column(nullable = false, length = 240)
     private String first_name;
+    @NotEmpty(message = "Last name cannot be empty.")
     @Column(nullable = false, length = 240)
     private String last_name;
+    @NotEmpty(message = "Username cannot be empty.")
     @Column(nullable = false, length = 240)
     private String username;
+    @NotEmpty(message = "Email cannot be empty.")
     @Column(nullable = false)
     private String email;
+    @NotEmpty(message = "You must create a password.")
     @Column(nullable = false)
     private String password;
     @Column(length = 255)
