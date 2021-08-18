@@ -66,15 +66,15 @@
         <div class="small-space"></div>
     </div>
     <div>
+        <div th:if="${error}">
+        <ul>
+            <li style="color: red">That time slot is not available! Please try again.</li>
+        </ul>
+        </div>
         <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
             <div class="card-content">
+
                 <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}">
-                    <div th:if="${}">
-                        <ul>
-                            <!--                            <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />-->
-                            <p style="color: red">That time slot is not available! Please try again.</p>
-                        </ul>
-                    </div>
                     <div class = "row">
                         <div class="input-field col s12">
                             <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
