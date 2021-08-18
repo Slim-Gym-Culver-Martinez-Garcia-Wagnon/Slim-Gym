@@ -64,6 +64,7 @@ public class PostController {
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             isPostOwner = currentUser.getId() == gym.getUser().getId();
         }
+        //Comment
         model.addAttribute("gyms", gym);
         model.addAttribute("user", user);
         model.addAttribute("schedule", new Schedule());
