@@ -8,7 +8,7 @@
 </head>
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<form th:action="@{/posts/{id}/review-create(id=${gyms.id})}" method="POST" th:object="${review}">
+<form th:action="@{/posts/{id}/review-create(id=${gym_id})}" method="POST" th:object="${review}">
 
     <label for="rating">Rating</label>
     <input id="rating" th:field="*{rating}" />
@@ -16,8 +16,14 @@
     <label for="body">Review</label>
     <input id="body" th:field="*{body}" />
 
-    <label for="picture">Review Pictures</label>
-    <input id="picture" th:field="*{picture}" />
+    <div class="mb-3">
+        <img id="oldpic" th:src="*{picture}" alt="User profile picture" style="height: 250px">
+        <br>
+        <div id="thumbnail-container"></div>
+        <label for="fileupload">Select a file to upload</label>
+        <input th:value="*{picture}" type="hidden" id="fileupload" th:field="*{picture}">
+        <button id="picker" type="button">Pick file</button>
+    </div>
 
     <input value="create review" type="submit" />
 </form>
