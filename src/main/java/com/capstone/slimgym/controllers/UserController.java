@@ -25,11 +25,11 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private UserRepository users;
-    private PostRepository postDao;
-    private ReviewRepository reviewDao;
-    private PasswordEncoder passwordEncoder;
-    private ScheduleRepository scheduleDao;
+    private final UserRepository users;
+    private final PostRepository postDao;
+    private final ReviewRepository reviewDao;
+    private final PasswordEncoder passwordEncoder;
+    private final ScheduleRepository scheduleDao;
 
     public UserController(UserRepository users, PasswordEncoder passwordEncoder, ReviewRepository reviewDao, PostRepository postDao, ScheduleRepository scheduleDao) {
         this.users = users;
@@ -95,7 +95,7 @@ public class UserController {
     @GetMapping("/profile")
     public String userProfile(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Gym gyms = postDao.getById(user.getId());
+        Gym gyms = postDao.findByUser(users.findById(user.getId()));
         User userOwner = users.findById(user.getId());
         List<Review> reviews = reviewDao.findByUserId(user.getId());
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){

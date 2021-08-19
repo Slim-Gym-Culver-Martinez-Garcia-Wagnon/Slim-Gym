@@ -8,31 +8,39 @@
 </head>
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Hello, <span th:text="${user.first_name}"></span></h1>
+<h1>Hello, <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h1>
 you are the master here
 
 <div th:if="!${isOwner}">
-    <div th:each="review : ${reviews}">
-        <div class="card offwhite-body">
+    <div class="card" style="width: 20rem;">
+        <div class="card-body">
             <div class="card-content preview-post">
-                <h4>User rating: </h4>
-                <h4 th:text="${review.rating}"></h4>
-                <h4>Review by: </h4>
-                <h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
-                <p th:text="${review.body}"></p>
-                <img th:src="@{${review.picture}}" alt="picture review"/>
-                <button class="upload">Upload</button>
-                <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+                <h4 class="card-title" th:text="${gyms.name}"></h4>
+                <p class="card-text" th:text="${gyms.description}"></p>
+                <p class="card-text" th:text="${gyms.address}"></p>
+                <p class="card-text" th:text="${gyms.equipment}"></p>
             </div>
-            <div class="small-space"></div>
         </div>
-        <form th:action="@{/review/{id}/delete(id = ${gyms.id})}" method="post">
-            <button>Delete Review</button>
-        </form>
+    </div>
+
+    <div th:each="review : ${reviews}">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title" th:text="${review.getGym().getName()}"></h4>
+                <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+                <p class="card-text">User rating: </p>
+                <p class="card-text" th:text="${review.rating}"></p>
+                <p class="card-text">Review by: </p>
+                <p class="card-text" th:text="${review.body}"></p>
+                <form th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">
+                    <button class="btn-primary">Delete Review</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-
+<th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
