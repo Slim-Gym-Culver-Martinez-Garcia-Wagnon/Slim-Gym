@@ -11,18 +11,7 @@
 <h1>Hello, <span th:text="${user.first_name}"></span></h1>
 you are the master here
 
-<div th:if="${isOwner}">
-
-    <div th:each="gyms : ${gyms}">
-        <div class="card offwhite-body">
-            <div class="card-content preview-post">
-                <h4 class="gym-name card-title" th:text="${gyms.name}"></h4>
-                <p th:text="${gyms.description}"></p>
-                <p class="gym-address" th:text="${gyms.address}"></p>
-            </div>
-        </div>
-    </div>
-
+<div th:if="!${isOwner}">
     <div th:each="review : ${reviews}">
         <div class="card offwhite-body">
             <div class="card-content preview-post">

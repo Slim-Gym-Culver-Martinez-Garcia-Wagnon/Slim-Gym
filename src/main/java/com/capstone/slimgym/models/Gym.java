@@ -38,11 +38,13 @@ public class Gym {
     public Gym() {
     }
 
-    public Gym(String name, String address, String description, String equipment) {
+    public Gym(String name, String address, String description, String equipment, List<Review> reviews, List<Picture> pictures) {
         this.name = name;
         this.address = address;
         this.description = description;
         this.equipment = equipment;
+        this.reviews = reviews;
+        this.pictures = pictures;
     }
 
     public long getId() {
@@ -107,5 +109,13 @@ public class Gym {
 
     public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
