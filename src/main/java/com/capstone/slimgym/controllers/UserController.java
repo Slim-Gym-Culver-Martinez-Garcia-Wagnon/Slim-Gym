@@ -98,16 +98,14 @@ public class UserController {
         Gym gyms = postDao.getById(user.getId());
         User userOwner = users.findById(user.getId());
         List<Review> reviews = reviewDao.findByUserId(user.getId());
-        boolean isOwner = true;
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            isOwner = currentUser.getId() == gyms.getUser().getId();
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
+            return "redirect:/login";
         }
         model.addAttribute("reviews", reviews);
         model.addAttribute("gyms", gyms);
         model.addAttribute("events", scheduleDao.findAllByGymUser(user));
         model.addAttribute("user", userOwner);
-        model.addAttribute("isOwner", isOwner);
+        model.addAttribute("isOwner", false);
         return "user/profile";
     }
 
