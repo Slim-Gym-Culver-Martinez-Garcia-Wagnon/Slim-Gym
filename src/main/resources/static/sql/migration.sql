@@ -23,7 +23,7 @@ CREATE TABLE users
     profile_pic VARCHAR(240),
     emergency_first_name VARCHAR(240) NOT NULL,
     emergency_last_name VARCHAR(240) NOT NULL,
-    emergency_phone_number LONG UNSIGNED NOT NULL,
+    emergency_phone_number LONG  NOT NULL,
     PRIMARY KEY (id)
 );
 
