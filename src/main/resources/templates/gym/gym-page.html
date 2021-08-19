@@ -4,11 +4,13 @@
     <meta charset="UTF-8"/>
     <title>Gym page</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js" integrity="sha256-9+heQ0nDVUAhO3sCt1pKLQSmV0gSo7QcQmtJ2ZCT55g=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css" integrity="sha256-z7G6BBWwBOXahthaod21GyxfNhxiQFBVn6WQYHRs9W8=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js"
+            integrity="sha256-9+heQ0nDVUAhO3sCt1pKLQSmV0gSo7QcQmtJ2ZCT55g=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css"
+          integrity="sha256-z7G6BBWwBOXahthaod21GyxfNhxiQFBVn6WQYHRs9W8=" crossorigin="anonymous">
     <script th:inline="javascript">
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -49,13 +51,14 @@
 
 </head>
 <body class="d-flex">
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <!--<div th:each="gym : ${gyms}">-->
 <!--    <p th:text="${gym.name}" />-->
 <!--    <p th:text="${gym.description}" />-->
 <!--</div>-->
 
 <h1 style="text-align: center">Gym page</h1>
-<div class="col-6" >
+<div class="col-6">
     <div class="card offwhite-body">
         <div class="card-content preview-post">
             <h4 class="card-title" th:text="${gyms.name}"></h4>
@@ -73,7 +76,6 @@
         </div>
         <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
             <div class="card-content">
-
                 <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}">
                     <div class = "row">
                         <div class="input-field col s12">
@@ -81,24 +83,25 @@
                             <label for="Date">Choose a Date</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="start_time" name="start_time" type="Time" th:field="*{start_time}"/>
-                            <label for="start_time">Start Time</label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="start_time" name="start_time" type="Time" th:field="*{start_time}"/>
+                        <label for="start_time">Start Time</label>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="end_time" name="end_time" type="Time" th:field="*{end_time}"/>
-                            <label for="end_time">End Time</label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="end_time" name="end_time" type="Time" th:field="*{end_time}"/>
+                        <label for="end_time">End Time</label>
                     </div>
-                    <button type="submit" value="submit" class="btn">Submit</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" value="submit" class="btn">Submit</button>
+            </form>
+        </div>
 
     </div>
-    <a  th:href="@{/posts/{id}/review-create(id=${gyms.id})}">Create a review</a>
+    <a th:href="@{/posts/{id}/review-create(id=${gyms.id})}">Create a review</a>
     <div>
 
     </div>
@@ -109,27 +112,15 @@
                 <h4>User rating: </h4>
                 <h4 th:text="${review.rating}"></h4>
                 <h4>Review by: </h4>
-
                 <h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
                 <p th:text="${review.body}"></p>
-
-                <img th:src="@{${review.picture}}"  alt="picture review"/>
-                <button class="upload">Upload</button>
-
-                <img style="height: 250px; width: 250px" th:src="@{${review.picture}}" />
-
+                <img th:src="@{${review.picture}}" alt="picture review"/>
+                <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
             </div>
             <div class="small-space"></div>
         </div>
     </div>
 </div>
-
-<div th:if="${!isPostOwner}">
-    <form th:action="@{/posts/{id}/delete(id = ${gyms.id})}" method="post">
-        <button>Delete Gym</button>
-    </form>
-</div>
-
 <th:block th:include="partials/scripts.html :: script"/>
 
 </body>
