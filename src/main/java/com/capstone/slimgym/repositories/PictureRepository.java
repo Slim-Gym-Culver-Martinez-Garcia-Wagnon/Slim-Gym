@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PictureRepository extends JpaRepository<Picture, Long> {
 
-//    List<Picture> findByGym(List<Gym> searchResults);
+    List<Picture> findByGym(Gym gym);
 }

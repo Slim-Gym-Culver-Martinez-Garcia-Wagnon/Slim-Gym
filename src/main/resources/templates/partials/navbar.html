@@ -7,7 +7,7 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="position:relative; height: 10%; width: 100%; margin-bottom: 10px">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">SlimGym</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -28,7 +28,6 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown link
                             </a>
-
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li sec:authorize="!isAuthenticated()"><a class="dropdown-item" href="/login">Login</a></li>
                                 <li sec:authorize="isAuthenticated()"><form th:action="@{/logout}" th:method="post" id="form1">
@@ -42,23 +41,21 @@
                         </div>
                     </li>
                 </ul>
-                <form th:action="@{/search}" method="post">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <p class="bluer-text">Search Options</p>
-                            <select id="search-params" name="search-params" class="browser-default cyan lighten-5 move-it bluer-text">
-                                <option value="1">General Search</option>
+
+                <form class="row d-flex" action="" th:action="@{/search}" method="post">
+                        <div class="row input-field row s12">
+                            <select id="search-params" name="" class="">
+<!--                                <option value="1">General Search</option>-->
                                 <option value="2">Gym Name</option>
                                 <option value="3">Gym Owner</option>
                                 <option value="4">Gym Address</option>
                                 <option value="5">Gym Equipment</option>
                             </select>
-                            <div class="input-field col s12">
-                                <input id="query" name="query" type="text" class="validate" />
-                                <label for="query">Query</label>
+                            <div class="input-field s12">
+                                <input id="query" name="query" type="text" class="validate" placeholder="Search" />
+                                <label for="query"></label>
                             </div>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>
