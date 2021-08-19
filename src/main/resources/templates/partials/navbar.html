@@ -7,7 +7,7 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="position:relative; height: 75px; width: 100%">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">SlimGym</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -42,8 +42,8 @@
                         </div>
                     </li>
                 </ul>
-                <form action="" th:action="@{/search}" method="post">
-                    <div class="row">
+                <form class="row" action="" th:action="@{/search}" method="post">
+                    <div class="">
                         <div class="input-field col s12">
                             <p class="bluer-text">Search Options</p>
                             <select id="search-params" name="search-params" class="browser-default cyan lighten-5 move-it bluer-text">

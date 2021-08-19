@@ -50,7 +50,7 @@
     <th:block th:include="partials/styles.html :: styles"/>
 
 </head>
-<body class="d-flex">
+<body class="">
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <!--<div th:each="gym : ${gyms}">-->
 <!--    <p th:text="${gym.name}" />-->
@@ -58,7 +58,7 @@
 <!--</div>-->
 
 <h1 style="text-align: center">Gym page</h1>
-<div class="col-6">
+<div class="">
     <div class="card offwhite-body">
         <div class="card-content preview-post">
             <h4 class="card-title" th:text="${gyms.name}"></h4>

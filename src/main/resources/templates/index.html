@@ -12,7 +12,8 @@
         /* Always set the map height explicitly to define the size of the div
            * element that contains the map. */
         #map {
-            height: 75%;
+            position: absolute;
+            height: 90%;
             width: 75%;
         }
 
@@ -25,14 +26,10 @@
         }
 
         #floating-panel {
-            position: absolute;
-            top: 10px;
             left: 25%;
             z-index: 5;
             background-color: #fff;
-            padding: 5px;
-            border: 1px solid #999;
-            text-align: center;
+            text-align: left;
             font-family: "Roboto", "sans-serif";
             line-height: 30px;
             padding-left: 10px;
@@ -40,24 +37,49 @@
 
     </style>
 </head>
-<body>
+<body class="container-fluid" style="width: 100%">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<div id="floating-panel">
-    <input id="address" type="textbox" value="Nice" />
-    <input id="submit" type="button" value="Geocode" />
-</div>
-<div id="map"></div>
 
-<div th:each="gym : ${gyms}">
-    <div class="card offwhite-body">
-        <div class="card-content preview-post">
-            <h4 class="gym-name card-title" th:text="${gym.name}"></h4>
-            <p th:text="${gym.description}"></p>
-            <p class="gym-address" th:text="${gym.address}"></p>
+<!--<div>-->
+<!--    <div class="d-none d-md-block" id="floating-panel">-->
+<!--        <input id="address" type="textbox" placeholder="Enter an address" />-->
+<!--        <input id="submit" type="button" value="Search" />-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="d-none d-md-block" id="map"></div>
+
+<div class="col-4 ml-auto d-none d-md-block" style="padding: 10px">
+    <div th:each="gym : ${gyms}">
+        <div class="card offwhite-body" style="margin-bottom: 10px">
+            <div class="preview-post">
+                <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                <div class="card-content">
+                    <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
+                    <p class="card-text gym-address" th:text="${gym.address}"></p>
+                    <p class="gym-id d-none" th:text="${gym.id}"></p>
+                </div>
+            </div>
         </div>
-        <div class="small-space" />
     </div>
 </div>
+
+<div class=" d-xl-none d-md-none d-lg-none d-block" style="padding: 10px">
+    <div th:each="gym : ${gyms}">
+        <div class="card offwhite-body" >
+            <div class="preview-post">
+                <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                <div class="card-content">
+                    <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
+                    <p class="card-text gym-address" th:text="${gym.address}"></p>
+                    <p class="gym-id d-none" th:text="${gym.id}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -65,7 +87,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script>
     let names = $(".gym-name");
+    let descriptions = $(".gym-description");
     let addresses = $(".gym-address");
+    let ids = $(".gym-id");
     var addressesArray = [];
 
 
@@ -73,29 +97,52 @@
 
         const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
-        center: { lat: -34.397, lng: 150.644 },
+        center: { lat: 29.4241, lng: -98.4936 },
 
     });
 
     const geocoder = new google.maps.Geocoder();
 
-    document.getElementById("submit").addEventListener("click", () => {
-        geocodeAddress(geocoder, map);
-    });
+    // document.getElementById("submit").addEventListener("click", () => {
+    //     geocodeAddress(geocoder, map);
+    // });
 
-        for (let address of addresses){
-            var add = address.innerHTML;
+        for (var i = 0; i < addresses.length; i++){
+            var gymDescription = descriptions[i].innerHTML;
+            var gymName = names[i].innerHTML;
+            var add = addresses[i].innerHTML;
+            var id = ids[i].innerHTML;
+            const popupString =
+                '<div class="">' +
+                '<h1 class=""><a href="' +"/posts/" + id + '">' + gymName + '</a></h1>' +
+                '<h3 class="">' + gymDescription + '</h3>' +
+                '<h5 class="">'+ add + '</h5>' +
+                '</div>';
+            const infowindow = new google.maps.InfoWindow({
+                content: popupString,
+            });
+
             geocoder
-                .geocode({address: add})
+        .geocode({address: add})
                 .then(({results}) => {
-                    new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
+                       let marker = new google.maps.Marker({
+                       map: map,
+                       position: results[0].geometry.location,
+                    });
+                    marker.addListener("click", () => {
+                        infowindow.open({
+                            anchor: marker,
+                            map: map,
+                            shouldFocus: false,
+                        });
                     });
                 })
+
                 .catch((e) =>
                     alert("Geocode was not successful for the following reason: " + e)
                 );
+
+
         }
         // var i = 0;
         // while (i < addressesArray.length){
