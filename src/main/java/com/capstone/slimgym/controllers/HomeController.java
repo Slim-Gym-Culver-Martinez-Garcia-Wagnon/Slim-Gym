@@ -100,4 +100,9 @@ public class HomeController {
 //        }
         return "searchresults";
     }
+
+    @GetMapping("/aboutus")
+    public String aboutUs(){
+        return "aboutus";
+    }
 }
