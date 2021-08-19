@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url("https://wallpaperaccess.com/full/1087587.jpg") no-repeat;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+.login-box{
+    width: 270px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+.login-h1{
+    float: left;
+    font-size: 40px;
+    border-bottom: 4px solid red;
+    margin-bottom: 50px;
+    padding: 13px 0;
+}
+.form-text{
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid white;
+    padding: 7px 0;
+    margin: 7px 0;
+    font-size: 15px;
+}
