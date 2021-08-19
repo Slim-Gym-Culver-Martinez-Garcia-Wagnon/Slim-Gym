@@ -5,11 +5,12 @@
     <title>Title</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
-<body>
+<body class="login-body">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>LOGIN</h1>
 
-<i class="fas fa-user-circle"></i>
+
+<div class="login-box">
+    <h1 class="login-h1">LOGIN</h1>
 
 <div th:if="${param.error}">
     Invalid Username and Password.
@@ -19,20 +20,23 @@
 </div>
 
 <form action="" th:action="@{/login}" method="post">
-    <div class="row">
+    <div class="form-text">
         <div class="input-field col s12">
-            <input id="username" name="username" type="text" class="validate" placeholder="Username/Email" />
+            <i class="fas fa-user-circle"></i>
+            <input id="username" name="username" type="text" class="validate" placeholder="Username" />
             <label for="username"></label>
         </div>
     </div>
-    <div class="row">
+    <div class="form-text">
         <div class="input-field col s12">
+            <i class="fas fa-lock"></i>
             <input id="password" name="password" type="password" class="validate" placeholder="Password" />
             <label for="password"></label>
         </div>
     </div>
     <button type="submit" value="Log In" class="waves-effect waves-purple btn-small indigo accent-3">Log In</button>
 </form>
+</div>
 
 
 <th:block th:include="partials/scripts.html :: script"/>
