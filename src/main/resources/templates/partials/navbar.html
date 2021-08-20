@@ -7,7 +7,7 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="position:relative; height: 10%; width: 100%; margin-bottom: 10px">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="position:fixed; height: 10%; width: 100%; margin-bottom: 10px; z-index: 4;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">SlimGym</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -42,7 +42,8 @@
                     </li>
                 </ul>
 
-                <form class="row d-flex" action="" th:action="@{/search}" method="post">
+                <form class="row d-flex ml-auto" action="" th:action="@{/search}" method="post">
+
                         <div class="row input-field row s12">
                             <select id="search-params" name="" class="">
 <!--                                <option value="1">General Search</option>-->

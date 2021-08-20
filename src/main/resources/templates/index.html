@@ -62,11 +62,11 @@
     <div th:each="gym : ${gyms}">
         <div class="card offwhite-body" style="margin-bottom: 10px">
             <div class="preview-post">
-                <div id="Desktop" class="card-img-top carousel slide" data-ride="carousel">
+                <div id="Profile" class="card-img-top carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#Desktop" data-slide-to="0" class="active"></li>
-                        <li data-target="#Desktop" data-slide-to="1"></li>
-                        <li data-target="#Desktop" data-slide-to="2"></li>
+                        <li data-target="#Profile" data-slide-to="0" class="active"></li>
+                        <li data-target="#Profile" data-slide-to="1"></li>
+                        <li data-target="#Profile" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div th:each="picture : ${pictures}">
@@ -77,11 +77,11 @@
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#Desktop" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#Profile" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#Desktop" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#Profile" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -99,7 +99,7 @@
 
 <div class="col-5 ml-auto d-none d-lg-block d-lg-block overflow-auto scroll-container overlay" style="padding: 10px; background-color: rgba(0,0,0,0.5); left: 0;">
     <div class="row" th:each="gym : ${gyms}">
-        <div class="col-3 card offwhite-body" style="margin-bottom: 10px;">
+        <div class="col card offwhite-body" style="margin-bottom: 10px; width: 45%;">
             <div class="preview-post">
                 <div id="Large" class="card-img-top carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
