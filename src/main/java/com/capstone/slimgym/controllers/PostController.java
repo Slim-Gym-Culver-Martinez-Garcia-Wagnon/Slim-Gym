@@ -1,21 +1,13 @@
 package com.capstone.slimgym.controllers;
 
-import com.capstone.slimgym.models.Gym;
-import com.capstone.slimgym.models.Review;
-import com.capstone.slimgym.models.Schedule;
-import com.capstone.slimgym.models.User;
-import com.capstone.slimgym.repositories.PostRepository;
-import com.capstone.slimgym.repositories.ReviewRepository;
-import com.capstone.slimgym.repositories.ScheduleRepository;
-import com.capstone.slimgym.repositories.UserRepository;
+import com.capstone.slimgym.models.*;
+import com.capstone.slimgym.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Time;
 import java.util.List;
 
 @Controller
@@ -24,32 +16,42 @@ public class PostController {
     private final UserRepository userDao;
     private final ReviewRepository reviewDao;
     private final ScheduleRepository scheduleDao;
+    private final PictureRepository pictureDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao, ReviewRepository reviewDao, ScheduleRepository scheduleDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, ReviewRepository reviewDao, ScheduleRepository scheduleDao, PictureRepository pictureDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.reviewDao = reviewDao;
         this.scheduleDao = scheduleDao;
+        this.pictureDao = pictureDao;
     }
 
 
     @GetMapping("/posts")
     public String viewPosts(Model model) {
         model.addAttribute("gyms", postDao.findAll());
+        model.addAttribute("pictures", pictureDao.findAll());
         return "index";
     }
 
     @GetMapping("/posts/create")
     public String showCreateForm(Model model) {
         model.addAttribute("post", new Gym());
+        model.addAttribute("picture", new Picture());
         return "gym/add-gym";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Gym gym) {
+    public String createPost(@RequestParam(name = "fileupload") String url, @ModelAttribute Gym gym ) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         gym.setUser(user);
+        Picture picture = new Picture();
+        picture.setGym(gym);
+        picture.setUrl(url);
         postDao.save(gym);
+        pictureDao.save(picture);
+        System.out.println(picture.getUrl());
+        System.out.println(picture.getGym());
         return "redirect:/posts";
     }
 

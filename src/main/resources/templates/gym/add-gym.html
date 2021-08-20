@@ -22,10 +22,15 @@
     <label for="equipment">Gym Equipment</label>
     <input id="equipment" th:field="*{equipment}" />
 
+    <label for="fileupload">Select a file to upload</label>
+    <input type="hidden" name="fileupload" id="fileupload">
+    <button id="picker" type="button">Pick file</button>
+
 
     <input value="Add Gym!" type="submit" />
 
 </form>
+<th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
