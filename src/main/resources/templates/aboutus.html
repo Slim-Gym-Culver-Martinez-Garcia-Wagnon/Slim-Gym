@@ -3,8 +3,82 @@
 <head>
     <meta charset="UTF-8"/>
     <title>About us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
-<body>
-<h1>Meet-Heads</h1>
+
+<body th:style="'background: url(/img/gymbg.jpeg) no-repeat center center fixed; background-size: cover;'">
+<th:block th:replace="partials/navbar.html :: navbar"/>
+<div class="container-fluid" style="color: white;">
+    <div class="card text-center" style="border: none; background-color: transparent">
+        <div class="card-header">
+            <h1 style="color: #ff0000; text-align: center; font-family: 'Bangers', cursive; font-size: 5em">Welcome to
+                SlimGym!</h1>
+        </div>
+        <div class="card-body" style="font-size: 1.25em;  color: white">
+            <p>During the 2020 lockdown, people flocked to the stores to buy home gym equipment. They spent thousands transforming their basements, and garages into their very own iron house. Now, with life returning to "normal", this expensive gym equipment is sitting lonely, collecting dust.</p>
+            <p>On the other hand, others are too afraid to go back to their large commercial gyms. Too many people, too many germs, and too much risk. Others are uncomfortable working out in public places, too crowded, too much gawking, and definitely not judgement free. We brings these two groups together by providing safe, clean, home
+                gyms to those that want to work out.</p>
+            <footer class="blockquote-footer" style="text-shadow: .5px .5px #FFFF00;">SlimGym <cite title="Source Title">Est. 2021</cite></footer>
+        </div>
+    </div>
+
+    <h2 style="color: red; text-align: center; font-family: 'Bangers', cursive; font-size: 4em">Meet the MeatHeads</h2>
+
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-2">
+        <div class="col">
+            <div class="card text-center" style="border: none; background-color: transparent">
+                <img src="../static/img/dwpic.jpeg" th:src="@{img/dwpic.jpeg}" class="card-img-top mx-auto d-block"
+                     style="max-height: 250px; max-width: 250px; border-radius: 50%"/>
+                <div class="card-body">
+                    <h5 class="card-title" style="text-shadow: .5px .5px #FFFF00;">David Wagnon</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center" style="border: none; background-color: transparent">
+                <img src="../static/img/jgpic.jpeg" th:src="@{img/jgpic.jpeg}" class="card-img-top  mx-auto d-block"
+                     style="max-height: 250px; max-width: 250px; border-radius: 50%"/>
+                <div class="card-body">
+                    <h5 class="card-title" style="text-shadow: .5px .5px #FFFF00;">Juan Garcia</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center" style="border: none; background-color: transparent">
+                <img src="../static/img/dmpic.jpeg" th:src="@{img/dmpic.jpeg}" class="card-img-top  mx-auto d-block"
+                     style="max-height: 250px; max-width: 250px; border-radius: 50%"/>
+                <div class="card-body">
+                    <h5 class="card-title" style="text-shadow: .5px .5px #FFFF00;">Dustin Martinez</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center" style="border: none; background-color: transparent">
+                <img src="../static/img/dcpic.jpeg" th:src="@{img/dcpic.jpeg}" class="card-img-top  mx-auto d-block"
+                     style="max-height: 250px; max-width: 250px; border-radius: 50%"/>
+                <div class="card-body">
+                    <h5 class="card-title" style="text-shadow: .5px .5px #FFFF00;">David Culver</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="partials/footer :: footer"/>
+<th:block th:include="partials/scripts.html :: script"/>
+
+
 </body>
 </html>

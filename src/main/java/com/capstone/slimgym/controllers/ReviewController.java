@@ -54,6 +54,6 @@ public class ReviewController {
         if (currentUser.getId() == review.getUser().getId()) {
             reviewDao.delete(review);
         }
-        return "redirect:/gym-page";
+        return "redirect:/profile";
     }
 }
