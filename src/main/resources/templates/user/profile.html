@@ -14,6 +14,7 @@ you are the master here
 <div th:if="!${isOwner}">
 
 
+
     <div th:each="gym : ${gyms}">
         <div class="card" style="width: 20rem;">
             <div class="card-body">
@@ -56,6 +57,7 @@ you are the master here
             </div>
         </div>
     </div>
+
 
     <div th:each="review : ${reviews}">
         <div class="card" style="width: 18rem;">
