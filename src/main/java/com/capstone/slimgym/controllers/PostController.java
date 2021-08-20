@@ -42,7 +42,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "fileupload") String url, @ModelAttribute Gym gym ) {
+    public String createPost(@RequestParam(name = "fileupload") String url, @ModelAttribute Gym gym) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         gym.setUser(user);
         Picture picture = new Picture();
@@ -56,7 +56,7 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String singlePost(@PathVariable long id,  Model model) {
+    public String singlePost(@PathVariable long id, Model model) {
         Gym gym = postDao.getById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        List<Schedule> schedules = scheduleDao.findAllByGymId(id);
@@ -72,6 +72,7 @@ public class PostController {
         model.addAttribute("schedule", new Schedule());
         model.addAttribute("reviews", reviews);
         model.addAttribute("isPostOwner", isPostOwner);
+        model.addAttribute("pictures", pictureDao.findAll());
 
         return "gym/gym-page";
     }
@@ -94,7 +95,7 @@ public class PostController {
         model.addAttribute("isPostOwner", isPostOwner);
 
         boolean scheduleError = false;
-        for(Schedule currentSchedule : scheduleDao.findAllByGymId(gym_id)){
+        for (Schedule currentSchedule : scheduleDao.findAllByGymId(gym_id)) {
             //User selected Start time
             String[] startTime = schedule.getStart_time().split(":");
             String startHours = startTime[0];
@@ -111,19 +112,19 @@ public class PostController {
             String[] loopEndTime = currentSchedule.getEnd_time().split(":");
             String loopEndHours = loopEndTime[0];
             String loopEndMinutes = loopEndTime[1];
-            if (currentSchedule.getDate().equals(schedule.getDate())){
-                if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) || Integer.parseInt(endHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(startHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(endHours) == Integer.parseInt(loopStartHours)){
-                        if(Integer.parseInt(startMinutes) >= Integer.parseInt(loopEndMinutes) || Integer.parseInt(endMinutes) <= Integer.parseInt(loopStartMinutes)){
-                            System.out.println(startHours + ":" + startMinutes);
-                            System.out.println(endHours + ":" + endMinutes);
-                            System.out.println(loopStartHours + ":" + loopStartMinutes);
-                            System.out.println(loopEndHours + ":" + loopEndMinutes);
-                            scheduleError = true;
-                            model.addAttribute("error", scheduleError);
-                            return "gym/gym-page";
-                        }
-
+            if (currentSchedule.getDate().equals(schedule.getDate())) {
+                if (Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) || Integer.parseInt(endHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(startHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(endHours) == Integer.parseInt(loopStartHours)) {
+                    if (Integer.parseInt(startMinutes) >= Integer.parseInt(loopEndMinutes) || Integer.parseInt(endMinutes) <= Integer.parseInt(loopStartMinutes)) {
+                        System.out.println(startHours + ":" + startMinutes);
+                        System.out.println(endHours + ":" + endMinutes);
+                        System.out.println(loopStartHours + ":" + loopStartMinutes);
+                        System.out.println(loopEndHours + ":" + loopEndMinutes);
+                        scheduleError = true;
+                        model.addAttribute("error", scheduleError);
+                        return "gym/gym-page";
                     }
+
+                }
 //                else if(Integer.parseInt(endHours) == Integer.parseInt(loopEndHours)){
 //                    if(){
 //                        System.out.println("these end times match");
@@ -134,15 +135,14 @@ public class PostController {
 //                        scheduleDao.delete(schedule);
 //                    }
 //                }
-                else if(Integer.parseInt(endHours) < Integer.parseInt(loopStartHours)){
+                else if (Integer.parseInt(endHours) < Integer.parseInt(loopStartHours)) {
                     System.out.println("end is less than start");
                     System.out.println(endHours + ":" + endMinutes);
                     System.out.println(loopStartHours + ":" + loopStartMinutes);
                     scheduleError = true;
                     model.addAttribute("error", scheduleError);
                     return "gym/gym-page";
-                }
-                else if(Integer.parseInt(startHours) < Integer.parseInt(loopEndHours)){
+                } else if (Integer.parseInt(startHours) < Integer.parseInt(loopEndHours)) {
 
                     System.out.println("these end times match");
                     System.out.println(startHours + ":" + loopStartMinutes);
@@ -150,8 +150,7 @@ public class PostController {
                     scheduleError = true;
                     model.addAttribute("error", scheduleError);
                     return "gym/gym-page";
-                }
-                else {
+                } else {
                     model.addAttribute("error", scheduleError);
                     scheduleDao.save(schedule);
                 }
