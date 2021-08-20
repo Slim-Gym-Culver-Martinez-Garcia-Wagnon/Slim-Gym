@@ -10,15 +10,49 @@
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h1>Hello, <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h1>
 you are the master here
-
+    <a th:href="@{/posts/create}" class="btn btn-primary">Create A Gym</a>
 <div th:if="!${isOwner}">
-    <div class="card" style="width: 20rem;">
-        <div class="card-body">
-            <div class="card-content preview-post">
-                <h4 class="card-title" th:text="${gyms.name}"></h4>
-                <p class="card-text" th:text="${gyms.description}"></p>
-                <p class="card-text" th:text="${gyms.address}"></p>
-                <p class="card-text" th:text="${gyms.equipment}"></p>
+
+
+    <div th:each="gym : ${gyms}">
+        <div class="card" style="width: 20rem;">
+            <div class="card-body">
+                <div class="card-content preview-post">
+                    <div id="Profile" class="card-img-top carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#Profile" data-slide-to="0" class="active"></li>
+                            <li data-target="#Profile" data-slide-to="1"></li>
+                            <li data-target="#Profile" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div th:each="picture : ${gym_pictures}">
+                                <div th:if="${picture.gym.getId()} == ${gym.id}">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" th:src="${picture.url}" alt="First slide">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#Profile" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#Profile" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <h4 class="card-title" th:text="${gym.name}"></h4>
+                    <p class="card-text" th:text="${gym.description}"></p>
+                    <p class="card-text" th:text="${gym.address}"></p>
+                    <p class="card-text" th:text="${gym.equipment}"></p>
+                    <form th:action="@{/posts/{id}/edit(id = ${gym.id})}" method="get">
+                        <button class="btn-primary">Edit Gym</button>
+                    </form>
+                    <form th:action="@{/posts/{id}/delete(id = ${gym.id})}" method="post">
+                        <button class="btn-primary">Delete Gym</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

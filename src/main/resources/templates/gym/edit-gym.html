@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="partials/styles.html :: styles"/>
+</head>
+<body>
+<th:block th:replace="partials/navbar.html :: navbar"/>
+<h1>Edit Your Gym</h1>
+
+<form th:action="@{/posts/{id}/edit}" method="POST" th:object="${post}">
+
+    <label for="name">Gym Name</label>
+    <input id="name" th:field="*{name}" />
+
+    <label for="address">Gym Address</label>
+    <input id="address" th:field="*{address}" />
+
+    <label for="description">Gym Description</label>
+    <input id="description" th:field="*{description}" />
+
+    <label for="equipment">Gym Equipment</label>
+    <input id="equipment" th:field="*{equipment}" />
+
+    <label for="fileupload">Select a file to upload</label>
+    <input type="hidden" name="fileupload" id="fileupload">
+    <button id="picker" type="button">Pick file</button>
+
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+
+</form>
+<th:block th:include="partials/footer :: footer"/>
+<th:block th:include="partials/scripts.html :: script"/>
+</body>
+</html>
