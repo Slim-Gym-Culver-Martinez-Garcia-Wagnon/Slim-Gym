@@ -4,51 +4,71 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <th:block th:include="partials/styles.html :: styles"/>
+
 </head>
-<body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Create an account</h1>
+<body id="create">
 
+<div class="form-layout">
+    <h1 class="h1-create">Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="first_name">First Name</label>
-    <input id="first_name" th:field="*{first_name}"/>
+    <div class="form-text1">
+    <input id="first_name" name="first_name" type="text" class="validate" placeholder="First Name" />
+    <label for="first_name" th:field="*{first_name}"></label>
     <p th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}" th:class="${#fields.hasErrors('first_name')}? error" style="color: red" />
+    </div>
     <br>
-    <label for="last_name">Last Name</label>
-    <input id="last_name" th:field="*{last_name}"/>
+    <div class="form-text1">
+    <input id="last_name" name="last_name" type="text" class="validate" placeholder="Last Name" />
+    <label for="last_name" th:field="*{last_name}"></label>
     <p th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}" th:class="${#fields.hasErrors('last_name')}? error" style="color: red"/>
+    </div>
     <br>
-
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}"/>
+    <div class="form-text1">
+    <input id="username1" name="username" type="text" class="validate" placeholder="Username" />
+    <label for="username1" th:field="*{username}"></label>
     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:class="${#fields.hasErrors('username')}? error" style="color: red"/>
+    </div>
     <br>
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}"/>
+    <div class="form-text1">
+    <input id="email" name="email" type="text" class="validate" placeholder="Email" />
+    <label for="email" th:field="*{email}"></label>
     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="${#fields.hasErrors('email')}? error" style="color: red"/>
+    </div>
 <!--    <p th:if="${#fields.hasErrors('email')}">Enter an email</p>-->
     <br>
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}"/>
+    <div class="form-text1">
+    <input id="password1" name="password" type="text" class="validate" placeholder="Password" />
+    <label for="password1" th:field="*{password}"></label>
     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="${#fields.hasErrors('password')}? error" style="color: red"/>
+    </div>
     <br>
 
-    <label for="fileupload">Select a file to upload</label>
+    <label for="fileupload" placeholder="Upload Photo"></label>
     <input type="hidden" id="fileupload" th:field="*{profile_pic}">
     <button id="picker" type="button">Pick file</button>
 
     <br>
-    <label for="emergency_first_name">Emergency First Name</label>
-    <input id="emergency_first_name" th:field="*{emergency_first_name}"/>
     <br>
-    <label for="emergency_last_name">EmergencyLast Name</label>
-    <input id="emergency_last_name" th:field="*{emergency_last_name}"/>
+    <h1 class="h1-create">Emergency Contact</h1>
+    <div class="form-text1">
+    <input id="emergency_first_name" name="emergency_first_name" type="text" class="validate" placeholder="First Name" />
+    <label for="emergency_first_name" th:field="*{emergency_first_name}"></label>
+    </div>
     <br>
-    <label for="emergency_phone_number">Emergency Phone Number</label>
-    <input id="emergency_phone_number" th:field="*{emergency_phone_number}"/>
+    <div class="form-text1">
+    <input id="emergency_last_name" name="emergency_last_name" type="text" class="validate" placeholder="Last Name" />
+    <label for="emergency_last_name" th:field="*{emergency_last_name}"></label>
+    </div>
+    <br>
+    <div class="form-text1">
+    <input id="emergency_phone_number" name="emergency_phone_number" type="text" class="validate" placeholder="Phone Number" />
+    <label for="emergency_phone_number" th:field="*{emergency_phone_number}"></label>
+    </div>
     <br>
     <input value="Sign me up!" type="submit"/>
 </form>
+</div>
 
 <!--<script src="https://code.jquery.com/jquery-3.6.0.slim.js"-->
 <!--        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>-->
