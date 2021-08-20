@@ -12,16 +12,16 @@
 you are the master here
 
 <div th:if="!${isOwner}">
-    <div class="card" style="width: 20rem;">
-        <div class="card-body">
-            <div class="card-content preview-post">
-                <h4 class="card-title" th:text="${gyms.name}"></h4>
-                <p class="card-text" th:text="${gyms.description}"></p>
-                <p class="card-text" th:text="${gyms.address}"></p>
-                <p class="card-text" th:text="${gyms.equipment}"></p>
-            </div>
-        </div>
-    </div>
+<!--    <div class="card" style="width: 20rem;">-->
+<!--        <div class="card-body">-->
+<!--            <div class="card-content preview-post">-->
+<!--                <h4 class="card-title" th:text="${gyms.name}"></h4>-->
+<!--                <p class="card-text" th:text="${gyms.description}"></p>-->
+<!--                <p class="card-text" th:text="${gyms.address}"></p>-->
+<!--                <p class="card-text" th:text="${gyms.equipment}"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <div th:each="review : ${reviews}">
         <div class="card" style="width: 18rem;">

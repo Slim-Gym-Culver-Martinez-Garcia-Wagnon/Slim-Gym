@@ -1,3 +1,12 @@
+.form-layout {
+    margin-bottom: 150px;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 #create{
     margin: 0;
     padding: 0;
@@ -8,33 +17,36 @@
     background-attachment: fixed;
     background-size: cover;
     background-color: black;
-
-
 }
+
 .form-text1{
     width: 100%;
     overflow: hidden;
     border-bottom: 1px solid white;
-    padding: 7px 0;
+    /*padding: 7px 0;*/
     font-size: 18px;
+    text-align: center;
 }
 
 .form-layout{
-    width: 270px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -30%);
+    /*width: 270px;*/
+    /*position: absolute;*/
+    margin: auto;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -30%);*/
     color: white;
+    text-align: center;
 }
 
 .h1-create{
     float: left;
     font-size: 40px;
-    border-bottom: 4px solid red;
+    border-bottom: 4px solid yellow;
     margin-bottom: 20px;
     padding: 12px 0;
-    color: white;
+    color: red;
+    font-family: 'Bangers', cursive;
 }
 
 
@@ -44,8 +56,54 @@
     background: none;
     color: white;
     font-size: 18px;
-    float: left;
-    width: 90px;
+    /*float: left;*/
+    width: 95%;
     text-align: center;
-    margin:0 10px;
+    /*margin:0 10px;*/
+}
+
+/*.flex-container {*/
+/*    display: flex;*/
+/*}*/
+
+.flex-child {
+    /*text-align: center;*/
+    margin-left: 15%;
+    width: 75%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/*.flex-child:first-child {*/
+/*    text-align: center;*/
+/*}*/
+
+::placeholder {
+    color: yellow;
+    opacity: .50;
+}
+
+#query::placeholder {
+    color: black;
+}
+
+.select{
+    width: 100%;
+    background: red;
+    border: 2px solid yellow;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+    color: yellow;
+}
+
+#form {
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .flex-child {
+        width: 30%;
+        margin: 5em;
+    }
 }
