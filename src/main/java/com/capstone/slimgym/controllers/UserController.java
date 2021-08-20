@@ -1,12 +1,10 @@
 package com.capstone.slimgym.controllers;
 
 import com.capstone.slimgym.models.Gym;
+import com.capstone.slimgym.models.Picture;
 import com.capstone.slimgym.models.Review;
 import com.capstone.slimgym.models.User;
-import com.capstone.slimgym.repositories.PostRepository;
-import com.capstone.slimgym.repositories.ReviewRepository;
-import com.capstone.slimgym.repositories.ScheduleRepository;
-import com.capstone.slimgym.repositories.UserRepository;
+import com.capstone.slimgym.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,13 +28,15 @@ public class UserController {
     private final ReviewRepository reviewDao;
     private final PasswordEncoder passwordEncoder;
     private final ScheduleRepository scheduleDao;
+    private final PictureRepository pictureDao;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder, ReviewRepository reviewDao, PostRepository postDao, ScheduleRepository scheduleDao) {
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, ReviewRepository reviewDao, PostRepository postDao, ScheduleRepository scheduleDao, PictureRepository pictureDao) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
         this.reviewDao = reviewDao;
         this.postDao = postDao;
         this.scheduleDao = scheduleDao;
+        this.pictureDao = pictureDao;
     }
 
     @GetMapping("/sign-up")
@@ -95,12 +95,15 @@ public class UserController {
     @GetMapping("/profile")
     public String userProfile(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Gym gyms = postDao.findByUser(users.findById(user.getId()));
+        List<Gym> gyms = postDao.findAllByUserId(user.getId());
         User userOwner = users.findById(user.getId());
         List<Review> reviews = reviewDao.findByUserId(user.getId());
+        List<Picture> gymPictures = pictureDao.findAll();
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
             return "redirect:/login";
         }
+
+        model.addAttribute("gym_pictures", gymPictures);
         model.addAttribute("reviews", reviews);
         model.addAttribute("gyms", gyms);
         model.addAttribute("events", scheduleDao.findAllByGymUser(user));
