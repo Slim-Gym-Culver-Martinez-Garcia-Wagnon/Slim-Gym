@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<head th:replace="partials :: head ('Search Songs')" />-->
+<th:block th:include="partials/styles.html :: styles"/>
 <body class="main">
+<th:block th:replace="partials/navbar.html :: navbar"/>
 <!--<script th:replace="partials :: j-query" />-->
 <!--<nav th:replace="partials :: navbar" />-->
 <header></header>
@@ -38,5 +40,7 @@
 <script>
     $('select').formSelect();
 </script>
+<th:block th:include="partials/footer :: footer"/>
+<th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>

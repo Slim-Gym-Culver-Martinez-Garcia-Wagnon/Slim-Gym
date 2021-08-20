@@ -3,52 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <th:block th:include="partials/styles.html :: styles"/>
+    <!--    <th:block th:include="partials/styles.html :: styles"/>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../static/css/create-account.css" th:href="@{/css/create-account.css}"/>
+    <!--    <link rel="stylesheet" href="../../static/css/create-account.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
-<body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Create an account</h1>
+<body id="create">
 
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="first_name">First Name</label>
-    <input id="first_name" th:field="*{first_name}"/>
-    <p th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}" th:class="${#fields.hasErrors('first_name')}? error" style="color: red" />
-    <br>
-    <label for="last_name">Last Name</label>
-    <input id="last_name" th:field="*{last_name}"/>
-    <p th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}" th:class="${#fields.hasErrors('last_name')}? error" style="color: red"/>
-    <br>
+<div class="form-layout">
+    <form id="form" th:action="@{/sign-up}" method="POST" th:object="${user}">
+        <div class="flex-container m-3 d-lg-flex justify-content-around text-center">
+            <div class="flex-child flex-column d-flex justify-content-center">
+                <h1 class="h1-create">Create an account</h1>
+                <div class="form-text1">
+                    <input id="first_name" name="first_name" type="text" class="validate" placeholder="First Name"/>
+                    <label for="first_name" th:field="*{first_name}"></label>
+                    <p th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"
+                       th:class="${#fields.hasErrors('first_name')}? error" style="color: red"/>
+                </div>
+                <br>
+                <div class="form-text1">
+                    <input id="last_name" name="last_name" type="text" class="validate" placeholder="Last Name"/>
+                    <label for="last_name" th:field="*{last_name}"></label>
+                    <p th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}"
+                       th:class="${#fields.hasErrors('last_name')}? error" style="color: red"/>
+                </div>
+                <br>
+                <div class="form-text1">
+                    <input id="username1" name="username" type="text" class="validate" placeholder="Username"/>
+                    <label for="username1" th:field="*{username}"></label>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                       th:class="${#fields.hasErrors('username')}? error" style="color: red"/>
+                </div>
+                <br>
+                <div class="form-text1">
+                    <input id="email" name="email" type="text" class="validate" placeholder="Email"/>
+                    <label for="email" th:field="*{email}"></label>
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                       th:class="${#fields.hasErrors('email')}? error" style="color: red"/>
+                </div>
+                <!--    <p th:if="${#fields.hasErrors('email')}">Enter an email</p>-->
+                <br>
+                <div class="form-text1">
+                    <input id="password1" name="password" type="text" class="validate" placeholder="Password"/>
+                    <label for="password1" th:field="*{password}"></label>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                       th:class="${#fields.hasErrors('password')}? error" style="color: red"/>
+                </div>
+                <br>
 
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}"/>
-    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:class="${#fields.hasErrors('username')}? error" style="color: red"/>
-    <br>
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}"/>
-    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="${#fields.hasErrors('email')}? error" style="color: red"/>
-<!--    <p th:if="${#fields.hasErrors('email')}">Enter an email</p>-->
-    <br>
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}"/>
-    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="${#fields.hasErrors('password')}? error" style="color: red"/>
-    <br>
+                <label for="fileupload" placeholder="Upload Photo"></label>
+                <input type="hidden" id="fileupload" th:field="*{profile_pic}">
+                <button id="picker" type="button" class="select btn btn-danger btn-outline-warning">Choose profile photo</button>
+            </div>
+            <div class="flex-child second flex-column d-flex justify-content-center">
+                <br>
+                <br>
+                <h1 class="h1-create">Emergency Contact</h1>
+                <div class="form-text1">
+                    <input id="emergency_first_name" name="emergency_first_name" type="text" class="validate"
+                           placeholder="First Name"/>
+                    <label for="emergency_first_name" th:field="*{emergency_first_name}"></label>
+                </div>
+                <br>
+                <div class="form-text1">
+                    <input id="emergency_last_name" name="emergency_last_name" type="text" class="validate"
+                           placeholder="Last Name"/>
+                    <label for="emergency_last_name" th:field="*{emergency_last_name}"></label>
+                </div>
+                <br>
+                <div class="form-text1">
+                    <input id="emergency_phone_number" name="emergency_phone_number" type="text" class="validate"
+                           placeholder="Phone Number"/>
+                    <label for="emergency_phone_number" th:field="*{emergency_phone_number}"></label>
+                </div>
+                <br>
+<!--                <input value="Sign me up!" type="submit"/>-->
+                <button class="select btn btn-danger btn-outline-warning">Sign me up!</button>
 
-    <label for="fileupload">Select a file to upload</label>
-    <input type="hidden" id="fileupload" th:field="*{profile_pic}">
-    <button id="picker" type="button">Pick file</button>
-
-    <br>
-    <label for="emergency_first_name">Emergency First Name</label>
-    <input id="emergency_first_name" th:field="*{emergency_first_name}"/>
-    <br>
-    <label for="emergency_last_name">EmergencyLast Name</label>
-    <input id="emergency_last_name" th:field="*{emergency_last_name}"/>
-    <br>
-    <label for="emergency_phone_number">Emergency Phone Number</label>
-    <input id="emergency_phone_number" th:field="*{emergency_phone_number}"/>
-    <br>
-    <input value="Sign me up!" type="submit"/>
-</form>
+            </div>
+        </div>
+    </form>
+</div>
 
 <!--<script src="https://code.jquery.com/jquery-3.6.0.slim.js"-->
 <!--        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>-->
@@ -101,6 +143,7 @@
 <!--    };-->
 
 <!--</script>-->
+<th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 
 </body>

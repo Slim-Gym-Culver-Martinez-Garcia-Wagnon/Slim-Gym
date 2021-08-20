@@ -168,13 +168,13 @@ public class PostController {
         Gym gym = postDao.getById(id);
         if (currentUser.getId() == gym.getUser().getId()) {
             model.addAttribute("post", gym);
-            return "posts/edit";
+            return "gym/edit-gym";
         } else {
             return "redirect:/posts/" + id;
         }
     }
 
-    @PostMapping("/posts/{id}/edit")
+    @PostMapping("/posts/{id}/edit/update")
     public String editPost(@PathVariable long id, @ModelAttribute Gym gym) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Gym gymFromDB = postDao.getById(id);
@@ -192,6 +192,6 @@ public class PostController {
         if (currentUser.getId() == gym.getUser().getId()) {
             postDao.delete(gym);
         }
-        return "redirect:/posts";
+        return "redirect:/profile";
     }
 }
