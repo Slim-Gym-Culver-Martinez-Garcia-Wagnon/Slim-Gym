@@ -11,7 +11,7 @@
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h2>Edit your profile:</h2>
-<form th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
+<form id="editform" th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
 
     <input th:value="*{first_name}" type="hidden" id="first_name" class="form-control" th:field="*{first_name}">
     <input th:value="*{last_name}" type="hidden" id="last_name" class="form-control" th:field="*{last_name}">
