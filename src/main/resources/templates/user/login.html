@@ -5,45 +5,49 @@
     <title>Login</title>
     <th:block th:replace="partials/styles.html :: styles"/>
 </head>
-<th:block th:replace="partials/navbar.html :: navbar"/>
-<body class="login-body">
 
+<body class="background">
+<th:block th:replace="partials/navbar.html :: navbar"/>
 
 <div class="login-box">
-<!--    <h1 id="login-h1">LOGIN</h1>-->
+    <h1 class="heading">LOGIN</h1>
 
-<!--    <div th:if="${param.error}">-->
-<!--        Invalid Username and Password.-->
-<!--    </div>-->
-<!--    <div th:if="${param.logout}">-->
-<!--        You have been logged out.-->
-<!--    </div>-->
-    <h1 id="login-h1">LOGIN</h1>
+    <div th:if="${param.error}">
+        Invalid Username and Password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
 
     <form th:action="@{/login}" method="post">
         <div class="textbox">
             <div class="input-field col s12">
                 <i class="fas fa-user"></i>
-                <input id="username2" name="username" type="text" class="validate" placeholder="Username"/>
-                <label for="username2"></label>
+
+                <input id="username" name="username" type="text" class="validate login-inputs" placeholder="Username"/>
+                <label for="username"></label>
+
             </div>
         </div>
 
         <div class="textbox">
             <div class="input-field col s12">
                 <i class="fas fa-lock"></i>
-                <input id="password2" name="password" type="password" class="validate" placeholder="Password"/>
+
+                <input id="password2" name="password" type="password" class="validate login-inputs"
+                       placeholder="Password"/>
+
                 <label for="password2"></label>
             </div>
         </div>
 
-        <button id="login" type="submit" value="Log In" class="waves-effect waves-purple btn-small indigo accent-3">Log
+        <button id="login" type="submit" value="Log In" class="select btn-small">Log
             In
         </button>
     </form>
-    </div>
 </div>
-<!--<p>Don't have a user yet? <a href="/sign-up">Create A User</a></p>-->
+</div>
+
 <th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
