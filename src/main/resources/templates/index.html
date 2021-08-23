@@ -31,8 +31,13 @@
         .overlay {
             position: fixed;
             overflow-y: scroll;
-            margin-top: 10%;
-            top: 0; right: 0; bottom: 0; left: 0; overscroll-behavior: contain;}
+            margin-top: 70px;
+            top: 0; right: 0; bottom: 0; left: 0; overscroll-behavior: contain;
+        }
+
+        .card{
+            font-family: 'Bangers';
+        }
 
         /*#floating-panel {*/
         /*    left: 25%;*/
@@ -58,9 +63,9 @@
 
 <div class="d-none d-md-block" id="map"></div>
 
-<div class="col-4 ml-auto d-none d-md-block d-lg-none overflow-auto scroll-container overlay" style="padding: 10px; background-color: rgba(0,0,0,0.5);">
+<div class="col-4 ml-auto d-none d-md-block d-lg-none overflow-auto scroll-container overlay" style=" background-color: #1a1819">
     <div th:each="gym : ${gyms}">
-        <div class="card offwhite-body" style="margin-bottom: 10px">
+        <div class="card offwhite-body" style="margin: 5%">
             <div class="preview-post">
                 <div id="Profile" class="card-img-top carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -97,9 +102,9 @@
     </div>
 </div>
 
-<div class="col-5 ml-auto d-none d-lg-block d-lg-block overflow-auto scroll-container overlay" style="padding: 10px; background-color: rgba(0,0,0,0.5); left: 0;">
-    <div class="row" th:each="gym : ${gyms}">
-        <div class="col card offwhite-body" style="margin-bottom: 10px; width: 45%;">
+<div class="col-4 ml-auto d-none d-lg-block d-lg-block overflow-auto scroll-container overlay" style="background-color: #1a1819">
+    <div th:each="gym : ${gyms}">
+        <div class="card offwhite-body" style="margin: 5%; max-width: 85%">
             <div class="preview-post">
                 <div id="Large" class="card-img-top carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -136,7 +141,7 @@
     </div>
 </div>
 
-<div class=" d-xl-none d-md-none d-lg-none d-block overflow-auto" style="padding: 10px;">
+<div class=" d-xl-none d-md-none d-lg-none d-block overflow-auto" style="padding: 10px;background-color: #1a1819;">
     <div th:each="gym : ${gyms}">
         <div class="card offwhite-body" >
             <div class="preview-post">
