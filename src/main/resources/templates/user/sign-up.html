@@ -17,35 +17,38 @@
                     <input id="first_name" name="first_name" type="text" class="validate inputs" th:value="*{first_name}" placeholder="First Name"/>
                     <label for="first_name" th:field="*{first_name}"></label>
                     <p th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"
-                       th:class="${#fields.hasErrors('first_name')}? error"/>
+
+                       th:class="${#fields.hasErrors('first_name')}? error" style="color: red"></p>
+
                 </div>
                 <br>
                 <div class="form-text">
                     <input id="last_name" name="last_name" type="text" class="validate inputs" th:value="*{last_name}" placeholder="Last Name"/>
                     <label for="last_name" th:field="*{last_name}"></label>
                     <p th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}"
-                       th:class="${#fields.hasErrors('last_name')}? error"/>
+
+                       th:class="${#fields.hasErrors('last_name')}? error" style="color: red"></p>
                 </div>
                 <br>
                 <div class="form-text">
                     <input id="username1" name="username" type="text" class="validate inputs" th:value="*{username}" placeholder="Username"/>
                     <label for="username1" th:field="*{username}"></label>
                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
-                       th:class="${#fields.hasErrors('username')}? error" style="color: red"/>
+                       th:class="${#fields.hasErrors('username')}? error" style="color: red"></p>
                 </div>
                 <br>
                 <div class="form-text">
                     <input id="email" name="email" type="text" class="validate inputs" th:value="*{email}" placeholder="Email"/>
                     <label for="email" th:field="*{email}"></label>
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                       th:class="${#fields.hasErrors('email')}? error" style="color: red"/>
+                       th:class="${#fields.hasErrors('email')}? error" style="color: red"></p>
                 </div>
                 <br>
                 <div class="form-text">
                     <input id="password1" name="password" type="text" class="validate inputs" placeholder="Password"/>
                     <label for="password1" th:field="*{password}"></label>
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                       th:class="${#fields.hasErrors('password')}? error" style="color: red"/>
+                       th:class="${#fields.hasErrors('password')}? error" style="color: red"></p>
                 </div>
                 <br>
 
@@ -87,7 +90,8 @@
 </div>
 
 
-<th:block th:include="partials/footer :: footer"/>
+<!--</script>-->
+<!--<th:block th:include="partials/footer :: footer"/>-->
 <th:block th:include="partials/scripts.html :: script"/>
 
 </body>
