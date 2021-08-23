@@ -26,8 +26,10 @@ public class User {
     private String password;
     @Column(length = 255)
     private String profile_pic;
+    @NotEmpty(message = "Emergency first name cannot be empty.")
     @Column(nullable = false, length = 240)
     private String emergency_first_name;
+    @NotEmpty(message = "Emergency last name cannot be empty.")
     @Column(nullable = false, length = 240)
     private String emergency_last_name;
     @Column(nullable = false)
