@@ -1,8 +1,8 @@
-body{
-    margin-bottom: 150px;
-}
+/*body{*/
+/*    margin-bottom: 150px;*/
+/*}*/
 footer{
-    position: fixed;
+    position: page;
     bottom: 0;
     width: 100%;
 }
