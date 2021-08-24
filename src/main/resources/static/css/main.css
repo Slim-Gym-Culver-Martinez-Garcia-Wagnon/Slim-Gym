@@ -105,7 +105,7 @@ footer{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url("https://t3.ftcdn.net/jpg/01/19/59/74/360_F_119597487_SnvLBdheEGOxu05rMQ5tCzo250cRrTz9.jpg");
+    background-image: url('../img/dumbell-bg.jpeg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -138,4 +138,53 @@ footer{
     float: left;
     text-align: center;
     color: red;
+}
+
+.titles {
+    color: red;
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    font-size: 4em;
+    text-decoration: underline yellow;
+}
+
+#about-us {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url('../img/gymbackground.jpeg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: black;
+}
+
+.container-fluid {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.card {
+    border: none;
+    background-color: transparent;
+}
+
+.description {
+    color: white;
+    font-size: 1.25em;
+}
+
+.card-title {
+    text-shadow: .5px .5px #FFFF00;
+}
+
+.meatheads {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.blockquote-footer {
+    text-shadow: .5px .5px #FFFF00;
 }
