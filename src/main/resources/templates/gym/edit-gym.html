@@ -9,7 +9,7 @@
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h1>Edit Your Gym</h1>
 
-<form th:action="@{/posts/{id}/edit}" method="POST" th:object="${post}">
+<form th:action="@{/posts/{id}/edit/update(id = ${post.id})}" method="post" th:object="${post}">
 
     <label for="name">Gym Name</label>
     <input id="name" th:field="*{name}" />
