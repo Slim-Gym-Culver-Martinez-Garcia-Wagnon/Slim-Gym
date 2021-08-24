@@ -23,7 +23,7 @@
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
 
-<body class=""; style="background-color:gray;
+<body class="" ; style="background-color:gray;
 background-repeat: no-repeat;background-position: center center;background-attachment: fixed; background-size: cover;">
 
 <th:block th:replace="partials/navbar.html :: navbar"/>
@@ -82,6 +82,7 @@ background-repeat: no-repeat;background-position: center center;background-attac
                 <li style="color: red">That time slot is not available! Please try again.</li>
             </ul>
         </div>
+
         <div sec:authorize="isAuthenticated()">
             <div class="d-flex" id='calendar' style="height: 500px; width: 500px;"></div>
             <div class="card-content">
@@ -114,21 +115,21 @@ background-repeat: no-repeat;background-position: center center;background-attac
 
     </div>
 
-    <div th:each="review : ${reviews}">
-        <div class="card offwhite-body ">
-            <div class="card-content preview-post d-flex">
-                <h4>User rating: </h4> <h4 th:text="${review.rating}"></h4>
-                <h4>Review by: </h4><h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
+        <div th:each="review : ${reviews}">
+            <div class="card offwhite-body ">
+                <div class="card-content preview-post d-flex">
+                    <h4>User rating: </h4> <h4 th:text="${review.rating}"></h4>
+                    <h4>Review by: </h4><h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
 
-                <p th:text="${review.body}"></p>
-                <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+                    <p th:text="${review.body}"></p>
+                    <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+                </div>
+
             </div>
-
         </div>
     </div>
-</div>
-<th:block th:include="partials/footer :: footer"/>
-<th:block th:include="partials/scripts.html :: script"/>
+    <th:block th:include="partials/footer :: footer"/>
+    <th:block th:include="partials/scripts.html :: script"/>
 
 </body>
 </html>

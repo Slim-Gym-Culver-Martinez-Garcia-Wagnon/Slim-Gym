@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -42,16 +44,24 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@RequestParam(name = "fileupload") String url, @ModelAttribute Gym gym) {
+    public String createPost(@RequestParam(name = "fileupload") ArrayList<String> urls, @ModelAttribute Gym gym) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         gym.setUser(user);
-        Picture picture = new Picture();
-        picture.setGym(gym);
-        picture.setUrl(url);
         postDao.save(gym);
-        pictureDao.save(picture);
-        System.out.println(picture.getUrl());
-        System.out.println(picture.getGym());
+        User userfromDB = userDao.findById(user.getId());
+        Gym newgym = userfromDB.getGyms().get(userfromDB.getGyms().size()-1);
+        for(String url : urls){
+            if(!url.isEmpty()){
+                Picture picture = new Picture();
+                picture.setGym(newgym);
+                picture.setUrl(url);
+                pictureDao.save(picture);
+            }
+        }
+
+//        System.out.println(picture.getUrl());
+//        System.out.println(picture.getGym());
+
         return "redirect:/posts";
     }
 
