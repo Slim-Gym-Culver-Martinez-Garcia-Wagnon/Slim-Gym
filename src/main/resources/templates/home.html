@@ -2,13 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>SlimGym Login</title>
+    <title>SlimGym</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
-<body>
-<th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>SLIM GYM</h1>
+<body th:style="'background: url(/img/gymbackground.jpeg) no-repeat center center fixed; background-size: cover;'">
 
+<th:block th:replace="partials/navbar.html :: navbar"/>
+<div style="background-color: rgba(0,0,0,0.5);" id="home">
+<h1 style="text-align: center" id="homepage">Host a Gym or find a new private paradise with SlimGym </h1>
+<p style="text-align: center" id="summary">Do you like the idea of a pay as you gym vs a monthly gym membership fee?<br>
+Do you like the idea of having a gym all to yourself?<br>
+Would you like to have access to private gyms all over the country?<br>
+If the answer is "YES" then SlimGym is for you!<br>
+Snap into a SlimGym today!</p>
+
+<button href="/sign-up" id="home-create" type="button" class="text-center select btn-small">Create an account now</button>
+</div>
 
 
 <th:block th:include="partials/footer :: footer"/>

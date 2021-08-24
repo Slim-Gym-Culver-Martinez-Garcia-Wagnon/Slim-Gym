@@ -139,3 +139,31 @@ footer{
     text-align: center;
     color: red;
 }
+
+#homepage{
+    color: red;
+    text-shadow: 1px 1px 1px yellow;
+    font-size: 40px;
+    font-family: 'Bangers', cursive;
+}
+
+#summary{
+    color: white;
+    font-size: 18px;
+}
+
+#home{
+    top: 50%;
+}
+
+#home-create {
+    display: flex;
+    width: 15%;
+    background: red;
+    border: 2px solid yellow;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: auto;
+
+}
