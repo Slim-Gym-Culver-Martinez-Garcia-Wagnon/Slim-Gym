@@ -165,5 +165,7 @@ footer{
     font-size: 18px;
     cursor: pointer;
     margin: auto;
-
+    justify-content: center;
+    color: yellow;
 }
+
