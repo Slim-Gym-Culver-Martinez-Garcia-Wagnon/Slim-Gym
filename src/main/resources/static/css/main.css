@@ -1,10 +1,5 @@
-/*body{*/
-/*    margin-bottom: 150px;*/
-/*}*/
-footer{
-    position: page;
-    bottom: 0;
-    width: 100%;
+.no-margin{
+    margin-bottom: .5em;
 }
 
 .heading {
