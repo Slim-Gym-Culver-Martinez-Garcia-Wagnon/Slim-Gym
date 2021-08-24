@@ -122,9 +122,14 @@ public class PostController {
             String[] loopEndTime = currentSchedule.getEnd_time().split(":");
             String loopEndHours = loopEndTime[0];
             String loopEndMinutes = loopEndTime[1];
-            if(currentSchedule.getDate().equals(schedule.getDate())){
+            if(!schedule.getDate().equals(currentSchedule.getDate())){
+                System.out.println("Not the same date");
+                model.addAttribute("error", scheduleError);
+                scheduleDao.save(schedule);
+            }
+            else if(schedule.getDate().equals(currentSchedule.getDate())){
                 if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) || Integer.parseInt(endHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(startHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(endHours) == Integer.parseInt(loopStartHours)){
-                    if(Integer.parseInt(startMinutes) <= Integer.parseInt(loopEndMinutes) || Integer.parseInt(endMinutes) >= Integer.parseInt(loopStartMinutes)){
+                    if(Integer.parseInt(startMinutes) >= Integer.parseInt(loopEndMinutes) || Integer.parseInt(endMinutes) <= Integer.parseInt(loopStartMinutes)){
                         System.out.println(startHours + ":" + startMinutes);
                         System.out.println(endHours + ":" + endMinutes);
                         System.out.println(loopStartHours + ":" + loopStartMinutes);
@@ -151,18 +156,11 @@ public class PostController {
                     return "gym/gym-page";
                 }
                 else {
-                    scheduleError = false;
                     model.addAttribute("error", scheduleError);
                     scheduleDao.save(schedule);
-                    return "gym/gym-page";
                 }
             }
-            else {
-                scheduleError = false;
-                model.addAttribute("error", scheduleError);
-                scheduleDao.save(schedule);
-                return "gym/gym-page";
-            }
+
         }
 
         return "gym/gym-page";
