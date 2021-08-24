@@ -6,44 +6,76 @@
     <title>Title</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
-<body>
+<body class="background">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Hello, <span th:text="${user.first_name}"></span></h1>
-you are the master here
+<h1 style="color: red; font-family: 'Bangers'; text-shadow: 1px 1px 1px yellow; font-size: 30px;">Hello, <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h1>
+    <a th:href="@{/posts/create}" class="btn btn-primary">Create A Gym</a>
+<div th:if="!${isOwner}">
 
-<div th:if="${isOwner}">
 
-    <div th:each="gyms : ${gyms}">
-        <div class="card offwhite-body">
-            <div class="card-content preview-post">
-                <h4 class="gym-name card-title" th:text="${gyms.name}"></h4>
-                <p th:text="${gyms.description}"></p>
-                <p class="gym-address" th:text="${gyms.address}"></p>
+
+    <div th:each="gym : ${gyms}">
+        <div class="card" style="width: 20rem;">
+            <div class="card-body">
+                <div class="card-content preview-post">
+                    <div id="Profile" class="card-img-top carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#Profile" data-slide-to="0" class="active"></li>
+                            <li data-target="#Profile" data-slide-to="1"></li>
+                            <li data-target="#Profile" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div th:each="picture : ${gym_pictures}">
+                                <div th:if="${picture.gym.getId()} == ${gym.id}">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" th:src="${picture.url}" alt="First slide">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#Profile" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#Profile" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <h4 class="card-title" th:text="${gym.name}"></h4>
+                    <p class="card-text" th:text="${gym.description}"></p>
+                    <p class="card-text" th:text="${gym.address}"></p>
+                    <p class="card-text" th:text="${gym.equipment}"></p>
+                    <form th:action="@{/posts/{id}/edit(id = ${gym.id})}" method="get">
+                        <button class="btn-primary">Edit Gym</button>
+                    </form>
+                    <form th:action="@{/posts/{id}/delete(id = ${gym.id})}" method="post">
+                        <button class="btn-primary">Delete Gym</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
+
     <div th:each="review : ${reviews}">
-        <div class="card offwhite-body">
-            <div class="card-content preview-post">
-                <h4>User rating: </h4>
-                <h4 th:text="${review.rating}"></h4>
-                <h4>Review by: </h4>
-                <h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
-                <p th:text="${review.body}"></p>
-                <img th:src="@{${review.picture}}" alt="picture review"/>
-                <button class="upload">Upload</button>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title" th:text="${review.getGym().getName()}"></h4>
                 <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+                <p class="card-text">User rating: </p>
+                <p class="card-text" th:text="${review.rating}"></p>
+                <p class="card-text">Review by: </p>
+                <p class="card-text" th:text="${review.body}"></p>
+                <form th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">
+                    <button class="btn-primary">Delete Review</button>
+                </form>
             </div>
-            <div class="small-space"></div>
         </div>
-        <form th:action="@{/review/{id}/delete(id = ${gyms.id})}" method="post">
-            <button>Delete Review</button>
-        </form>
     </div>
 </div>
 
-
+<th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>

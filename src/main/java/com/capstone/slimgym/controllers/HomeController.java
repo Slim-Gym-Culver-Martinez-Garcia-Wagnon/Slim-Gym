@@ -42,10 +42,9 @@ public class HomeController {
 
     @GetMapping("/search")
     public String getSearchForm() {
-//        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        }
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
         return "partials/navbar";
     }
 
@@ -95,9 +94,14 @@ public class HomeController {
 
     @GetMapping("/search/results")
     public String showResults(@ModelAttribute(name = "searchResults") ArrayList<Gym> searchResults) {
-//        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-//            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        }
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
         return "searchresults";
+    }
+
+    @GetMapping("/aboutus")
+    public String aboutUs(){
+        return "aboutus";
     }
 }

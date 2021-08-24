@@ -64,6 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                           "/sign-up",
                           "/gym-page",
                           "/add-gym",
+                          "/aboutus",
                           "/js/**",
                           "/css/**",
                           "/img/**")

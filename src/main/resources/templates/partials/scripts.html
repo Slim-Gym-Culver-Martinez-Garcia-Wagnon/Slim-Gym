@@ -7,11 +7,15 @@
 <body>
 
 <th:block th:fragment="script">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/3039f762fd.js" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+            integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7eae4bcbb5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+            integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
     <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
     <script>
 
@@ -20,6 +24,7 @@
         const options = {
             onUploadDone: updateForm,
             maxSize: 10 * 1024 * 1024,
+            maxFiles: 5,
             accept: 'image/*',
             uploadInBackground: false,
         };
@@ -29,6 +34,10 @@
 
         const form = document.getElementById('pick-form');
         const fileInput = document.getElementById('fileupload');
+        const fileInput1 = document.getElementById('fileupload1');
+        const fileInput2 = document.getElementById('fileupload2');
+        const fileInput3 = document.getElementById('fileupload3');
+        const fileInput4 = document.getElementById('fileupload4');
         const btn = document.getElementById('picker');
         const nameBox = document.getElementById('nameBox');
         const urlBox = document.getElementById('urlBox');
@@ -59,9 +68,39 @@
         //     urlBox.appendChild(document.createTextNode('Uploaded to: '));
         //     urlBox.appendChild(url);
         // };
-        function updateForm (result) {
+        var array = [];
+
+        function updateForm(result) {
             const fileData = result.filesUploaded[0];
             fileInput.value = fileData.url;
+            console.log(fileData.url);
+
+
+            if(result.filesUploaded[1] != null){
+                const fileData1 = result.filesUploaded[1];
+                fileInput1.value = fileData1.url;
+                console.log(fileData1.url);
+            }
+
+            if(result.filesUploaded[2] != null){
+                const fileData2 = result.filesUploaded[2];
+                fileInput2.value = fileData2.url;
+                console.log(fileData2.url);
+            }
+
+            if(result.filesUploaded[3] != null){
+                const fileData3 = result.filesUploaded[3];
+                fileInput3.value = fileData3.url;
+                console.log(fileData3.url);
+            }
+
+            if(result.filesUploaded[4] != null){
+                const fileData4 = result.filesUploaded[4];
+                fileInput4.value = fileData4.url;
+                console.log(fileData4.url);
+            }
+
+
 
             // If file is resizable image, resize and embed it as a thumbnail preview
             if (['jpeg', 'png'].indexOf(fileData.mimetype.split('/')[1]) !== -1) {
@@ -79,7 +118,7 @@
                 }
             }
             $('#oldpic').hide();
-        };
+        }
     </script>
 
 </th:block>

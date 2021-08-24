@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Title</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body>
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Add Gym</h1>
-<form th:action="@{/posts/create}" method="POST" th:object="${post}">
+<h1>Edit Your Gym</h1>
+
+<form th:action="@{/posts/{id}/edit/update(id = ${post.id})}" method="post" th:object="${post}">
 
     <label for="name">Gym Name</label>
     <input id="name" th:field="*{name}" />
@@ -24,14 +25,10 @@
 
     <label for="fileupload">Select a file to upload</label>
     <input type="hidden" name="fileupload" id="fileupload">
-    <input type="hidden" name="fileupload" id="fileupload1">
-    <input type="hidden" name="fileupload" id="fileupload2">
-    <input type="hidden" name="fileupload" id="fileupload3">
-    <input type="hidden" name="fileupload" id="fileupload4">
     <button id="picker" type="button">Pick file</button>
 
 
-    <input value="Add Gym!" type="submit" />
+    <button type="submit" class="btn btn-primary">Save Changes</button>
 
 </form>
 <th:block th:include="partials/footer :: footer"/>

@@ -31,20 +31,20 @@ public class ReviewController {
 
     @GetMapping("/posts/{id}/review-create")
     public String showReview(@PathVariable long id, Model model){
-        Gym gym = postDao.getById(id);
-        model.addAttribute("gyms", gym);
+        model.addAttribute("gym_id", id);
         model.addAttribute("review", new Review());
         return "gym/create-review";
     }
 
-    @PostMapping("/posts/{id}/review-create")
-    public String createReview(@ModelAttribute Review review, @PathVariable long id){
+    @PostMapping("/posts/{gym_id}/review-create")
+    public String createReview(@ModelAttribute Review review, @PathVariable long gym_id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Gym gym = postDao.getById(id);
+        Gym gym = postDao.getById(gym_id);
+        model.addAttribute("gym_id", gym_id);
         review.setUser(user);
         review.setGym(gym);
         reviewDao.save(review);
-        return "redirect:/posts/" + id;
+        return "redirect:/posts/" + gym_id;
     }
 
     @PostMapping("/review/{id}/delete")
@@ -54,6 +54,6 @@ public class ReviewController {
         if (currentUser.getId() == review.getUser().getId()) {
             reviewDao.delete(review);
         }
-        return "redirect:/gym-page";
+        return "redirect:/profile";
     }
 }

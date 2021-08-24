@@ -3,8 +3,83 @@
 <head>
     <meta charset="UTF-8"/>
     <title>About us</title>
+    <th:block th:replace="partials/styles.html :: styles"/>
 </head>
-<body>
-<h1>Meet-Heads</h1>
+
+<body id="about-us">
+<th:block th:replace="partials/navbar.html :: navbar"/>
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="titles">Welcome to SlimGym!</h1>
+        </div>
+        <div class="card-body">
+            <p class="description">During the 2020 lockdown, people flocked to the stores to buy home gym equipment.
+                They spent thousands
+                transforming their basements, and garages into their very own iron house. Now, with life returning to
+                "normal", this expensive gym equipment is sitting lonely, collecting dust.</p>
+            <p class="description">On the other hand, others are too afraid to go back to their large commercial gyms.
+                Too many people, too
+                many germs, and too much risk. Others are uncomfortable working out in public places, too crowded, too
+                much gawking, and definitely not judgement free. We brings these two groups together by providing safe,
+                clean, home
+                gyms to those that want to work out.</p>
+            <footer class="blockquote-footer">SlimGym <cite title="Source Title">Est. 2021</cite></footer>
+        </div>
+    </div>
+
+    <h2 class="titles">Meet the MeatHeads</h2>
+
+    <div class="row row-cols-1 row-cols-lg-4 g-4 mt-2">
+        <div class="col">
+            <div class="card text-center">
+                <img src="../static/img/dwpic.jpeg" th:src="@{img/dwpic.jpeg}"
+                     class="card-img-top mx-auto d-block meatheads"/>
+                <div class="card-body">
+                    <h5 class="card-title description">David Wagnon</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <img src="../static/img/jgnew.jpeg" th:src="@{img/jgnew.jpeg}"
+                     class="card-img-top  mx-auto d-block meatheads"/>
+                <div class="card-body">
+                    <h5 class="card-title description">Juan Garcia</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <img src="../static/img/dmnew.jpeg" th:src="@{img/dmnew.jpeg}"
+                     class="card-img-top  mx-auto d-block meatheads"/>
+                <div class="card-body">
+                    <h5 class="card-title description">Dustin Martinez</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-center">
+                <img src="../static/img/dcnew.jpeg" th:src="@{img/dcnew.jpeg}"
+                     class="card-img-top  mx-auto d-block meatheads"/>
+                <div class="card-body">
+                    <h5 class="card-title description">David Culver</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:include="partials/footer :: footer"/>
+<th:block th:include="partials/scripts.html :: script"/>
+
+
 </body>
 </html>

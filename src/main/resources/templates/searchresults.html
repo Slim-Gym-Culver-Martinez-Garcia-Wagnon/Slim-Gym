@@ -1,42 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--<head th:replace="partials :: head ('Search Songs')" />-->
-<body class="main">
-<!--<script th:replace="partials :: j-query" />-->
-<!--<nav th:replace="partials :: navbar" />-->
-<header></header>
-<main class="container">
-<!--    <div class="card bluer-back facebook-800-text">-->
-<!--        <div class="card-image">-->
-<!--            <img src="../static/img/tuuna-bar.png" th:src="@{/img/tuuna-bar.png}" alt="colorful bar" />-->
-<!--        </div>-->
-<!--        <div class="card-content">-->
-<!--            <h3 class="card-title">Look at what we found!</h3>-->
-<!--        </div>-->
-<!--    </div>-->
-    <div th:each="gym : ${searchResults}" >
-<!--        <a th:href="@{'/songs/' + ${song.id}}">-->
-            <div>
-<!--                <div class="card-image" th:each="picture : ${pictures}">-->
-<!--                    <div th:if="${picture.gym_id} == ${gym.id}">-->
-<!--                        <img style="height: 250px; width: 250px" alt="colqorful bar"  src="https://classpass-res.cloudinary.com/image/upload/q_auto,f_auto/sedot2xnfrii7rdoekl5.jpg"/>-->
-<!--                    </div>-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+    <th:block th:replace="partials/styles.html :: styles"/>
+</head>
+
+<body class="background">
+<th:block th:replace="partials/navbar.html :: navbar"/>
+
+
+<main class="container-fluid">
+    <!--    KEEP FOR REFERENCEE-->
+    <!--    <div th:each="gym : ${searchResults}">-->
+    <!--        <div class="card-content">-->
+    <!--            <h4 class="card-title" th:text="${gym.name}"/>-->
+    <!--            <p th:text="${gym.description}"/>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <h1 style="text-align: center">Search results</h1>
+    <div class="row d-flex justify-content-center" style="">
+        <div class="overflow-auto overlay" style="padding: 10px;">
+            <div th:each="gym : ${searchResults}">
+                <div class="card offwhite-body" style="margin-bottom: 10px; max-width: 90%;">
+<!--                    added d-flex -->
+                    <div class="preview-post d-flex">
+<!--                        added w-50-->
+                        <div id="gymPage" class="card-img-top carousel slide w-50 d-flex justify-content-center" data-ride="carousel" >
+                            <ol class="carousel-indicators">
+                                <li data-target="#gymPage" data-slide-to="0" class="active"></li>
+                                <li data-target="#gymPage" data-slide-to="1"></li>
+                                <li data-target="#gymPage" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner ">
+                                <div th:each="picture : ${picture}">
+                                    <div th:if="${picture.gym.getId()} == ${gym.id}">
+                                        <div class="carousel-item active d-flex justify-content-center">
+                                            <img class="d-block w-50" th:src="${picture.url}" alt="First slide">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#gymPage" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#gymPage" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+<!--                        added a div with d-flex-->
+                        <div>
+                            <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                            <br>
+                                <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
+                                <p class="card-text gym-address" th:text="${gym.address}"></p>
+                                <p class="gym-id d-none" th:text="${gym.id}"></p>
+
+                        </div>
+
+                    </div>
                 </div>
-                <div class="card-content preview-song">
-                    <h4 class="card-title" th:text="${gym.name}" />
-                    <p th:text="${gym.description}" />
-<!--                    <a  th:href="@{/users/{id}(id=${song.user.id})}"><span class="right">Composed by user...<span class="down-for-tonight-text" th:text="${song.user.username}" /></span> </a>-->
-                </div>
-                <div class="small-space" />
+
             </div>
-        </a>
-    </div>
+        </div>
+        <div>
+
+
+            <div th:each="review : ${reviews}">
+                <div class="card offwhite-body ">
+                    <div class="card-content preview-post d-flex">
+                        <h4>User rating: </h4> <h4 th:text="${review.rating}"></h4>
+                        <h4>Review by: </h4><h4 class="card-title" th:text="${review.getUser().getUsername()}"></h4>
+
+                        <p th:text="${review.body}"></p>
+                        <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 </main>
-<!--<footer th:replace="partials :: blue-footer" />-->
-<!--<script th:replace="partials :: m-script" />-->
-<!--<script th:replace="partials :: modals-js" />-->
-<script>
-    $('select').formSelect();
-</script>
+
+
+<th:block th:include="partials/footer :: footer"/>
+<th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
