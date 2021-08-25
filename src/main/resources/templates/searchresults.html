@@ -14,8 +14,8 @@
     <div class="d-flex justify-content-center">
         <div class="overflow-auto overlay" style="padding: 10px;">
             <div th:each="gym : ${searchResults}" class="d-flex justify-content-around">
-                <div class="card offwhite-body" style="margin-bottom: 10px; max-width: 90%;">
-                    <div class="preview-post d-flex">
+                <div class="card offwhite-body d-flex " style="margin-bottom: 10px; width: 90%;">
+                    <div class="preview-post d-flex justify-content-around">
                         <div class="w-50 d-flex justify-content-center">
                             <div th:each="picture : ${picture}">
                                 <div th:if="${picture.gym.getId()} == ${gym.id}">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div style="width: 50%; padding-left: 10px;">
                             <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a>
                             </h1>
                             <br>
