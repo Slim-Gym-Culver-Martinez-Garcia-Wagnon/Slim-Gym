@@ -213,3 +213,11 @@
 .blockquote-footer {
     text-shadow: .5px .5px #FFFF00;
 }
+
+#home-div{
+    margin-top: 15%;
+}
+
+#home-body-bg{
+    background-color: rgba(0,0,0,0.5);
+}

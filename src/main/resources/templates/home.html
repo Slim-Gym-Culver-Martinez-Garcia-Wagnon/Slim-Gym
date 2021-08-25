@@ -5,17 +5,17 @@
     <title>SlimGym</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
-<body th:style="'background: url(/img/gymbackground.jpeg) no-repeat center center fixed; background-size: cover;'">
+<body id="home-body-bg" th:style="'background: url(/img/gymbackground.jpeg) no-repeat center center fixed; background-size: cover;'">
 
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<div style="background-color: rgba(0,0,0,0.5);" id="home">
+<div id="home-div" style="height: 100%" class="d-flex row justify-content-center align-items-stretch">
 <h1 style="text-align: center" id="homepage">Host a Gym or find a new private paradise with SlimGym </h1>
-<p style="text-align: center" id="summary">Do you like the idea of a pay as you gym vs a monthly gym membership fee?<br>
+<p style="text-align: center" id="summary">Do you like the idea of a pay as you go gym vs a monthly gym membership fee?<br>
 Do you like the idea of having a gym all to yourself?<br>
 Would you like to have access to private gyms all over the country?<br>
 If the answer is "YES" then SlimGym is for you!<br></p>
 
-    <a th:href="@{/sign-up}" id="home-create" type="button" class="btn">Snap into a SlimGym today!</a>
+    <a th:href="@{/sign-up}" id="home-create" type="button" class="btn">Book a session today!</a>
 </div>
 
 
