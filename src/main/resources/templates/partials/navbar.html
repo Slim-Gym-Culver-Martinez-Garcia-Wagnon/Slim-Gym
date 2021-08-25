@@ -9,7 +9,7 @@
 <th:block th:fragment="navbar">
     <nav class="navbar navbar-dark navbar-expand-lg" style="height: 10%; width: 100%; top:0; z-index: 5;font-family: 'Bangers'; background-color: #1a1819">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}" style="color: red; text-shadow: 1px 1px 1px yellow; font-size: 40px;">SlimGym</a>
+            <a class="navbar-brand" th:href="@{/}" style="color: #840000FF; text-shadow: 1px 1px 1px #f3cd15; font-size: 40px;">SlimGym</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,15 +48,20 @@
                                 <input id="query" name="query" type="search" class="" style="box-shadow: 0px 0px 10px red;outline: yellow; width: 25rem;"/>
                                 <label for="query"></label>
                             </div>
-                            <select id="search-params" name="search-params" class="">
-<!--                                <option value="1">General Search</option>-->
-                                <option value="2">Gym Name</option>
-                                <option value="3">Gym Owner</option>
-                                <option value="4">Gym Address</option>
-                                <option value="5">Gym Equipment</option>
-                            </select>
+                            <div>
+                                <select id="search-params" name="search-params" class="">
+                                    <!--                                <option value="1">General Search</option>-->
+                                    <option value="2">Gym Name</option>
+                                    <option value="3">Gym Owner</option>
+                                    <option value="4">Gym Address</option>
+<!--                                    <option value="5">Gym Equipment</option>-->
+                                </select>
+                                <input value="Search" type="submit" />
+                            </div>
+
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
