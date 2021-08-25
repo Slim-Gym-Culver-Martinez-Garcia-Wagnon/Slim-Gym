@@ -1,5 +1,10 @@
 .no-margin{
-    margin-bottom: .5em;
+    margin-bottom: 0;
+}
+
+footer{
+    bottom: 0;
+margin-bottom: 0;
 }
 
 .heading {
@@ -107,6 +112,12 @@
     background-size: cover;
     background-color: black;
 }
+
+.home-gym{
+    background: url('/img/gymbackground.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
 
 .login-box{
     width: 280px;
