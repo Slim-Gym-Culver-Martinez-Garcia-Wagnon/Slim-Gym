@@ -98,14 +98,11 @@ public class PostController {
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             isPostOwner = currentUser.getId() == gymFromDb.getUser().getId();
         }
-        schedule.setGym(gymFromDb);
-        schedule.setUser(user);
-        model.addAttribute("gyms", gymFromDb);
-        model.addAttribute("user", user);
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("isPostOwner", isPostOwner);
+
         boolean scheduleError = false;
         for(Schedule currentSchedule : scheduleDao.findAllByGymId(gym_id)){
+            schedule.setGym(gymFromDb);
+            schedule.setUser(user);
             //User selected Start time
             String[] startTime = schedule.getStart_time().split(":");
             String startHours = startTime[0];
@@ -122,16 +119,48 @@ public class PostController {
             String[] loopEndTime = currentSchedule.getEnd_time().split(":");
             String loopEndHours = loopEndTime[0];
             String loopEndMinutes = loopEndTime[1];
-            if(currentSchedule.getDate().equals(schedule.getDate())){
-                if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) || Integer.parseInt(endHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(startHours) == Integer.parseInt(loopEndHours) || Integer.parseInt(endHours) == Integer.parseInt(loopStartHours)){
-                    if(Integer.parseInt(startMinutes) <= Integer.parseInt(loopEndMinutes) || Integer.parseInt(endMinutes) >= Integer.parseInt(loopStartMinutes)){
+            if(!schedule.getDate().equals(currentSchedule.getDate())){
+                System.out.println("Not the same date");
+                model.addAttribute("error", scheduleError);
+                scheduleDao.save(schedule);
+                break;
+            }
+            else if(schedule.getDate().equals(currentSchedule.getDate())){
+                if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) || Integer.parseInt(endHours) == Integer.parseInt(loopEndHours)){
+                    if(Integer.parseInt(startMinutes) > Integer.parseInt(loopStartMinutes) || Integer.parseInt(endMinutes) < Integer.parseInt(loopEndMinutes)){
+                        System.out.println("Start == Start or End == end");
                         System.out.println(startHours + ":" + startMinutes);
                         System.out.println(endHours + ":" + endMinutes);
                         System.out.println(loopStartHours + ":" + loopStartMinutes);
                         System.out.println(loopEndHours + ":" + loopEndMinutes);
                         scheduleError = true;
                         model.addAttribute("error", scheduleError);
-                        return "gym/gym-page";
+                        break;
+                    }
+                }
+                else if(Integer.parseInt(startHours) == Integer.parseInt(loopEndHours)){
+                    if(Integer.parseInt(startMinutes) < Integer.parseInt(loopEndMinutes)){
+                        System.out.println("Start == End or End == Start");
+                        System.out.println(startHours + ":" + startMinutes);
+                        System.out.println(endHours + ":" + endMinutes);
+                        System.out.println(loopStartHours + ":" + loopStartMinutes);
+                        System.out.println(loopEndHours + ":" + loopEndMinutes);
+                        scheduleError = true;
+                        model.addAttribute("error", scheduleError);
+                        break;
+
+                    }
+                }
+                else if(Integer.parseInt(endHours) == Integer.parseInt(loopStartHours)){
+                    if(Integer.parseInt(endMinutes) > Integer.parseInt(loopStartMinutes)){
+                        System.out.println("Start == End or End == Start");
+                        System.out.println(startHours + ":" + startMinutes);
+                        System.out.println(endHours + ":" + endMinutes);
+                        System.out.println(loopStartHours + ":" + loopStartMinutes);
+                        System.out.println(loopEndHours + ":" + loopEndMinutes);
+                        scheduleError = true;
+                        model.addAttribute("error", scheduleError);
+                        break;
                     }
                 }
                 else if(Integer.parseInt(endHours) > Integer.parseInt(loopStartHours)){
@@ -140,7 +169,7 @@ public class PostController {
                     System.out.println(loopStartHours + ":" + loopStartMinutes);
                     scheduleError = true;
                     model.addAttribute("error", scheduleError);
-                    return "gym/gym-page";
+                    break;
                 }
                 else if(Integer.parseInt(startHours) < Integer.parseInt(loopEndHours)){
                     System.out.println("these end times match");
@@ -148,22 +177,25 @@ public class PostController {
                     System.out.println(loopEndHours + ":" + loopEndMinutes);
                     scheduleError = true;
                     model.addAttribute("error", scheduleError);
-                    return "gym/gym-page";
+                    break;
                 }
                 else {
-                    scheduleError = false;
                     model.addAttribute("error", scheduleError);
                     scheduleDao.save(schedule);
-                    return "gym/gym-page";
+                    break;
                 }
             }
-            else {
-                scheduleError = false;
+            else{
                 model.addAttribute("error", scheduleError);
                 scheduleDao.save(schedule);
-                return "gym/gym-page";
+                break;
             }
+
         }
+        model.addAttribute("gyms", gymFromDb);
+        model.addAttribute("user", user);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("isPostOwner", isPostOwner);
 
         return "gym/gym-page";
     }

@@ -6,27 +6,46 @@
     <th:block th:include="partials/styles.html :: styles"/>
 
 </head>
-<body>
+<body class="home-gym">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<form th:action="@{/posts/{id}/review-create(id=${gym_id})}" method="POST" th:object="${review}">
-
-    <label for="rating">Rating</label>
-    <input id="rating" th:field="*{rating}" />
-
-    <label for="body">Review</label>
-    <input id="body" th:field="*{body}" />
-
-    <div class="mb-3">
-        <img id="oldpic" th:src="*{picture}" alt="User profile picture" style="height: 250px">
-        <br>
-        <div id="thumbnail-container"></div>
-        <label for="fileupload">Select a file to upload</label>
-        <input th:value="*{picture}" type="hidden" id="fileupload" th:field="*{picture}">
-        <button id="picker" type="button">Pick file</button>
-    </div>
-
-    <input value="create review" type="submit" />
-</form>
+<div class="form-layout">
+    <form th:action="@{/posts/{id}/review-create(id=${gym_id})}" method="POST" th:object="${review}">
+        <div class="flex-container d-lg-flex justify-content-around text-center">
+            <div class="flex-child flex-column d-flex justify-content-center">
+                <h1 class="heading">Create a Review</h1>
+                <div class="d-flex justify-content-center">
+                    <div class="form-text d-inline">
+                        <label for="rating">Rating</label>
+                        <select class="validate inputs" name="rating" id="rating" th:field="*{rating}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <br>
+                        <div class="form-text">
+                            <label for="body">Review</label>
+                            <input id="body" class="validate inputs" type="text" th:field="*{body}"/>
+                            <br>
+                        </div>
+                        <div class="form-text">
+                            <div class="mb-3">
+                                <img id="oldpic" th:src="*{picture}" alt="Review pictures" style="height: 250px">
+                                <br>
+                                <div id="thumbnail-container"></div>
+                                <label for="fileupload">Select a file to upload</label>
+                                <input th:value="*{picture}" class="validate inputs" type="hidden" id="fileupload" th:field="*{picture}">
+                                <button id="picker" class="select btn btn-danger btn-outline-warning" type="button">Pick file</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input value="create review" class="select btn btn-danger btn-outline-warning" type="submit"/>
+            </div>
+        </div>
+    </form>
+</div>
 <th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
