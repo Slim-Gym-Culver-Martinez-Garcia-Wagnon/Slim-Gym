@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-        <th:block th:include="partials/styles.html :: styles"/>
+    <th:block th:include="partials/styles.html :: styles"/>
 </head>
 
 <body class="background">
@@ -14,16 +14,16 @@
             <div class="flex-child flex-column d-flex justify-content-center">
                 <h1 class="heading">Create an account</h1>
                 <div class="form-text">
-                    <input id="first_name" name="first_name" type="text" class="validate inputs" th:value="*{first_name}" placeholder="First Name"/>
+                    <input id="first_name" name="first_name" type="text" class="validate inputs"
+                           th:value="*{first_name}" placeholder="First Name"/>
                     <label for="first_name" th:field="*{first_name}"></label>
                     <p th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"
-
                        th:class="${#fields.hasErrors('first_name')}? error" style="color: red"></p>
-
                 </div>
                 <br>
                 <div class="form-text">
-                    <input id="last_name" name="last_name" type="text" class="validate inputs" th:value="*{last_name}" placeholder="Last Name"/>
+                    <input id="last_name" name="last_name" type="text" class="validate inputs" th:value="*{last_name}"
+                           placeholder="Last Name"/>
                     <label for="last_name" th:field="*{last_name}"></label>
                     <p th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}"
 
@@ -31,21 +31,24 @@
                 </div>
                 <br>
                 <div class="form-text">
-                    <input id="username1" name="username" type="text" class="validate inputs" th:value="*{username}" placeholder="Username"/>
+                    <input id="username1" name="username" type="text" class="validate inputs" th:value="*{username}"
+                           placeholder="Username"/>
                     <label for="username1" th:field="*{username}"></label>
                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                        th:class="${#fields.hasErrors('username')}? error" style="color: red"></p>
                 </div>
                 <br>
                 <div class="form-text">
-                    <input id="email" name="email" type="text" class="validate inputs" th:value="*{email}" placeholder="Email"/>
+                    <input id="email" name="email" type="text" class="validate inputs" th:value="*{email}"
+                           placeholder="Email"/>
                     <label for="email" th:field="*{email}"></label>
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                        th:class="${#fields.hasErrors('email')}? error" style="color: red"></p>
                 </div>
                 <br>
                 <div class="form-text">
-                    <input id="password1" name="password" type="password" class="validate inputs" placeholder="Password"/>
+                    <input id="password1" name="password" type="password" class="validate inputs"
+                           placeholder="Password"/>
                     <label for="password1" th:field="*{password}"></label>
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                        th:class="${#fields.hasErrors('password')}? error" style="color: red"></p>
@@ -54,26 +57,30 @@
 
                 <label for="fileupload" placeholder="Upload Photo"></label>
                 <input type="hidden" id="fileupload" th:field="*{profile_pic}">
-                <button id="picker" type="button" class="select btn btn-danger btn-outline-warning">Choose profile photo</button>
+                <button id="picker" type="button" class="select btn btn-danger btn-outline-warning">Choose profile
+                    photo
+                </button>
             </div>
             <div class="flex-child second flex-column d-flex justify-content-center">
                 <br>
                 <br>
                 <h1 class="heading">Emergency Contact</h1>
                 <div class="form-text">
-                    <input id="emergency_first_name" name="emergency_first_name" type="text" class="validate inputs" th:value="*{emergency_first_name}"
+                    <input id="emergency_first_name" name="emergency_first_name" type="text" class="validate inputs"
+                           th:value="*{emergency_first_name}"
                            placeholder="First Name"/>
                     <label for="emergency_first_name" th:field="*{emergency_first_name}"></label>
                     <p th:if="${#fields.hasErrors('emergency_first_name')}" th:errors="*{emergency_first_name}"
-                       th:class="${#fields.hasErrors('emergency_first_name')}? error"/>
+                       th:class="${#fields.hasErrors('emergency_first_name')}? error"></p>
                 </div>
                 <br>
                 <div class="form-text">
-                    <input id="emergency_last_name" name="emergency_last_name" type="text" class="validate inputs" th:value="*{emergency_last_name}"
+                    <input id="emergency_last_name" name="emergency_last_name" type="text" class="validate inputs"
+                           th:value="*{emergency_last_name}"
                            placeholder="Last Name"/>
                     <label for="emergency_last_name" th:field="*{emergency_last_name}"></label>
                     <p th:if="${#fields.hasErrors('emergency_last_name')}" th:errors="*{emergency_last_name}"
-                       th:class="${#fields.hasErrors('emergency_last_name')}? error"/>
+                       th:class="${#fields.hasErrors('emergency_last_name')}? error"></p>
                 </div>
                 <br>
                 <div class="form-text">
@@ -83,16 +90,13 @@
                 </div>
                 <br>
                 <button class="select btn btn-danger btn-outline-warning">Sign me up!</button>
-
             </div>
         </div>
     </form>
 </div>
 
 
-<!--</script>-->
-<!--<th:block th:include="partials/footer :: footer"/>-->
-<th:block th:include="partials/scripts.html :: script"/>
 
+<th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
