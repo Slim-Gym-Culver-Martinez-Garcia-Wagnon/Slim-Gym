@@ -131,7 +131,7 @@
                     </a>
                 </div>
                 <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
-                <div class="card-content">
+                <div class="card-content" style="color: black">
                     <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" th:text="${gym.address}"></p>
                     <p class="gym-id d-none" th:text="${gym.id}"></p>
@@ -172,7 +172,7 @@
                 </div>
 
                 <h1><a class="gym-name" th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
-                <div class="card-content">
+                <div class="card-content" style="color: black">
                     <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" th:text="${gym.address}"></p>
                     <p class="gym-id d-none" th:text="${gym.id}"></p>

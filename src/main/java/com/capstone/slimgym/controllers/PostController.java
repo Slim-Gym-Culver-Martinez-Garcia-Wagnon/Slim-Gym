@@ -98,19 +98,26 @@ public class PostController {
             User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             isPostOwner = currentUser.getId() == gymFromDb.getUser().getId();
         }
+        schedule.setGym(gymFromDb);
+        schedule.setUser(user);
+
+        //User selected Start time
+        String[] startTime = schedule.getStart_time().split(":");
+        String startHours = startTime[0];
+        String startMinutes = startTime[1];
+
+        //User selected End time
+        String[] endTime = schedule.getEnd_time().split(":");
+        String endHours = endTime[0];
+        String endMinutes = endTime[1];
+
+        model.addAttribute("gyms", gymFromDb);
+        model.addAttribute("user", user);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("isPostOwner", isPostOwner);
 
         boolean scheduleError = false;
         for(Schedule currentSchedule : scheduleDao.findAllByGymId(gym_id)){
-            schedule.setGym(gymFromDb);
-            schedule.setUser(user);
-            //User selected Start time
-            String[] startTime = schedule.getStart_time().split(":");
-            String startHours = startTime[0];
-            String startMinutes = startTime[1];
-            //User selected End time
-            String[] endTime = schedule.getEnd_time().split(":");
-            String endHours = endTime[0];
-            String endMinutes = endTime[1];
             //Scheduled event Start time
             String[] loopStartTime = currentSchedule.getStart_time().split(":");
             String loopStartHours = loopStartTime[0];
@@ -119,86 +126,68 @@ public class PostController {
             String[] loopEndTime = currentSchedule.getEnd_time().split(":");
             String loopEndHours = loopEndTime[0];
             String loopEndMinutes = loopEndTime[1];
-            if(!schedule.getDate().equals(currentSchedule.getDate())){
-                System.out.println("Not the same date");
-                model.addAttribute("error", scheduleError);
-                scheduleDao.save(schedule);
-                break;
-            }
-            else if(schedule.getDate().equals(currentSchedule.getDate())){
-                if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours) || Integer.parseInt(endHours) == Integer.parseInt(loopEndHours)){
-                    if(Integer.parseInt(startMinutes) > Integer.parseInt(loopStartMinutes) || Integer.parseInt(endMinutes) < Integer.parseInt(loopEndMinutes)){
-                        System.out.println("Start == Start or End == end");
+            if (currentSchedule.getDate().equals(schedule.getDate())){
+                System.out.println("Dates match, will not save");
+                if(Integer.parseInt(startHours) == Integer.parseInt(loopStartHours)){
+                    if(Integer.parseInt(startMinutes) > Integer.parseInt(loopStartMinutes)){
+                        System.out.println("these start times match 2");
                         System.out.println(startHours + ":" + startMinutes);
                         System.out.println(endHours + ":" + endMinutes);
                         System.out.println(loopStartHours + ":" + loopStartMinutes);
                         System.out.println(loopEndHours + ":" + loopEndMinutes);
                         scheduleError = true;
                         model.addAttribute("error", scheduleError);
-                        break;
+                        return "gym/gym-page";
                     }
+
                 }
-                else if(Integer.parseInt(startHours) == Integer.parseInt(loopEndHours)){
+                if(Integer.parseInt(startHours) == Integer.parseInt(loopEndHours)){
                     if(Integer.parseInt(startMinutes) < Integer.parseInt(loopEndMinutes)){
-                        System.out.println("Start == End or End == Start");
+                        System.out.println("these start times match 2");
                         System.out.println(startHours + ":" + startMinutes);
                         System.out.println(endHours + ":" + endMinutes);
                         System.out.println(loopStartHours + ":" + loopStartMinutes);
                         System.out.println(loopEndHours + ":" + loopEndMinutes);
                         scheduleError = true;
                         model.addAttribute("error", scheduleError);
-                        break;
+                        return "gym/gym-page";
+                    }
 
+                }
+                else if(Integer.parseInt(endHours) == Integer.parseInt(loopEndHours)){
+                    if(Integer.parseInt(endMinutes) < Integer.parseInt(loopEndMinutes)){
+                        System.out.println("these end times match 1");
+                        System.out.println(endHours + ":" + endMinutes);
+                        System.out.println(loopEndHours + ":" + loopEndMinutes);
+                        scheduleError = true;
+                        model.addAttribute("error", scheduleError);
+                        return "gym/gym-page";
                     }
                 }
                 else if(Integer.parseInt(endHours) == Integer.parseInt(loopStartHours)){
                     if(Integer.parseInt(endMinutes) > Integer.parseInt(loopStartMinutes)){
-                        System.out.println("Start == End or End == Start");
-                        System.out.println(startHours + ":" + startMinutes);
+                        System.out.println("these end times match 2");
                         System.out.println(endHours + ":" + endMinutes);
-                        System.out.println(loopStartHours + ":" + loopStartMinutes);
                         System.out.println(loopEndHours + ":" + loopEndMinutes);
                         scheduleError = true;
                         model.addAttribute("error", scheduleError);
-                        break;
+                        return "gym/gym-page";
                     }
                 }
-                else if(Integer.parseInt(endHours) > Integer.parseInt(loopStartHours)){
-                    System.out.println("end is less than start");
+                else if(Integer.parseInt(endHours) > Integer.parseInt(loopStartHours) && Integer.parseInt(startHours) < Integer.parseInt(loopEndHours)){
+                    System.out.println("Times overlap");
                     System.out.println(endHours + ":" + endMinutes);
                     System.out.println(loopStartHours + ":" + loopStartMinutes);
                     scheduleError = true;
                     model.addAttribute("error", scheduleError);
-                    break;
-                }
-                else if(Integer.parseInt(startHours) < Integer.parseInt(loopEndHours)){
-                    System.out.println("these end times match");
-                    System.out.println(startHours + ":" + loopStartMinutes);
-                    System.out.println(loopEndHours + ":" + loopEndMinutes);
-                    scheduleError = true;
-                    model.addAttribute("error", scheduleError);
-                    break;
-                }
-                else {
-                    model.addAttribute("error", scheduleError);
-                    scheduleDao.save(schedule);
-                    break;
+                    return "gym/gym-page";
                 }
             }
-            else{
-                model.addAttribute("error", scheduleError);
-                scheduleDao.save(schedule);
-                break;
-            }
-
         }
-        model.addAttribute("gyms", gymFromDb);
-        model.addAttribute("user", user);
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("isPostOwner", isPostOwner);
-
+        scheduleDao.save(schedule);
         return "gym/gym-page";
     }
+
 
     @GetMapping("/posts/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
