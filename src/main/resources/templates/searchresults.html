@@ -15,8 +15,9 @@
         <div class="overflow-auto overlay" style="padding: 10px;">
             <div th:each="gym : ${searchResults}" class="d-flex justify-content-around">
                 <div class="card offwhite-body d-flex " style="margin-bottom: 10px; width: 90%;">
-                    <div class="preview-post d-flex justify-content-around" style="margin-bottom: 10px; color: black; padding: 3px; background-color: white">
-                        <div class="w-50 d-flex justify-content-center" >
+                    <div class="preview-post d-flex justify-content-around"
+                         style="margin-bottom: 10px; color: black; padding: 3px; background-color: white">
+                        <div class="w-50 d-flex justify-content-center">
                             <div th:each="picture : ${picture}">
                                 <div th:if="${picture.gym.getId()} == ${gym.id}">
                                     <div class="d-flex justify-content-center">
@@ -28,25 +29,22 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="justify-content-center" style="width: 50%; padding-left: 10px;">
                             <h1><a class="gym-name " th:text="${gym.name}"></a></h1>
-<!--                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.address}"></h4>-->
                             <br>
-                            <h3 style="font-family: 'Bangers', cursive;" class="card-text gym-description" th:text="${gym.description}"></h3>
-                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.equipment}"></h4>
+                            <h3 style="font-family: 'Bangers', cursive;" class="card-text gym-description"
+                                th:text="${gym.description}"></h3>
+                            <h4 style="font-family: 'Bangers', cursive;" class="card-text gym-address"
+                                th:text="${gym.equipment}"></h4>
                             <p class="gym-id d-none" th:text="${gym.id}"></p>
                             <a th:href="@{/posts/{id}(id=${gym.id})}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+    </div>
 </main>
-
-
-<th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
