@@ -8,99 +8,144 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
-<body>
+<!--<body>-->
+<!--<th:block th:replace="partials/navbar.html :: navbar"/>-->
+<!--<h2>Edit your profile:</h2>-->
+<!--<form id="editform" th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">-->
+
+<!--    <input th:value="*{first_name}" type="hidden" id="first_name" class="form-control" th:field="*{first_name}">-->
+<!--    <input th:value="*{last_name}" type="hidden" id="last_name" class="form-control" th:field="*{last_name}">-->
+<!--    <input th:value="*{username}" type="hidden" id="username" class="form-control" th:field="*{username}">-->
+
+<!--    <div class="mb-3">-->
+<!--        <label for="email" class="form-label">Email address: </label>-->
+<!--        <input class="form-control" id="email" th:value="*{email}" th:field="*{email}"/>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--        <label for="password" class="form-label">New password: </label>-->
+<!--        <input th:value="*{password}" type="password" class="form-control" id="password" th:field="*{password}">-->
+<!--    </div>-->
+
+<!--    <div class="mb-3">-->
+<!--        <img id="oldpic" th:src="*{profile_pic}" alt="User profile picture" style="height: 250px">-->
+<!--        <br>-->
+<!--        <div id="thumbnail-container"></div>-->
+<!--        <label for="fileupload">Select a file to upload</label>-->
+<!--        <input th:value="*{profile_pic}" type="hidden" id="fileupload" th:field="*{profile_pic}">-->
+<!--        <button id="picker" type="button">Pick file</button>-->
+<!--    </div>-->
+
+<!--    <p>Update your emergency contact:</p>-->
+<!--    <div class="mb-3">-->
+<!--        <label for="emergency_first_name" class="form-label">First Name: </label>-->
+<!--        <input th:value="*{emergency_first_name}" type="text" class="form-control" id="emergency_first_name" th:field="*{emergency_first_name}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--        <label for="emergency_last_name" class="form-label">Last Name: </label>-->
+<!--        <input th:value="*{emergency_last_name}" type="text" class="form-control" id="emergency_last_name"-->
+<!--               th:field="*{emergency_last_name}">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--        <label for="emergency_phone_number" class="form-label">Phone Number: </label>-->
+<!--        <input th:value="*{emergency_phone_number}" type="text" class="form-control" id="emergency_phone_number"-->
+<!--               th:field="*{emergency_phone_number}">-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Save Changes</button>-->
+<!--</form>-->
+
+
+
+
+
+<body class="background">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h2>Edit your profile:</h2>
-<form id="editform" th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
+<div class="form-layout">
+    <form id="form" th:action="@{/user/edit/update/{id}(id=${id})}" th:method="POST" th:object="${user}">
+        <input th:value="*{first_name}" type="hidden" id="first_name" class="form-control" th:field="*{first_name}">
+        <input th:value="*{last_name}" type="hidden" id="last_name" class="form-control" th:field="*{last_name}">
+        <input th:value="*{username}" type="hidden" id="username" class="form-control" th:field="*{username}">
+        <div class="flex-container m-3 d-lg-flex justify-content-around text-center">
+            <div class="flex-child flex-column d-flex justify-content-center">
+                <h1 class="heading">Edit your profile:</h1>
+                <div class="form-text mb-3">
 
-    <input th:value="*{first_name}" type="hidden" id="first_name" class="form-control" th:field="*{first_name}">
-    <input th:value="*{last_name}" type="hidden" id="last_name" class="form-control" th:field="*{last_name}">
-    <input th:value="*{username}" type="hidden" id="username" class="form-control" th:field="*{username}">
+<!--                    <input class="form-control" id="email" th:value="*{email}" th:field="*{email}"/>-->
+<!--                    <label for="email" class="form-label">Email address: </label>-->
+                    <label for="email" class="text-center">Email</label>
+                    <br>
+                    <input id="email" class="gym-inputs text-center" name="email" type="text" th:value="*{email}" th:field="*{email}"/>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email address: </label>
-        <input class="form-control" id="email" th:value="*{email}" th:field="*{email}"/>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">New password: </label>
-        <input th:value="*{password}" type="password" class="form-control" id="password" th:field="*{password}">
-    </div>
 
-    <div class="mb-3">
-        <img id="oldpic" th:src="*{profile_pic}" alt="User profile picture" style="height: 250px">
-        <br>
-        <div id="thumbnail-container"></div>
-        <label for="fileupload">Select a file to upload</label>
-        <input th:value="*{profile_pic}" type="hidden" id="fileupload" th:field="*{profile_pic}">
-        <button id="picker" type="button">Pick file</button>
-    </div>
+                </div>
+                <br>
+                <div class="form-text">
 
-    <p>Update your emergency contact:</p>
-    <div class="mb-3">
-        <label for="emergency_first_name" class="form-label">First Name: </label>
-        <input th:value="*{emergency_first_name}" type="text" class="form-control" id="emergency_first_name"
-               th:field="*{emergency_first_name}">
-    </div>
-    <div class="mb-3">
-        <label for="emergency_last_name" class="form-label">Last Name: </label>
-        <input th:value="*{emergency_last_name}" type="text" class="form-control" id="emergency_last_name"
-               th:field="*{emergency_last_name}">
-    </div>
-    <div class="mb-3">
-        <label for="emergency_phone_number" class="form-label">Phone Number: </label>
-        <input th:value="*{emergency_phone_number}" type="text" class="form-control" id="emergency_phone_number"
-               th:field="*{emergency_phone_number}">
-    </div>
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-</form>
+<!--                    <input th:value="*{password}" type="password" class="form-control" id="password" th:field="*{password}">-->
+<!--                    <label for="password" class="form-label">New password: </label>-->
+                    <label for="password"  class="text-center">Password</label>
+                    <br>
+                    <input th:value="*{password}" class="gym-inputs text-center" id="password" name="password" type="password" th:field="*{password}" placeholder="Password"/>
 
-<script>
-    // // Set up the picker
-    // const client = filestack.init('AR2VI3jLQyWEkkv3AJ6Psz');
-    // const options = {
-    //     onUploadDone: updateForm,
-    //     maxSize: 10 * 1024 * 1024,
-    //     accept: 'image/*',
-    //     uploadInBackground: false,
-    // };
-    // const picker = client.picker(options);
-    //
-    // // Get references to the DOM elements
-    //
-    // const form = document.getElementById('pick-form');
-    // const fileInput = document.getElementById('fileupload');
-    // const btn = document.getElementById('picker');
-    // const nameBox = document.getElementById('nameBox');
-    // const urlBox = document.getElementById('urlBox');
-    //
-    // // Add our event listeners
-    //
-    // btn.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     picker.open();
-    // });
-    //
-    // form.addEventListener('submit', function (e) {
-    //     e.preventDefault();
-    //     alert('Submitting: ' + fileInput.value);
-    // });
-    //
-    // // Helper to overwrite the field input value
-    //
-    // function updateForm(result) {
-    //     const fileData = result.filesUploaded[0];
-    //     fileInput.value = fileData.url;
-    //
-    //     const name = document.createTextNode('Selected: ' + fileData.filename);
-    //     const url = document.createElement('a');
-    //     url.href = fileData.url;
-    //     url.appendChild(document.createTextNode(fileData.url));
-    //     nameBox.appendChild(name);
-    //     urlBox.appendChild(document.createTextNode('Uploaded to: '));
-    //     urlBox.appendChild(url);
-    // };
 
-</script>
+                </div>
+                <br>
+
+                <div>
+                    <img id="oldpic" th:src="*{profile_pic}" alt="User profile picture" style="height: 250px">
+                    <br>
+                    <div id="thumbnail-container"></div>
+<!--                    <label for="fileupload">Select a file to upload</label>-->
+<!--                    <input th:value="*{profile_pic}" type="hidden" id="fileupload" th:field="*{profile_pic}">-->
+<!--                    <button id="picker" type="button">Pick file</button>-->
+                    <label for="fileupload" placeholder="Upload Photo"></label>
+                    <input type="hidden" id="fileupload" th:field="*{profile_pic}" th:value="*{profile_pic}">
+                    <button id="picker" type="button" class="select btn-small">Choose profile photo</button>
+                </div>
+
+
+
+            </div>
+            <div class="flex-child second flex-column d-flex justify-content-center">
+                <br>
+                <br>
+                <h1 class="heading">Update Emergency Contact</h1>
+                <div class="form-text">
+
+<!--                    <input th:value="*{emergency_first_name}" type="text" class="form-control" id="emergency_first_name" th:field="*{emergency_first_name}">-->
+<!--                    <label for="emergency_first_name" class="form-label">First Name: </label>-->
+                    <label for="emergency_first_name"  class="text-center">First Name</label>
+                    <br>
+                    <input id="emergency_first_name" class="gym-inputs text-center" name="emergency_first_name" type="text" th:value="*{emergency_first_name}"
+                           th:field="*{emergency_first_name}"/>
+
+
+                </div>
+                <br>
+                <div class="form-text">
+                    <label for="emergency_last_name" class="text-center">Last Name</label>
+                    <br>
+                    <input id="emergency_last_name" class="gym-inputs text-center" name="emergency_last_name" type="text" th:value="*{emergency_last_name}"
+                           th:field="*{emergency_last_name}"/>
+
+
+                </div>
+                <br>
+                <div class="form-text">
+                    <label for="emergency_phone_number"  class="text-center">Phone Number</label>
+                    <br>
+                    <input id="emergency_phone_number" class="gym-inputs text-center" name="emergency_phone_number" type="text" th:value="*{emergency_phone_number}"
+                           th:field="*{emergency_phone_number}"/>
+
+                </div>
+                <br>
+                <button class="select btn-small">Save Changes</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
 <th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 

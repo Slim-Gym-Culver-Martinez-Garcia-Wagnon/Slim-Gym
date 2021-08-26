@@ -5,35 +5,79 @@
     <title>Register</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
-<body>
+<!--<body>-->
+<!--<th:block th:replace="partials/navbar.html :: navbar"/>-->
+<!--<h1>Add Gym</h1>-->
+<!--<form th:action="@{/posts/create}" method="POST" th:object="${post}">-->
+
+<!--&lt;!&ndash;    <label for="name">Gym Name</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input id="name" th:field="*{name}" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <label for="address">Gym Address</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input id="address" th:field="*{address}" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <label for="description">Gym Description</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input id="description" th:field="*{description}" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <label for="equipment">Gym Equipment</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input id="equipment" th:field="*{equipment}" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <label for="fileupload">Select a file to upload</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="fileupload" id="fileupload">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="fileupload" id="fileupload1">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="fileupload" id="fileupload2">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="fileupload" id="fileupload3">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="fileupload" id="fileupload4">&ndash;&gt;-->
+<!--&lt;!&ndash;    <button id="picker" type="button">Pick file</button>&ndash;&gt;-->
+
+
+<!--    <input value="Add Gym!" type="submit" />-->
+
+<!--</form>-->
+
+<body class="background">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Add Gym</h1>
-<form th:action="@{/posts/create}" method="POST" th:object="${post}">
+<div class="form-layout">
+    <form id="form" th:action="@{/posts/create}" method="POST" th:object="${post}">
+        <div class="flex-container m-3 d-lg-flex justify-content-around text-center">
+            <div class="flex-child flex-column d-flex justify-content-center">
+                <h1 class="heading">New Gym Listing</h1>
+                <div class="form-text d-flex justify-content-center ">
+                    <input id="name" class="gym-inputs text-center" name="name" type="text" th:field="*{name}"
+                           placeholder="Gym Name"/>
+                    <label for="name"></label>
+                </div>
+                <br>
+                <div class="form-text">
+                    <input id="address" class="gym-inputs text-center" name="address" type="text" th:field="*{address}" placeholder="Gym Address"/>
+                    <label for="address"></label>
+                </div>
+                <br>
+                <div class="form-text">
+                    <input id="description" class="gym-inputs text-center" name="description" type="text" th:field="*{description}" placeholder="Gym Description"/>
+                    <label for="description"></label>
+                </div>
+                <br>
+                <div class="form-text">
+                    <input id="equipment" class="gym-inputs text-center" name="equipment" type="text" th:field="*{equipment}" placeholder="Equipment List"/>
+                    <label for="equipment"></label>
+                </div>
+                <br>
+                <label for="fileupload" placeholder="Upload Photos"></label>
+                <input type="hidden" name="fileupload" id="fileupload">
+                <input type="hidden" name="fileupload" id="fileupload1">
+                <input type="hidden" name="fileupload" id="fileupload2">
+                <input type="hidden" name="fileupload" id="fileupload3">
+                <input type="hidden" name="fileupload" id="fileupload4">
 
-    <label for="name">Gym Name</label>
-    <input id="name" th:field="*{name}" />
+                <button id="picker" type="button" class="select btn btn-danger btn-outline-warning">Choose gym photos</button>
+                <button class="select btn btn-danger btn-outline-warning">Create Gym!</button>
+            </div>
 
-    <label for="address">Gym Address</label>
-    <input id="address" th:field="*{address}" />
+        </div>
+    </form>
+</div>
 
-    <label for="description">Gym Description</label>
-    <input id="description" th:field="*{description}" />
-
-    <label for="equipment">Gym Equipment</label>
-    <input id="equipment" th:field="*{equipment}" />
-
-    <label for="fileupload">Select a file to upload</label>
-    <input type="hidden" name="fileupload" id="fileupload">
-    <input type="hidden" name="fileupload" id="fileupload1">
-    <input type="hidden" name="fileupload" id="fileupload2">
-    <input type="hidden" name="fileupload" id="fileupload3">
-    <input type="hidden" name="fileupload" id="fileupload4">
-    <button id="picker" type="button">Pick file</button>
-
-
-    <input value="Add Gym!" type="submit" />
-
-</form>
 <th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
