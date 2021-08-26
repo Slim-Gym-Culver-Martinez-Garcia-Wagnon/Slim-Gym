@@ -35,8 +35,11 @@
                                 <br>
                                 <div id="thumbnail-container"></div>
                                 <label for="fileupload">Select a file to upload</label>
-                                <input th:value="*{picture}" class="validate inputs" type="hidden" id="fileupload" th:field="*{picture}">
-                                <button id="picker" class="select btn btn-danger btn-outline-warning" type="button">Pick file</button>
+                                <input th:value="*{picture}" class="validate inputs" type="hidden" id="fileupload"
+                                       th:field="*{picture}">
+                                <button id="picker" class="select btn btn-danger btn-outline-warning" type="button">Pick
+                                    file
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -46,7 +49,7 @@
         </div>
     </form>
 </div>
-<th:block th:include="partials/footer :: footer"/>
+
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
