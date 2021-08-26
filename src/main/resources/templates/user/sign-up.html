@@ -45,7 +45,7 @@
                 </div>
                 <br>
                 <div class="form-text">
-                    <input id="password1" name="password" type="text" class="validate inputs" placeholder="Password"/>
+                    <input id="password1" name="password" type="password" class="validate inputs" placeholder="Password"/>
                     <label for="password1" th:field="*{password}"></label>
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                        th:class="${#fields.hasErrors('password')}? error" style="color: red"></p>

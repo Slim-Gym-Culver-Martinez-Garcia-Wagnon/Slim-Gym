@@ -6,17 +6,17 @@
     <th:block th:replace="partials/styles.html :: styles"/>
 </head>
 
-<body class="background">
+<body class="background" id="search-results">
 <th:block th:replace="partials/navbar.html :: navbar"/>
 
-<main class="container-fluid">
-    <h1 style="text-align: center">Search results</h1>
+<main class="container-fluid" style="margin-bottom: 75px">
+    <h1 style="text-align: center; margin-top: 10px" class="heading">Search results</h1>
     <div class="d-flex justify-content-center">
         <div class="overflow-auto overlay" style="padding: 10px;">
             <div th:each="gym : ${searchResults}" class="d-flex justify-content-around">
                 <div class="card offwhite-body d-flex " style="margin-bottom: 10px; width: 90%;">
-                    <div class="preview-post d-flex justify-content-around">
-                        <div class="w-50 d-flex justify-content-center">
+                    <div class="preview-post d-flex justify-content-around" style="margin-bottom: 10px; color: black; padding: 3px; background-color: white">
+                        <div class="w-50 d-flex justify-content-center" >
                             <div th:each="picture : ${picture}">
                                 <div th:if="${picture.gym.getId()} == ${gym.id}">
                                     <div class="d-flex justify-content-center">
@@ -29,15 +29,15 @@
                             </div>
                         </div>
 
-                        <div style="width: 50%; padding-left: 10px;">
-                            <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a>
-                            </h1>
+                        <div class="justify-content-center" style="width: 50%; padding-left: 10px;">
+                            <h1><a class="gym-name " th:text="${gym.name}"></a></h1>
+<!--                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.address}"></h4>-->
                             <br>
-                            <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
-                            <p class="card-text gym-address" th:text="${gym.address}"></p>
+                            <h3 style="font-family: 'Bangers', cursive;" class="card-text gym-description" th:text="${gym.description}"></h3>
+                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.equipment}"></h4>
                             <p class="gym-id d-none" th:text="${gym.id}"></p>
+                            <a th:href="@{/posts/{id}(id=${gym.id})}" class="btn btn-primary">View Details</a>
                         </div>
-
                     </div>
                 </div>
 
