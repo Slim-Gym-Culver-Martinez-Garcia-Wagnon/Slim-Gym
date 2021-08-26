@@ -149,14 +149,14 @@ margin-bottom: 0;
 
 #homepage{
     color: #840000FF;
-    text-shadow: 1px 1px 1px #f3cd15;
-    font-size: 60px;
+    text-shadow: 3px 3px 3px #f3cd15;
+    font-size: 80px;
     font-family: 'Bangers', cursive;
 }
 
 #summary{
     color: white;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 #home{
@@ -255,4 +255,13 @@ margin-bottom: 0;
 
 label {
     color: #f3cd15;
+}
+
+#review-cards{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

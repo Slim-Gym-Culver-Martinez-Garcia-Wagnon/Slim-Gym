@@ -11,8 +11,8 @@
 
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <div id="home">
-<h1 style="text-align: center" id="homepage">Host a Gym or find a new private paradise with SlimGym </h1>
-<p style="text-align: center" id="summary">Do you like the idea of a pay as you go gym vs a monthly gym membership fee?<br>
+<h1 style="text-align: center" id="homepage">Slim your search<br>  Spot your gym </h1>
+<p style="text-align: center" id="summary">Do you like the idea of a pay as you go gym vs. a monthly gym membership fee?<br>
 Do you like the idea of having a gym all to yourself?<br>
 Would you like to have access to private gyms all over the country?<br>
 If the answer is "YES" then SlimGym is for you!<br></p>
@@ -20,6 +20,51 @@ If the answer is "YES" then SlimGym is for you!<br></p>
     <a th:href="@{/sign-up}" id="home-create" type="button" class="btn">Book a session today!</a>
 </div>
 
+<div id="review-cards" class="row row-cols-1 row-cols-lg-4 g-4 mt-2">
+    <div class="col">
+<div class="card">
+    <div class="card-header">
+        Thank You!
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>Thank you SlimGym for helping me find my way back to fitness.</p>
+            <footer class="blockquote-footer">TimTheToolMan</footer>
+        </blockquote>
+    </div>
+</div>
+    </div>
+
+    <div class="col">
+<div class="card">
+    <div class="card-header">
+        Love the app!
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>I love booking my workout sessions at private gyms<br>
+                and never having to wait on anyone.</p>
+            <footer class="blockquote-footer">Turbo</footer>
+        </blockquote>
+    </div>
+</div>
+    </div>
+<div class="card">
+    <div class="card-header">
+        Amazing!
+    </div>
+    <div class="col">
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>I haven't been this motivated to work out in a while.<br>
+                I enjoy the change in scenery and having multiple private gyms available to me. .</p>
+            <footer class="blockquote-footer">Tymei</footer>
+        </blockquote>
+    </div>
+</div>
+</div>
+
+</div>
 
 <th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
