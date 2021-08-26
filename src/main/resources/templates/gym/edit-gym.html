@@ -5,32 +5,48 @@
     <title>Title</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
-<body>
+<body class="home-gym">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1>Edit Your Gym</h1>
+<div class="form-layout">
+    <form th:action="@{/posts/{id}/edit/update(id = ${post.id})}" method="post" th:object="${post}">
+        <div class="flex-container d-lg-flex justify-content-around text-center">
+            <div class="flex-child flex-column d-flex justify-content-center">
+                <h1 class="heading">Edit Your Gym</h1>
+                <div class="d-flex justify-content-center">
+                    <div class="form-text d-inline">
+                        <div class="form-text">
+                            <label for="name">Gym Name</label>
+                            <input class="validate inputs" id="name" th:field="*{name}"/>
 
-<form th:action="@{/posts/{id}/edit/update(id = ${post.id})}" method="post" th:object="${post}">
+                            <div class="form-text">
+                                <label for="address">Gym Address</label>
+                                <input class="validate inputs" id="address" th:field="*{address}"/>
+                            </div>
 
-    <label for="name">Gym Name</label>
-    <input id="name" th:field="*{name}" />
+                            <div class="form-text">
+                                <label for="description">Gym Description</label>
+                                <input class="validate inputs" id="description" th:field="*{description}"/>
+                            </div>
 
-    <label for="address">Gym Address</label>
-    <input id="address" th:field="*{address}" />
+                            <div class="form-text">
+                                <label for="equipment">Gym Equipment</label>
+                                <input class="validate inputs" id="equipment" th:field="*{equipment}"/>
+                            </div>
 
-    <label for="description">Gym Description</label>
-    <input id="description" th:field="*{description}" />
+                            <div class="form-text">
+                                <label for="fileupload">Select a file to upload</label>
+                                <input type="hidden" name="fileupload" id="fileupload">
+                                <button id="picker" type="button" class="select btn-small">Pick file</button>
+                            </div>
 
-    <label for="equipment">Gym Equipment</label>
-    <input id="equipment" th:field="*{equipment}" />
-
-    <label for="fileupload">Select a file to upload</label>
-    <input type="hidden" name="fileupload" id="fileupload">
-    <button id="picker" type="button">Pick file</button>
-
-
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-
-</form>
+                            <button type="submit" class="select btn-small">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 <th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
