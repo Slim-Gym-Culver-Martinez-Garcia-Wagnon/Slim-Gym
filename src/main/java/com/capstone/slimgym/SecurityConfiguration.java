@@ -59,7 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                           "/search",
                           "/search/results",
                           "/gyms",
-                          "/posts/{id}",
+                          "/gym/{id}",
                           "/index",
                           "/sign-up",
                           "/gym-page",
