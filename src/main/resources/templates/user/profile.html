@@ -58,13 +58,48 @@
         </div>
     </div>
 
+
     <div th:each="review : ${reviews}">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h4 class="card-title" th:text="${review.getGym().getName()}"></h4>
                 <img style="height: 250px; width: 250px" th:src="@{${review.picture}}"/>
                 <p class="card-text">User rating: </p>
-                <p class="card-text" th:text="${review.rating}"></p>
+                <div th:if="${review.rating} == 1">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div th:if="${review.rating} == 2">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div th:if="${review.rating} == 3">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+                <div th:if="${review.rating} == 4">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                </div>
+                <div th:if="${review.rating} == 5">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>
                 <p class="card-text">Review by: </p>
                 <p class="card-text" th:text="${review.body}"></p>
                 <form th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">

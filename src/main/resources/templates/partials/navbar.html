@@ -7,9 +7,10 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
-    <nav class="navbar navbar-dark navbar-expand-lg" style="height: 10%; width: 100%; top:0; z-index: 5;font-family: 'Bangers'; background-color: #1a1819">
+    <nav class="navbar navbar-dark navbar-expand-lg" style="font-family: 'Bangers'; background-color: #1a1819">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}" style="color: #840000FF; text-shadow: 1px 1px 1px #f3cd15; font-size: 40px;">SlimGym</a>
+            <a class="navbar-brand" th:href="@{/}"
+               style="color: #840000FF; text-shadow: 1px 1px 1px #f3cd15; font-size: 40px;">SlimGym</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,48 +21,35 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/posts">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <div>
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown link
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="">
-                                <li sec:authorize="!isAuthenticated()"><a class="dropdown-item" href="/login">Login</a></li>
-                                <li sec:authorize="isAuthenticated()"><form th:action="@{/logout}" th:method="post" id="form1">
-                                        <a onclick="document.getElementById('form1').submit();" class="dropdown-item">Log-Out</a></form>
-                                </li>
-                                <li sec:authorize="!isAuthenticated()"><a class="dropdown-item" href="/sign-up">Create an Account</a></li>
-                                <li sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/profile">View Profile Page</a></li>
-                                <li><a class="dropdown-item" href="/aboutus">About Us</a></li>
-<!--                                <li><a class="dropdown-item" href="#">Help</a></li>-->
-                            </ul>
-                        </div>
+                    <li sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" th:method="post" id="form1">
+                            <a onclick="document.getElementById('form1').submit();" class="nav-link">Log-Out</a></form>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()" class="nav-item">
+                        <a class="nav-link" href="/sign-up">Create an Account</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" href="/profile">View Profile Page</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/aboutus">About Us</a>
                     </li>
                 </ul>
-                <form style="margin-left: auto;" th:action="@{/search}" method="post">
+                <form style="margin-left: auto;" th:action="@{/search}" method="post" class="form-inline my-2 my-lg-0">
+                    <select id="search-params" name="search-params">
+                        <option value="2">Gym Name</option>
+                        <option value="3">Gym Owner</option>
+                        <option value="4">Gym Address</option>
+                    </select>
+                    <input id="query" name="query" type="search" class="form-control mr-sm-2"
+                           style="box-shadow: 0px 0px 10px red;outline: yellow; width: 25rem;"/>
+                    <label for="query"></label>
                     <div>
-                        <div class="input-field s12" >
-                            <div class="input-field s12">
-                                <input id="query" name="query" type="search" class="" style="box-shadow: 0px 0px 10px red;outline: yellow; width: 25rem;"/>
-                                <label for="query"></label>
-                            </div>
-                            <div>
-                                <select id="search-params" name="search-params" class="">
-                                    <!--                                <option value="1">General Search</option>-->
-                                    <option value="2">Gym Name</option>
-                                    <option value="3">Gym Owner</option>
-                                    <option value="4">Gym Address</option>
-<!--                                    <option value="5">Gym Equipment</option>-->
-                                </select>
-                                <input value="Search" type="submit" />
-                            </div>
-
-                        </div>
+                        <input value="Search" class="select btn-small" type="submit"/>
                     </div>
-
                 </form>
             </div>
         </div>
