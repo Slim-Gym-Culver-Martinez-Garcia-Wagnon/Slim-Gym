@@ -262,6 +262,7 @@ label {
     color: #f3cd15;
 }
 
+
 #review-cards{
     display: flex;
     justify-content: center;
@@ -278,5 +279,85 @@ label {
     background: #840000FF;
     border: 2px solid #f3cd15;
     color: yellow;
+
+
+
+
+
+
+
+/*search results page test*/
+/*  Helper Styles */
+
+a {
+    text-decoration: none;
+}
+
+/* Card Styles */
+
+.card-sl {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-image1 #gympic {
+    height: 100%;
+    width: 100%;
+    /*width: 300px;*/
+    /*height: 175px;*/
+    border-radius: 8px 8px 0px 0;
+}
+
+.card-action1 {
+    position: relative;
+    float: right;
+    margin-top: -40px;
+    margin-right: 10px;
+    z-index: 2;
+    color: #f3cd15;
+    /*background: #fff;*/
+    border-radius: 100%;
+    /*padding: 15px;*/
+    font-size: 15px;
+    /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);*/
+}
+
+/*.card-action1:hover {*/
+/*    color: #fff;*/
+/*    background: #f3cd15;*/
+/*    -webkit-animation: pulse 1.5s infinite;*/
+/*}*/
+
+.card-heading1 {
+    font-size: 18px;
+    font-weight: bold;
+    background: #fff;
+    padding: 10px 15px;
+    color: black;
+}
+
+.card-text1 {
+    padding: 10px 15px;
+    background: #fff;
+    font-size: 14px;
+    color: #636262;
+}
+
+.card-button1 {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #840000FF;
+    color: #f3cd15;
+
+    border-radius: 0 0 8px 8px;
+}
+
+.card-button1:hover {
+    text-decoration: none;
+    background-color: #f3cd15;
+    color: #840000FF;
+
 
 }
