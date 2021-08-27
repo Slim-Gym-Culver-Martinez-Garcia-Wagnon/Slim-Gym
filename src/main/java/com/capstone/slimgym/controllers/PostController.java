@@ -65,7 +65,7 @@ public class PostController {
         return "redirect:/gyms";
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/gym/{id}")
     public String singlePost(@PathVariable long id, Model model) {
         Gym gym = postDao.findById(id);
 //        List<Schedule> schedules = scheduleDao.findAllByGymId(id);
