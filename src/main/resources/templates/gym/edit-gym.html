@@ -17,28 +17,23 @@
                         <div class="form-text">
                             <label for="name">Gym Name</label>
                             <input class="validate inputs" id="name" th:field="*{name}"/>
-
                             <div class="form-text">
                                 <label for="address">Gym Address</label>
                                 <input class="validate inputs" id="address" th:field="*{address}"/>
                             </div>
-
                             <div class="form-text">
                                 <label for="description">Gym Description</label>
                                 <input class="validate inputs" id="description" th:field="*{description}"/>
                             </div>
-
                             <div class="form-text">
                                 <label for="equipment">Gym Equipment</label>
                                 <input class="validate inputs" id="equipment" th:field="*{equipment}"/>
                             </div>
-
                             <div class="form-text">
                                 <label for="fileupload">Select a file to upload</label>
                                 <input type="hidden" name="fileupload" id="fileupload">
                                 <button id="picker" type="button" class="select btn-small">Pick file</button>
                             </div>
-
                             <button type="submit" class="select btn-small">Save Changes</button>
                         </div>
                     </div>
@@ -47,7 +42,7 @@
         </div>
     </form>
 </div>
-<th:block th:include="partials/footer :: footer"/>
+
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>

@@ -11,10 +11,12 @@
 
 <main class="container-fluid" style="margin-bottom: 75px">
     <h1 style="text-align: center; margin-top: 10px" class="heading">Search results</h1>
+
         <div class="row d-flex justify-content-around" style="padding: 10px;">
             <div class="col-md-4" th:each="gym : ${searchResults}" style="margin-top: 24px; height: 100%">
                     <div class="card-sl">
                         <div class="card-image1">
+
                             <div th:each="picture : ${picture}">
                                 <div th:if="${picture.gym.getId()} == ${gym.id}">
                                     <div th:if="${picture.id == gym.getPictures().get(0).getId()}">
@@ -23,6 +25,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}" style="height: 80px; width: 80px; border: 2px solid #f3cd15;"></img>
@@ -36,6 +39,7 @@
                     <div class="card-text1" th:text="${gym.equipment}">
                     </div>
                     <a th:href="@{/posts/{id}(id=${gym.id})}" class="card-button1">View Details</a>
+
             </div>
 
             <!--                <div class="card offwhite-body d-flex " style="margin-bottom: 10px; width: 90%;">-->
@@ -67,10 +71,8 @@
             <!--                </div>-->
 
         </div>
+    </div>
 </main>
-
-
-<th:block th:include="partials/footer :: footer"/>
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
