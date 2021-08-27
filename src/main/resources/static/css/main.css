@@ -320,10 +320,11 @@ label {
     font-family: sans-serif;
 }
 
-.btn{
+.btn {
     background: #840000FF;
     border: 2px solid #f3cd15;
     color: yellow;
+}
 
 
 
@@ -405,4 +406,8 @@ a {
     color: #840000FF;
 
 
+}
+
+h1 a:hover{
+    color: red;
 }
