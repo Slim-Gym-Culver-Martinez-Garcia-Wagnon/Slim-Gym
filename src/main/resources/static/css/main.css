@@ -116,6 +116,7 @@ margin-bottom: 0;
 .home-gym{
     background: url('/img/gymbackground.jpeg') no-repeat center center fixed;
     background-size: cover;
+    background-color: black;
 }
 
 
@@ -149,14 +150,14 @@ margin-bottom: 0;
 
 #homepage{
     color: #840000FF;
-    text-shadow: 1px 1px 1px #f3cd15;
-    font-size: 60px;
+    text-shadow: 3px 3px 3px #f3cd15;
+    font-size: 75px;
     font-family: 'Bangers', cursive;
 }
 
 #summary{
     color: white;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #home{
@@ -229,7 +230,7 @@ margin-bottom: 0;
 #home{
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
     background-color: rgba(0,0,0,0.7);
 }
@@ -244,7 +245,11 @@ margin-bottom: 0;
 
 .gym-name {
     font-family: 'Bangers', cursive;
+    color: #840000FF;
+    text-shadow: 1px 1px 1px #f3cd15;
+
 }
+
 
 .gym-inputs {
     background-color: transparent;
@@ -256,6 +261,24 @@ margin-bottom: 0;
 label {
     color: #f3cd15;
 }
+
+
+#review-cards{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    position: absolute;
+    color: white;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.btn{
+    background: #840000FF;
+    border: 2px solid #f3cd15;
+    color: yellow;
 
 
 
@@ -335,5 +358,6 @@ a {
     text-decoration: none;
     background-color: #f3cd15;
     color: #840000FF;
+
 
 }

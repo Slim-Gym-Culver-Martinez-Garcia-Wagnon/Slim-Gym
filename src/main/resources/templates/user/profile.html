@@ -10,8 +10,8 @@
 <th:block th:replace="partials/navbar.html :: navbar"/>
 <h1 style="color: red; font-family: 'Bangers'; text-shadow: 1px 1px 1px yellow; font-size: 30px;">Hello, <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h1>
 
-    <a th:href="@{/posts/create}" class="btn btn-primary">Create A Gym</a>
-<a th:href="@{/user/{id}/edit(id=${user.id})}" class="btn btn-primary">Edit Profile</a>
+    <a th:href="@{/posts/create}" class="btn">Create A Gym</a>
+<a th:href="@{/user/{id}/edit(id=${user.id})}" class="btn">Edit Profile</a>
 
 <div th:if="!${isOwner}">
 
@@ -48,10 +48,10 @@
                     <p class="card-text" th:text="${gym.address}"></p>
                     <p class="card-text" th:text="${gym.equipment}"></p>
                     <form th:action="@{/posts/{id}/edit(id = ${gym.id})}" method="get">
-                        <button class="btn-primary">Edit Gym</button>
+                        <button class="btn">Edit Gym</button>
                     </form>
                     <form th:action="@{/posts/{id}/delete(id = ${gym.id})}" method="post">
-                        <button class="btn-primary">Delete Gym</button>
+                        <button class="btn">Delete Gym</button>
                     </form>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <p class="card-text">Review by: </p>
                 <p class="card-text" th:text="${review.body}"></p>
                 <form th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">
-                    <button class="btn-primary">Delete Review</button>
+                    <button class="btn">Delete Review</button>
                 </form>
             </div>
         </div>
