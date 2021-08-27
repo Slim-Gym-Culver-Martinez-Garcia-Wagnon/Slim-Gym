@@ -114,6 +114,7 @@ public class PostController {
         model.addAttribute("gyms", gymFromDb);
         model.addAttribute("user", user);
         model.addAttribute("reviews", reviews);
+        model.addAttribute("pictures", gymFromDb.getPictures());
         model.addAttribute("isPostOwner", isPostOwner);
 
         boolean scheduleError = false;
