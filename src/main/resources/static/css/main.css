@@ -328,9 +328,6 @@ label {
 
 
 
-
-
-
 /*search results page test*/
 /*  Helper Styles */
 
@@ -405,4 +402,8 @@ a {
     color: #840000FF;
 
 
+}
+
+h1 a:hover{
+    color: red;
 }
