@@ -11,66 +11,72 @@
 
 <main class="container-fluid" style="margin-bottom: 75px">
     <h1 style="text-align: center; margin-top: 10px" class="heading">Search results</h1>
+    <div class="container"></div>
+    <div class="row d-flex justify-content-around" style="padding: 10px;">
+        <div class="col-md-4" th:each="gym : ${searchResults}"
+             style="margin-top: 24px;">
+            <div class="card-sl">
+                <div class="card-image1">
 
-        <div class="row d-flex justify-content-around" style="padding: 10px;">
-            <div class="col-md-4" th:each="gym : ${searchResults}" style="margin-top: 24px; height: 100%">
-                    <div class="card-sl">
-                        <div class="card-image1">
-
-                            <div th:each="picture : ${picture}">
-                                <div th:if="${picture.gym.getId()} == ${gym.id}">
-                                    <div th:if="${picture.id == gym.getPictures().get(0).getId()}">
-                                        <img id="gympic" th:src="${picture.url}">
-                                    </div>
-                                </div>
+                    <div th:each="picture : ${picture}">
+                        <div th:if="${picture.gym.getId()} == ${gym.id}">
+                            <div th:if="${picture.id == gym.getPictures().get(0).getId()}">
+                                <img id="gympic" th:src="${picture.url}" style="height: 225px">
                             </div>
                         </div>
-
                     </div>
-
-                    <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}" style="height: 80px; width: 80px; border: 2px solid #f3cd15;"></img>
-<!--                    <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}" style="height: 40px; width: 40px">-->
-<!--                    <a class="card-action1" href="#"><img th:src="${gym.getUser().getProfile_pic()}"></a>-->
-                    <div class="card-heading1">
-                        <h2 th:text="${gym.name}" style="font-family: 'Bangers', cursive;"></h2>
-                    </div>
-                    <div class="card-text1" th:text="${gym.description}">
-                    </div>
-                    <div class="card-text1" th:text="${gym.equipment}">
-                    </div>
-                    <a th:href="@{/posts/{id}(id=${gym.id})}" class="card-button1">View Details</a>
+                </div>
 
             </div>
 
-            <!--                <div class="card offwhite-body d-flex " style="margin-bottom: 10px; width: 90%;">-->
-            <!--                    <div class="preview-post d-flex justify-content-around" style="margin-bottom: 10px; color: black; padding: 3px; background-color: white">-->
-            <!--                        <div class="w-50 d-flex justify-content-center" >-->
-            <!--                            <div th:each="picture : ${picture}">-->
-            <!--                                <div th:if="${picture.gym.getId()} == ${gym.id}">-->
-            <!--                                    <div class="d-flex justify-content-center">-->
-            <!--                                        <div th:if="${picture.id == gym.getPictures().get(0).getId()}">-->
-            <!--                                            <img class="d-block w-100" th:src="${picture.url}" alt="Slide1" style="height: 180px; width: 285px">-->
-            <!--                                        </div>-->
 
-            <!--                                    </div>-->
-            <!--                                </div>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
 
-            <!--                        <div class="justify-content-center" style="width: 50%; padding-left: 10px;">-->
-            <!--                            <h1><a class="gym-name " th:text="${gym.name}"></a></h1>-->
-            <!--&lt;!&ndash;                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.address}"></h4>&ndash;&gt;-->
-            <!--                            <br>-->
-            <!--                            <h3 style="font-family: 'Bangers', cursive;" class="card-text gym-description" th:text="${gym.description}"></h3>-->
-            <!--                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.equipment}"></h4>-->
-            <!--                            <img class="card-text gym-address" th:src="${gym.getUser().getProfile_pic()}" style="height: 40px; width: 40px">-->
-            <!--                            <p class="gym-id d-none" th:text="${gym.id}"></p>-->
-            <!--                            <a th:href="@{/posts/{id}(id=${gym.id})}" class="btn btn-primary">View Details</a>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-
+            <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}"
+                 style="height: 75px; width: 75px; border: 2px solid #f3cd15;"></img>
+            <!--                    <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}" style="height: 40px; width: 40px">-->
+            <!--                    <a class="card-action1" href="#"><img th:src="${gym.getUser().getProfile_pic()}"></a>-->
+            <div class="card-content" style="height: 50%">
+            <div class="card-heading1">
+                <h2 class="text-center" th:text="${gym.name}" style="font-family: 'Bangers', cursive; margin-top: 35px"></h2>
+            </div>
+            <div class="card-text1" style="height: 65px"> <h4 th:text="${gym.description}" style="font-family: 'Bangers', cursive;"></h4>
+            </div>
+            <div class="card-text1" th:text="${gym.equipment}" style="height: 65px">
+            </div>
+            <a th:href="@{/posts/{id}(id=${gym.id})}" class="card-button1">View Details</a>
+</div>
         </div>
+
+
+        <!--                <div class="card offwhite-body d-flex " style="margin-bottom: 10px; width: 90%;">-->
+        <!--                    <div class="preview-post d-flex justify-content-around" style="margin-bottom: 10px; color: black; padding: 3px; background-color: white">-->
+        <!--                        <div class="w-50 d-flex justify-content-center" >-->
+        <!--                            <div th:each="picture : ${picture}">-->
+        <!--                                <div th:if="${picture.gym.getId()} == ${gym.id}">-->
+        <!--                                    <div class="d-flex justify-content-center">-->
+        <!--                                        <div th:if="${picture.id == gym.getPictures().get(0).getId()}">-->
+        <!--                                            <img class="d-block w-100" th:src="${picture.url}" alt="Slide1" style="height: 180px; width: 285px">-->
+        <!--                                        </div>-->
+
+        <!--                                    </div>-->
+        <!--                                </div>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+
+        <!--                        <div class="justify-content-center" style="width: 50%; padding-left: 10px;">-->
+        <!--                            <h1><a class="gym-name " th:text="${gym.name}"></a></h1>-->
+        <!--&lt;!&ndash;                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.address}"></h4>&ndash;&gt;-->
+        <!--                            <br>-->
+        <!--                            <h3 style="font-family: 'Bangers', cursive;" class="card-text gym-description" th:text="${gym.description}"></h3>-->
+        <!--                            <h4  style="font-family: 'Bangers', cursive;" class="card-text gym-address" th:text="${gym.equipment}"></h4>-->
+        <!--                            <img class="card-text gym-address" th:src="${gym.getUser().getProfile_pic()}" style="height: 40px; width: 40px">-->
+        <!--                            <p class="gym-id d-none" th:text="${gym.id}"></p>-->
+        <!--                            <a th:href="@{/posts/{id}(id=${gym.id})}" class="btn btn-primary">View Details</a>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+    </div>
     </div>
 </main>
 <th:block th:include="partials/scripts.html :: script"/>
