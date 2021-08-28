@@ -320,11 +320,11 @@ label {
     font-family: sans-serif;
 }
 
-.btn{
+.btn {
     background: #840000FF;
     border: 2px solid #f3cd15;
     color: yellow;
-
+}
 
 
 
@@ -346,7 +346,7 @@ a {
 }
 
 .card-image1 #gympic {
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
     /*width: 300px;*/
     /*height: 175px;*/
@@ -356,7 +356,7 @@ a {
 .card-action1 {
     position: relative;
     float: right;
-    margin-top: -40px;
+    margin-top: -35px;
     margin-right: 10px;
     z-index: 2;
     color: #f3cd15;
@@ -384,8 +384,8 @@ a {
 .card-text1 {
     padding: 10px 15px;
     background: #fff;
-    font-size: 14px;
-    color: #636262;
+    /*font-size: 14px;*/
+    color: black;
 }
 
 .card-button1 {
