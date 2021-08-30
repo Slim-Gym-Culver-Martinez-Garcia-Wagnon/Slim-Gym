@@ -11,7 +11,7 @@
 <div class="form-layout">
     <form id="form" th:action="@{/sign-up}" method="POST" th:object="${user}">
         <div class="flex-container m-3 d-lg-flex justify-content-around text-center">
-            <div class="flex-child flex-column d-flex justify-content-center">
+            <div style="background-color: rgba(0,0,0,0.7);" class="flex-child flex-column d-flex justify-content-center">
                 <h1 class="heading">Create an account</h1>
                 <div class="form-text">
                     <input id="first_name" name="first_name" type="text" class="validate inputs"
@@ -61,7 +61,7 @@
                     photo
                 </button>
             </div>
-            <div class="flex-child second flex-column d-flex justify-content-center">
+            <div style="background-color: rgba(0,0,0,0.7);" class="flex-child second flex-column d-flex justify-content-center">
                 <br>
                 <br>
                 <h1 class="heading">Emergency Contact</h1>
