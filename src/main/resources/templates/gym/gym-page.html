@@ -4,37 +4,33 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Gym page</title>
+    <th:block th:include="partials/styles.html :: styles"/>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js"
             integrity="sha256-9+heQ0nDVUAhO3sCt1pKLQSmV0gSo7QcQmtJ2ZCT55g=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css"
           integrity="sha256-z7G6BBWwBOXahthaod21GyxfNhxiQFBVn6WQYHRs9W8=" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-            crossorigin="anonymous"></script>
+
 
     <script th:inline="javascript">
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                themeSystem: 'bootstrap',
                 initialView: 'dayGridMonth'
             });
             calendar.render();
         });
     </script>
-    <th:block th:include="partials/styles.html :: styles"/>
+
 </head>
 
-<body class="d-flex row justify-content-center" style="background-color: #1a1819; width: 100%; margin: 0; padding: 0;">
-
-<th:block th:replace="partials/navbar.html :: navbar"/>
-<div class="row d-flex justify-content-center">
-    <div th:each="gym : ${gyms}">
+<body class="home-gym" style="width: 100%">
+<th:block th:replace="partials/navbar.html :: navbar" />
+<div class="container-fluid">
+    <div class="d-flex" style="justify-content: center; margin-bottom: 24px;" th:each="gym : ${gyms}">
         <div class="d-none d-md-block">
-            <div class="d-flex container-fluid">
-                <div class="card col">
+            <div class="d-flex" style="justify-content: space-evenly">
+                <div class="card" style="width: 60%">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div th:each="picture : ${pictures}">
@@ -62,16 +58,16 @@
                         </a>
                     </div>
                 </div>
-                <div class="col card container" style="padding-left: 25px; color: whitesmoke">
-                    <h1 th:text="${gym.name}"></h1>
-                    <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
-                    <p class="card-text gym-address" th:text="${gym.address}"></p>
+                <div class="card" style="margin-top: 15%; color: whitesmoke">
+                    <h1><a class="gym-name" style="font-size: 60px;" th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                    <h4 class="card-text gym-description" style="font-size: 35px;" th:text="${gym.description}"></h4>
+                    <p class="card-text gym-address" style="font-size: 25px;" th:text="${gym.address}"></p>
                     <p class="gym-id d-none" th:text="${gym.id}"></p>
                 </div>
             </div>
         </div>
-        <div class="d-xl-none d-md-none d-lg-none d-block" Style="max-width: 90%">
-            <div class="container-fluid">
+        <div class="d-xl-none d-md-none d-lg-none d-block">
+            <div class="">
                 <div class="card">
                     <div id="smallerControls" class="carousel slide card-img-top" data-ride="carousel">
                         <div class="carousel-inner">
@@ -99,56 +95,106 @@
             </div>
         </div>
     </div>
-</div>
-<div sec:authorize="isAuthenticated()" class="container-fluid d-flex row" style="color:lavender;max-width: 90%">
-    <div th:if="${error}">
-        <ul>
-            <li style="color: red">That time slot is not available! Please try again.</li>
-        </ul>
+    <div class="">
+        <div th:if="${error}">
+            <ul>
+                <li style="color: red">That time slot is not available! Please try again.</li>
+            </ul>
+        </div>
+        <div class="d-flex row" style=" justify-content: center;">
+            <div class="gym-name d-flex" id='calendar' style=" width: 500px; max-width: 800px; height: 400px; max-height: 700px; margin-right: 5%"></div>
+            <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}" style="font-size: 25px; margin-top: 5%">
+                    <div class="input-field row s12">
+                        <label for="Date">Choose a Date : </label>
+                        <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
+                    </div>
+                    <div class="input-field row s12">
+                        <label for="start_time">Start Time : </label>
+                        <input id="start_time" name="start_time" type="Time" th:field="*{start_time}"/>
+                    </div>
+                    <div class="input-field row s12">
+                        <label for="end_time">End Time : </label>
+                        <input id="end_time" name="end_time" type="Time" th:field="*{end_time}"/>
+                    </div>
+                <button type="submit" value="submit" class="btn btn-md btn-danger align-self-center">Submit</button>
+            </form>
+        </div>
     </div>
-    <div class="" id='calendar' style="max-height: 500px; max-width: 500px; color: white"></div>
-    <div class="card-content">
-        <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}">
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
-                    <label for="Date">Choose a Date</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="start_time" name="start_time" type="Time" th:field="*{start_time}"/>
-                    <label for="start_time">Start Time</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="end_time" name="end_time" type="Time" th:field="*{end_time}"/>
-                    <label for="end_time">End Time</label>
-                </div>
-            </div>
-            <button type="submit" value="submit" class="btn btn-sm btn-danger" style="margin-bottom: 10px">Submit
-            </button>
-        </form>
-        <a class="btn btn-danger btn-sm" th:href="@{/posts/{id}/review-create(id=${gyms.id})}" type="submit">Create a
-            review</a>
+    <div class = "d-flex row justify-content-center" style="margin-top: 25px">
+        <a sec:authorize="isAuthenticated()" class="btn btn-danger btn-lg" th:href="@{/posts/{id}/review-create(id=${gyms.id})}" type="submit">Create a review</a>
     </div>
-</div>
-
-
-<div class="d-flex container-fluid justify-content-around row" style="max-width: 90%;">
-    <div th:each="review : ${reviews}">
-        <div class="card mb-3 col" style="max-width: 18rem; border:2px solid #f3cd15">
-            <div class="card-body" style="color: whitesmoke">
-                <h4>User rating: </h4> <h4 th:text="${review.rating}"></h4>
-                <p th:text="${review.body}"></p>
-                <img style="height: 150px; width: 250px" th:src="@{${review.picture}}"/>
-                <p>Review by: </p>
-                <p class="card-title" th:text="${review.getUser().getUsername()}"></p>
+    <div class="row d-flex justify-content-around" style="padding: 10px;">
+        <div class="col-md-3" th:each="review : ${reviews}"
+             style="margin-top: 24px;">
+            <div class="card-sl">
+                <div th:if="!${review.picture.isEmpty()}">
+                    <div class="card-image1">
+                        <img id="reviewpic" th:src="@{${review.picture}}" style="height: 225px">
+                    </div>
+                </div>
+                <div th:if="${review.picture.isEmpty()}">
+                    <div class="card-image1">
+                        <img id="placeholder" th:src="@{../img/placeholder.png}" style="height: 225px">
+                    </div>
+                </div>
             </div>
+
+            <div class="card-content1">
+                <div class="card-heading1">
+                    <h2 class="text-center" th:text="${review.getGym().getName()}"
+                        style="font-family: 'Bangers', cursive; margin-top: 20px"></h2>
+                </div>
+                <div class="card-text1" style="height: 40px"><h4>Rating:</h4>
+                </div>
+                <div class="card-text1" style="height: 65px">
+                    <div th:if="${review.rating} == 1">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div th:if="${review.rating} == 2">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div th:if="${review.rating} == 3">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <div th:if="${review.rating} == 4">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star "></span>
+                    </div>
+                    <div th:if="${review.rating} == 5">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-text1" style="height: 40px"><h4>Review:</h4>
+            </div>
+            <div class="card-text1" th:text="${review.body}" style="height: 65px">
+            </div>
+
         </div>
     </div>
 </div>
+
+
 <th:block th:include="partials/scripts.html :: script"/>
 </body>
 </html>
