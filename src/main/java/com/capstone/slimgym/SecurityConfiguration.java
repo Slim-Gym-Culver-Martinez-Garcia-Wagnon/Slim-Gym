@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(
 
-                            "/posts/create", "/profile","/user/{id}/edit", "/create-review")
+                            "/gym/create", "/profile","/user/{id}/edit", "/create-review")
 
                     .authenticated()
 
@@ -58,8 +58,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                           "/",
                           "/search",
                           "/search/results",
-                          "/posts",
-                          "/posts/{id}",
+                          "/gyms",
+                          "/gym/{id}",
                           "/index",
                           "/sign-up",
                           "/gym-page",

@@ -74,7 +74,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <h1><a class="gym-name" th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                <h1><a class="gym-name" th:href="@{/gym/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
                 <div class="card-content" style="color: black">
                     <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" th:text="${gym.address}"></p>
@@ -114,7 +114,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <h1><a class="gym-name " th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                <h1><a class="gym-name " th:href="@{/gym/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
                 <div class="card-content" style="color: black">
                     <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" th:text="${gym.address}"></p>
@@ -154,7 +154,7 @@
                     </a>
                 </div>
 
-                <h1><a class="gym-name" th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                <h1><a class="gym-name" th:href="@{/gym/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
                 <div class="card-content" style="color: black">
                     <h4 class="card-text gym-description" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" th:text="${gym.address}"></p>

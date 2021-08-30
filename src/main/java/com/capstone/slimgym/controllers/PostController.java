@@ -29,21 +29,21 @@ public class PostController {
     }
 
 
-    @GetMapping("/posts")
+    @GetMapping("/gyms")
     public String viewPosts(Model model) {
         model.addAttribute("gyms", postDao.findAll());
         model.addAttribute("pictures", pictureDao.findAll());
         return "index";
     }
 
-    @GetMapping("/posts/create")
+    @GetMapping("/gym/create")
     public String showCreateForm(Model model) {
         model.addAttribute("post", new Gym());
         model.addAttribute("picture", new Picture());
         return "gym/add-gym";
     }
 
-    @PostMapping("/posts/create")
+    @PostMapping("/gym/create")
     public String createPost(@RequestParam(name = "fileupload") ArrayList<String> urls, @ModelAttribute Gym gym) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         gym.setUser(user);
@@ -62,10 +62,10 @@ public class PostController {
 //        System.out.println(picture.getUrl());
 //        System.out.println(picture.getGym());
 
-        return "redirect:/posts";
+        return "redirect:/gyms";
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/gym/{id}")
     public String singlePost(@PathVariable long id, Model model) {
         Gym gym = postDao.findById(id);
 //        List<Schedule> schedules = scheduleDao.findAllByGymId(id);
@@ -190,7 +190,7 @@ public class PostController {
     }
 
 
-    @GetMapping("/posts/{id}/edit")
+    @GetMapping("/gym/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Gym gym = postDao.getById(id);
@@ -210,10 +210,10 @@ public class PostController {
             gym.setUser(user);
             postDao.save(gym);
         }
-        return "redirect:/posts/" + id;
+        return "redirect:/gym/" + id;
     }
 
-    @PostMapping("/posts/{id}/delete")
+    @PostMapping("/gym/{id}/delete")
     public String deletePost(@PathVariable long id) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Gym gym = postDao.getById(id);
