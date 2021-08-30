@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body class="background">
@@ -11,19 +11,24 @@
 <main class="container-fluid" style="margin-bottom: 75px">
     <div class="d-flex justify-content-around heading">
         <div>
-            <h1 style="text-align: center; margin-top: 10px; font-family: 'Bangers', cursive; text-shadow: 1px 1px 1px #f3cd15;"><span><img th:src="${user.getProfile_pic()}"
-                                                                        style="height: 75px; width: 75px; border: 2px solid #f3cd15; border-radius: 50%; margin-right: 15px"></span>Hello,
-                <span style="font-family: 'Bangers', cursive; text-shadow: 1px 1px 1px #f3cd15;" th:text="${user.first_name}"></span> <span style="font-family: 'Bangers', cursive; text-shadow: 1px 1px 1px #f3cd15;" th:text="${user.last_name}"></span></h1>
+            <h1 style="text-align: center; margin-top: 10px; font-family: 'Bangers', cursive; text-shadow: 1px 1px 1px #f3cd15;"><span><img
+                    th:src="${user.getProfile_pic()}"
+                    style="height: 75px; width: 75px; border: 2px solid #f3cd15; border-radius: 50%; margin-right: 15px"></span>Hello,
+                <span style="font-family: 'Bangers', cursive; text-shadow: 1px 1px 1px #f3cd15;"
+                      th:text="${user.first_name}"></span> <span
+                        style="font-family: 'Bangers', cursive; text-shadow: 1px 1px 1px #f3cd15;"
+                        th:text="${user.last_name}"></span></h1>
         </div>
-        <div style="margin-top: 15px">
+        <div style="margin-top: 15px; text-shadow: none">
             <a th:href="@{/gym/create}" class="btn" style="height: 40px">Create A Gym</a>
             <a th:href="@{/user/{id}/edit(id=${user.id})}" class="btn" style="height: 40px">Edit Profile</a>
         </div>
 
     </div>
 
-<!--    GYM LISTINGS-->
-    <h3 class="heading" style="text-align: center; text-shadow: 1px 1px 1px #f3cd15; font-family: 'Bangers', cursive;">Here are your current gym listings</h3>
+    <!--    GYM LISTINGS-->
+    <h3 class="heading" style="text-align: center; text-shadow: 1px 1px 1px #f3cd15; font-family: 'Bangers', cursive;">
+        Here are your current gym listings</h3>
     <div class="row d-flex justify-content-around" style="padding: 10px;">
 
         <div class="col-md-4" th:each="gym : ${gyms}"
@@ -39,7 +44,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="card-content1">
                 <div class="card-heading1">

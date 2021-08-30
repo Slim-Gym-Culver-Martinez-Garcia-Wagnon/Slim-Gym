@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Gym page</title>
-    <th:block th:include="partials/styles.html :: styles"/>
+    <th:block th:replace="partials/styles.html :: styles"/>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.js"
             integrity="sha256-9+heQ0nDVUAhO3sCt1pKLQSmV0gSo7QcQmtJ2ZCT55g=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css"
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="card" style="margin-top: 15%; color: whitesmoke">
-                    <h1><a class="gym-name" style="font-size: 60px;" th:href="@{/posts/{id}(id=${gym.id})}" th:text="${gym.name}"></a></h1>
+                    <h1><div class="gym-name heading" style="font-size: 60px;"  th:text="${gym.name}"></div></h1>
                     <h4 class="card-text gym-description" style="font-size: 35px;" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" style="font-size: 25px;" th:text="${gym.address}"></p>
                     <p class="gym-id d-none" th:text="${gym.id}"></p>
