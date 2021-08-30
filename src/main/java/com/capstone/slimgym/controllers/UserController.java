@@ -99,6 +99,7 @@ public class UserController {
         User userOwner = users.findById(user.getId());
         List<Review> reviews = reviewDao.findByUserId(user.getId());
         List<Picture> gymPictures = pictureDao.findAll();
+
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
             return "redirect:/login";
         }

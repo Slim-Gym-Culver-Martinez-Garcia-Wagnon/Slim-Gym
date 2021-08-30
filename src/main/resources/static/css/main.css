@@ -320,11 +320,14 @@ label {
     font-family: sans-serif;
 }
 
-.btn{
+.btn {
     background: #840000FF;
     border: 2px solid #f3cd15;
-    color: yellow;
-
+    color: #f3cd15;
+}
+.input-field{
+    padding-bottom: 5%;
+}
 
 
 
