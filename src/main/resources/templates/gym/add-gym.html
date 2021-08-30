@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Create Gym</title>
     <th:block th:include="partials/styles.html :: styles"/>
 </head>
 <body class="background">
@@ -42,8 +42,11 @@
                 <input type="hidden" name="fileupload" id="fileupload2">
                 <input type="hidden" name="fileupload" id="fileupload3">
                 <input type="hidden" name="fileupload" id="fileupload4">
-                <button id="picker" type="button" class="select btn btn-danger btn-outline-warning">Choose gym photos
-                </button>
+                <div class="col text-center">
+                    <button id="picker" type="button" class="select btn btn-danger btn-outline-warning">Choose gym
+                        photos
+                    </button>
+                </div>
                 <button class="select btn btn-danger btn-outline-warning">Create Gym!</button>
             </div>
         </div>

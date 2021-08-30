@@ -59,6 +59,8 @@ margin-bottom: 0;
     border-bottom: 4px solid #f3cd15;
     margin-bottom: 20px;
     padding: 12px 0;
+    text-shadow: 1px 1px 1px #f3cd15;
+    font-family: 'Bangers', cursive;
 }
 
 .heading2 {
@@ -139,7 +141,24 @@ margin-bottom: 0;
     font-size: 18px;
     cursor: pointer;
     margin: 12px 0;
-    color: yellow;
+    color: #f3cd15;
+}
+
+.select:hover {
+    width: 100%;
+    background: #f3cd15 ;
+    border: 2px solid #840000FF;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+    color: #840000FF;
+}
+
+#picker {
+    width: 50%;
+    background-color: transparent;
+    border: none;
 }
 
 #form {
