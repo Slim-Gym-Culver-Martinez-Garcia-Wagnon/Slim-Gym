@@ -41,17 +41,17 @@
                                 <img id="oldpic" th:src="*{picture}" alt="Review pictures" style="height: 250px">
                                 <br>
                                 <div id="thumbnail-container"></div>
-                                <label for="fileupload">Select a file to upload</label>
+                                <label for="fileupload">Select a photo to upload</label>
                                 <input th:value="*{picture}" class="validate inputs" type="hidden" id="fileupload"
                                        th:field="*{picture}">
                                 <button id="picker" class="select btn btn-danger btn-outline-warning" type="button">Pick
-                                    file
+                                    Photo
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <input value="create review" class="select btn btn-danger btn-outline-warning" type="submit"/>
+                <input value="Create Review" class="select btn btn-danger btn-outline-warning" type="submit"/>
             </div>
         </div>
     </form>
