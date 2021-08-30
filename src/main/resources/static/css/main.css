@@ -61,6 +61,19 @@ margin-bottom: 0;
     padding: 12px 0;
 }
 
+.heading2 {
+    font-family: 'Bangers', cursive;
+    color: #840000FF;
+    font-size: 40px;
+    border-bottom: 4px solid #f3cd15;
+    margin-bottom: 20px;
+    padding: 12px 0;
+    text-align: center;
+    border-top: 4px solid #f3cd15;
+    margin-top: 20px;
+}
+
+
 .error {
     color: red;
 }
@@ -150,7 +163,8 @@ margin-bottom: 0;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url('/img/gymbackground.jpeg');
+    background-image: url('../img/gymbackground.jpeg');
+
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -240,8 +254,9 @@ margin-bottom: 0;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-    background-color: black;
-    margin-bottom: 80px;
+    /*background-color: black;*/
+    /*margin-bottom: 80px;*/
+    background-color: rgba(0,0,0,0.7);
 }
 
 .container-fluid {
@@ -292,7 +307,7 @@ margin-bottom: 0;
 .gym-name {
     font-family: 'Bangers', cursive;
     color: #840000FF;
-    text-shadow: 1px 1px 1px #f3cd15;
+
 
 }
 
@@ -324,8 +339,12 @@ label {
 .btn {
     background: #840000FF;
     border: 2px solid #f3cd15;
-    color: yellow;
+    color: #f3cd15;
 }
+.input-field{
+    padding-bottom: 5%;
+}
+
 
 
 
@@ -339,15 +358,12 @@ a {
 /* Card Styles */
 
 .card-sl {
-    border-radius: 8px;
+    border: 2px solid #f3cd15;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-image1 #gympic {
-    /*height: 100%;*/
     width: 100%;
-    /*width: 300px;*/
-    /*height: 175px;*/
     border-radius: 8px 8px 0px 0;
 }
 
@@ -365,25 +381,22 @@ a {
     /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);*/
 }
 
-/*.card-action1:hover {*/
-/*    color: #fff;*/
-/*    background: #f3cd15;*/
-/*    -webkit-animation: pulse 1.5s infinite;*/
-/*}*/
 
 .card-heading1 {
     font-size: 18px;
     font-weight: bold;
-    background: #fff;
+    background-color: #868686;
     padding: 10px 15px;
-    color: black;
+    color: white;
+    text-shadow: 2px 2px 1px #000000;
 }
 
 .card-text1 {
     padding: 10px 15px;
-    background: #fff;
+    background-color: #868686;
     /*font-size: 14px;*/
-    color: black;
+    color: white;
+    text-shadow: 2px 2px 1px #000000;
 }
 
 .card-button1 {
@@ -393,7 +406,6 @@ a {
     width: 100%;
     background-color: #840000FF;
     color: #f3cd15;
-
     border-radius: 0 0 8px 8px;
 }
 
@@ -401,13 +413,28 @@ a {
     text-decoration: none;
     background-color: #f3cd15;
     color: #840000FF;
-
-
 }
+
+.card-button2 {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #840000FF;
+    color: #f3cd15;
+}
+
+.card-button2:hover {
+    text-decoration: none;
+    background-color: #f3cd15;
+    color: #840000FF;
+}
+
 
 h1 a:hover{
     color: red;
 }
+
 
 .gm-style-iw {
     font-family: sans-serif;
@@ -424,5 +451,37 @@ h1 a {
     font-family: sans-serif;
     color: black;
     font-size: 18px;
+}
+
+/*ABOUT US PAGE*/
+
+.social-link {
+    width: 35px;
+    height: 35px;
+    background-color: #f3cd15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #840000FF;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #840000FF;
+    text-decoration: none;
+    color: #f3cd15;
+}
+
+#reviewpic {
+    width: 100%;
+    border-radius: 8px 8px 0px 0;
+}
+
+#placeholder {
+    width: 100%;
+    border-radius: 8px 8px 0px 0;
+
 }
 
