@@ -210,7 +210,7 @@ public class PostController {
             gym.setUser(user);
             postDao.save(gym);
         }
-        return "redirect:/posts/" + id;
+        return "redirect:/gym/" + id;
     }
 
     @PostMapping("/gym/{id}/delete")
