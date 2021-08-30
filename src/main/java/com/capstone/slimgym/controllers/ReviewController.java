@@ -44,7 +44,7 @@ public class ReviewController {
         review.setUser(user);
         review.setGym(gym);
         reviewDao.save(review);
-        return "redirect:/posts/" + gym_id;
+        return "redirect:/gym/" + gym_id;
     }
 
     @PostMapping("/review/{id}/delete")
