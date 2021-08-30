@@ -1,9 +1,6 @@
 package com.capstone.slimgym.controllers;
 
-import com.capstone.slimgym.models.Gym;
-import com.capstone.slimgym.models.Picture;
-import com.capstone.slimgym.models.Review;
-import com.capstone.slimgym.models.User;
+import com.capstone.slimgym.models.*;
 import com.capstone.slimgym.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -99,12 +96,14 @@ public class UserController {
         User userOwner = users.findById(user.getId());
         List<Review> reviews = reviewDao.findByUserId(user.getId());
         List<Picture> gymPictures = pictureDao.findAll();
+        List<Schedule> schedules = scheduleDao.findAll();
         if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser"){
             return "redirect:/login";
         }
 
         model.addAttribute("gym_pictures", gymPictures);
         model.addAttribute("reviews", reviews);
+        model.addAttribute("schedules", schedules);
         model.addAttribute("gyms", gyms);
         model.addAttribute("events", scheduleDao.findAllByGymUser(user));
         model.addAttribute("user", userOwner);

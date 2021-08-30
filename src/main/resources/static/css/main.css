@@ -61,6 +61,19 @@ margin-bottom: 0;
     padding: 12px 0;
 }
 
+.heading2 {
+    font-family: 'Bangers', cursive;
+    color: #840000FF;
+    font-size: 40px;
+    border-bottom: 4px solid #f3cd15;
+    margin-bottom: 20px;
+    padding: 12px 0;
+    text-align: center;
+    border-top: 4px solid #f3cd15;
+    margin-top: 20px;
+}
+
+
 .error {
     color: red;
 }
@@ -150,7 +163,7 @@ margin-bottom: 0;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: url('../img/dumbell-bg.jpeg');
+    background-image: url('../img/gymbackground.jpeg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -344,10 +357,7 @@ a {
 }
 
 .card-image1 #gympic {
-    /*height: 100%;*/
     width: 100%;
-    /*width: 300px;*/
-    /*height: 175px;*/
     border-radius: 8px 8px 0px 0;
 }
 
@@ -390,7 +400,6 @@ a {
     width: 100%;
     background-color: #840000FF;
     color: #f3cd15;
-
     border-radius: 0 0 8px 8px;
 }
 
@@ -398,9 +407,23 @@ a {
     text-decoration: none;
     background-color: #f3cd15;
     color: #840000FF;
-
-
 }
+
+.card-button2 {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #840000FF;
+    color: #f3cd15;
+}
+
+.card-button2:hover {
+    text-decoration: none;
+    background-color: #f3cd15;
+    color: #840000FF;
+}
+
 
 h1 a:hover{
     color: red;
@@ -425,5 +448,15 @@ h1 a:hover{
     background: #840000FF;
     text-decoration: none;
     color: #f3cd15;
+}
+
+#reviewpic {
+    width: 100%;
+    border-radius: 8px 8px 0px 0;
+}
+
+#placeholder {
+    width: 100%;
+    border-radius: 8px 8px 0px 0;
 }
 
