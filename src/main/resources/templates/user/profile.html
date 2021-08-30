@@ -8,7 +8,7 @@
 </head>
 <body class="background">
 <th:block th:replace="partials/navbar.html :: navbar"/>
-<h1 style="color: red; font-family: 'Bangers'; text-shadow: 1px 1px 1px yellow; font-size: 30px;">Hello, <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h1>
+<h1 style="color: #840000; font-family: 'Bangers'; text-shadow: 1px 1px 1px #f3cd15; font-size: 30px;">Hello, <span th:text="${user.first_name}"></span> <span th:text="${user.last_name}"></span></h1>
 
     <a th:href="@{/gym/create}" class="btn">Create A Gym</a>
 <a th:href="@{/user/{id}/edit(id=${user.id})}" class="btn">Edit Profile</a>
