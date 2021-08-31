@@ -30,7 +30,7 @@
     <div class="d-flex" style="justify-content: center; margin-bottom: 24px;" th:each="gym : ${gyms}">
         <div class="d-none d-md-block">
             <div class="d-flex" style="justify-content: space-evenly">
-                <div class="card" style="width: 60%">
+                <div class="card" style="width: 60%; margin-top: 1%;">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div th:each="picture : ${pictures}">
@@ -58,7 +58,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="card" style="margin-top: 15%; color: whitesmoke">
+                <div class="card container-fluid" style="margin-top: 2%; max-width: 40%; color: whitesmoke">
                     <h1><div class="gym-name heading" style="font-size: 60px;"  th:text="${gym.name}"></div></h1>
                     <h4 class="card-text gym-description" style="font-size: 35px;" th:text="${gym.description}"></h4>
                     <p class="card-text gym-address" style="font-size: 25px;" th:text="${gym.address}"></p>
@@ -101,9 +101,9 @@
                 <li style="color: red">That time slot is not available! Please try again.</li>
             </ul>
         </div>
-        <div sec:authorize="isAuthenticated()" class="d-flex row" style=" justify-content: center;">
-            <div class="gym-name d-flex" id='calendar' style=" width: 500px; max-width: 800px; height: 400px; max-height: 700px; margin-right: 5%; color: #f3cd15"></div>
-            <form th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}" style="font-size: 25px; margin-top: 5%">
+        <div sec:authorize="isAuthenticated()" class="d-flex row" style="">
+            <div class="gym-name d-flex" id='calendar' style=" width: 60%; height: 400px; max-height: 700px; margin-right: 5%; padding-left: 16px ; color: #f3cd15"></div>
+            <form class="container-fluid" th:action="@{/posts/{id}(id=${gyms.id})}" method="post" th:object="${schedule}" style="font-size: 25px; margin-top: 5%; width: 30%">
                     <div class="input-field row s12">
                         <label for="Date">Choose a Date : </label>
                         <input id="Date" name="Date" type="date" class="" th:field="*{date}"/>
@@ -123,70 +123,73 @@
     <div class = "d-flex row justify-content-center" style="margin-top: 25px">
         <a sec:authorize="isAuthenticated()" class="btn btn-danger btn-lg" th:href="@{/posts/{id}/review-create(id=${gyms.id})}" type="submit">Create a review</a>
     </div>
-    <div class="row d-flex justify-content-around" style="padding: 10px; background-color: #868686">
-        <div class="d-flex row" th:each="review : ${reviews}" style="margin-top: 24px; width: 100%;">
-            <div class="card-sl">
-                <div th:if="!${review.picture.isEmpty()}">
-                    <div class="card-image1 d-flex align-self-left">
-                        <img id="reviewpic" th:src="@{${review.picture}}" style="height: 225px; width: 300px">
+    <div class="row d-flex justify-content-around" style="padding: 10px;">
+        <div class="d-flex row" th:each="review : ${reviews}" style="margin-top: 24px;width:100%;">
+            <div class="card-sl " style="width:100%; border: none">
+                <div class="card-content1 container-fluid d-flex row" style="background-color: #868686">
+                        <div>
+                            <div th:if="!${review.picture.isEmpty()}">
+                                <div class="card-image1">
+                                    <img id="reviewpic" th:src="@{${review.picture}}" style="height: 225px; width: 300px">
+                                </div>
+                            </div>
+                            <div th:if="${review.picture.isEmpty()}">
+                                <div class="card-image1">
+                                    <img id="placeholder" th:src="@{../img/placeholder.png}" style="height: 225px; width: 300px">
+                                </div>
+                            </div>
+                        </div>
+                    <div>
+                        <div class="card-text1" style="height: 40px"><h4>Rating:</h4>
+                        </div>
+                        <div class="card-text1" style="height: 65px">
+                            <div th:if="${review.rating} == 1">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <div th:if="${review.rating} == 2">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <div th:if="${review.rating} == 3">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <div th:if="${review.rating} == 4">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+                            </div>
+                            <div th:if="${review.rating} == 5">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card-text1" style="height: 40px"><h4>Review:</h4>
+                            </div>
+                            <div class="card-text1 d-flex" th:text="${review.body}" style="font-size: 18px">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div th:if="${review.picture.isEmpty()}">
-                    <div class="card-image1">
-                        <img id="placeholder" th:src="@{../img/placeholder.png}" style="height: 225px; width: 300px">
-                    </div>
+
                 </div>
             </div>
-            <div class="card-content1">
-                <div class="card-heading1">
-                    <h2 class="text-center" th:text="${review.getGym().getName()}" style="font-family: 'Bangers', cursive;"></h2>
-                </div>
-                <div class="card-text1" style="height: 40px"><h4>Rating:</h4>
-                </div>
-                <div class="card-text1" style="height: 65px">
-                    <div th:if="${review.rating} == 1">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div th:if="${review.rating} == 2">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div th:if="${review.rating} == 3">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div th:if="${review.rating} == 4">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star "></span>
-                    </div>
-                    <div th:if="${review.rating} == 5">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                    </div>
-                </div>
-                <div>
-                    <div class="card-text1" style="height: 40px"><h4>Review:</h4>
-                    </div>
-                    <div class="card-text1 d-flex" th:text="${review.body}" style="font-size: 18px">
-                    </div>
-                </div>
-            </div>
+
 
 
 

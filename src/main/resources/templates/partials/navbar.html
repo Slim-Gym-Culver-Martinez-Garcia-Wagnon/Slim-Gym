@@ -7,8 +7,7 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
-    <nav class="navbar navbar-dark navbar-expand-lg" style="font-family: 'Bangers'; background-color: #1a1819">
-        <div class="container-fluid">
+    <nav class="navbar navbar-dark navbar-expand-lg container-fluid" style="font-family: 'Bangers'; background-color: #1a1819; z-index: 20; padding: 10px;">
             <a class="navbar-brand" th:href="@{/}"
                style="color: #840000FF; text-shadow: 1px 1px 1px #f3cd15; font-size: 40px;">SlimGym</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -18,7 +17,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/gyms">Gyms</a>
                     </li>
                     <li sec:authorize="!isAuthenticated()" class="nav-item">
@@ -39,10 +38,13 @@
                     </li>
                 </ul>
                 <form style="margin-left: auto;" th:action="@{/search}" method="post" class="form-inline my-2 my-lg-0">
-                    <select id="search-params" name="search-params" style="height: 38px">
-                        <option value="2">Gym Name</option>
-                        <option value="3">Gym Owner</option>
-                        <option value="4">Gym Address</option>
+                    <select class="dropdown dropdown-toggle" id="search-params" name="search-params" style="height: 38px">
+                        <div class="dropdown-menu" >
+                            <option class="dropdown-item" style="background-color: rgba(0,0,0,0.5); color: white" value="2">Gym Name</option>
+                            <option class="dropdown-item" style="background-color: rgba(0,0,0,0.5); color: white" value="3">Gym Owner</option>
+                            <option class="dropdown-item" style="background-color: rgba(0,0,0,0.5); color: white" value="4">Gym Address</option>
+                        </div>
+
                     </select>
                     <input id="query" name="query" type="search" class="form-control mr-sm-2"
                            style="box-shadow: 0px 0px 10px red;outline: yellow; width: 25rem;"/>
@@ -52,7 +54,6 @@
                     </div>
                 </form>
             </div>
-        </div>
     </nav>
 </th:block>
 
