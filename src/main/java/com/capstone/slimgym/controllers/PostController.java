@@ -114,7 +114,7 @@ public class PostController {
         model.addAttribute("gyms", gymFromDb);
         model.addAttribute("user", user);
         model.addAttribute("reviews", reviews);
-        model.addAttribute("pictures", gymFromDb.getPictures());
+        model.addAttribute("pictures", postDao.findAll());
         model.addAttribute("isPostOwner", isPostOwner);
 
         boolean scheduleError = false;
@@ -186,7 +186,7 @@ public class PostController {
             }
         }
         scheduleDao.save(schedule);
-        return "gym/gym-page";
+        return "redirect:/profile";
     }
 
 
