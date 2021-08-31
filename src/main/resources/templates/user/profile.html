@@ -30,9 +30,7 @@
     <h3 class="heading" style="text-align: center; text-shadow: 1px 1px 1px #f3cd15; font-family: 'Bangers', cursive;">
         Here are your current gym listings</h3>
     <div class="row d-flex justify-content-around" style="padding: 10px;">
-
-        <div class="col-md-4" th:each="gym : ${gyms}"
-             style="margin-top: 24px;">
+        <div class="col-md-4" th:each="gym : ${gyms}" style="margin-top: 24px;">
             <div class="card-sl">
                 <div class="card-image1">
                     <div th:each="picture : ${gym_pictures}">
@@ -68,29 +66,36 @@
     </div>
 
     <!--    Gets the current users schedules they have set-->
-
-    <!--        <h1>Schedules</h1>-->
-    <!--        <div th:each="schedule : ${schedules}">-->
-    <!--            <h3>Gym</h3>-->
-    <!--            <div th:text="${schedule.getGym().getName()}"></div>-->
-    <!--            <h3>Date</h3>-->
-    <!--            <div th:text="${schedule.getDate()}"></div>-->
-    <!--            <h3>Start time</h3>-->
-    <!--            <div th:text="${schedule.getStart_time()}"></div>-->
-    <!--            <h3>End time</h3>-->
-    <!--            <div th:text="${schedule.getEnd_time()}"></div>-->
-    <!--            <h3>User</h3>-->
-    <!--            <div th:text="${schedule.getUser().getUsername()}"></div>-->
-    <!--        </div>-->
+    <h3 class="heading2" style="text-align: center; border-bottom: 4px solid #f3cd15;
+    margin-top: 20px; text-shadow: 1px 1px 1px #f3cd15;">Schedules</h3>
+    <div class="row d-flex justify-content-around" style="padding: 10px;">
+        <div class="col-md-4" th:each="schedule : ${schedules}" style="margin-top: 24px;">
+            <div class="card-sl">
+                <div class="card-content1">
+                    <div class="card-heading1">
+                        <h2 class="text-center" th:text="${schedule.getGym().getName()}"
+                            style="font-family: 'Bangers', cursive; margin-top: 20px"></h2>
+                    </div>
+                    <div class="card-text1" style="height: 40px"><h4>Date:</h4>
+                    </div>
+                    <div class="card-text1" style="height: 65px" th:text="${schedule.getDate()}"></div>
+                    <div class="card-text1" style="height: 40px"><h4>Start time:</h4>
+                    </div>
+                    <div class="card-text1" style="height: 65px" th:text="${schedule.getStart_time()}"></div>
+                    <div class="card-text1" style="height: 40px"><h4>End time:</h4>
+                    </div>
+                    <div class="card-text1" style="height: 65px" th:text="${schedule.getEnd_time()}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!--        REVIEW CARDS-->
     <h3 class="heading2" style="text-align: center; border-bottom: 4px solid #f3cd15;
     margin-top: 20px; text-shadow: 1px 1px 1px #f3cd15;">Gyms you have reviewed</h3>
     <div class="row d-flex justify-content-around" style="padding: 10px;">
-
-        <div class="col-md-4" th:each="review : ${reviews}"
-             style="margin-top: 24px;">
+        <div class="col-md-4" th:each="review : ${reviews}" style="margin-top: 24px;">
             <div class="card-sl">
                 <div th:if="!${review.picture.isEmpty()}">
                     <div class="card-image1">
@@ -103,7 +108,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card-content1">
                 <div class="card-heading1">
                     <h2 class="text-center" th:text="${review.getGym().getName()}"
@@ -158,14 +162,7 @@
             <form th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">
                 <button class="card-button1">Delete Review</button>
             </form>
-
-
         </div>
-    </div>
-
-
-    </div>
-    </div>
     </div>
 </main>
 
