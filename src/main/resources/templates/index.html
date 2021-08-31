@@ -97,10 +97,17 @@
                         <li data-target="#Large" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div th:each="picture : ${pictures}">
-                            <div th:if="${picture.gym.getId()} == ${gym.id}">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" th:src="${picture.url}" alt="First slide">
+                        <div th:if="${gym.pictures.isEmpty()}">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" th:src="@{/img/placeholder.png}" style="width: 100%" alt="Slide">
+                            </div>
+                        </div>
+                        <div th:if="!${gym.pictures.isEmpty()}">
+                            <div th:each="picture : ${pictures}">
+                                <div th:if="${picture.gym.getId()} == ${gym.id}">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" th:src="${picture.url}" alt="First slide">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +132,7 @@
     </div>
 </div>
 
-<div class=" d-xl-none d-md-none d-lg-none d-block overflow-auto" style="padding: 10px;background-color: #1a1819;">
+<div class="d-xl-none d-md-none d-lg-none d-block overflow-auto scroll-container overlay" style="padding: 10px;background-color: #1a1819;">
     <div th:each="gym : ${gyms}">
         <div class="card offwhite-body">
             <div class="preview-post">
@@ -136,13 +143,21 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div th:each="picture : ${pictures}">
-                            <div th:if="${picture.gym.getId()} == ${gym.id}">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" th:src="${picture.url}" alt="First slide">
+                        <div th:if="${gym.pictures.isEmpty()}">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" th:src="@{/img/placeholder.png}" style="width: 100%" alt="Slide">
+                            </div>
+                        </div>
+                        <div th:if="!${gym.pictures.isEmpty()}">
+                            <div th:each="picture : ${pictures}">
+                                <div th:if="${picture.gym.getId()} == ${gym.id}">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" th:src="${picture.url}" alt="First slide">
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

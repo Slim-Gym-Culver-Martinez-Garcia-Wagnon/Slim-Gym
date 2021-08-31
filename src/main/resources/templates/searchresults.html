@@ -18,18 +18,27 @@
              style="margin-top: 24px; background-color: rgba(0, 0, 0, 0.7)">
             <div class="card-sl">
                 <div class="card-image1">
-
-                    <div th:each="picture : ${picture}">
-                        <div th:if="${picture.gym.getId()} == ${gym.id}">
-                            <div th:if="${picture.id == gym.getPictures().get(0).getId()}">
-                                <img id="gympic" th:src="${picture.url}" style="height: 225px">
+                    <div th:if="${gym.pictures.isEmpty()}">
+                        <img id="emptypic" th:src="@{../img/placeholder.png}" style="height: 225px">
+                    </div>
+                    <div th:if="!${gym.pictures.isEmpty()}">
+                        <div th:each="pictures : ${picture}">
+                            <div th:if="${pictures.gym.getId()} == ${gym.id}">
+                                <img id="gympic" th:src="${pictures.url}" style="height: 225px">
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-            <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}" style="height: 75px; width: 75px; border: 2px solid #f3cd15;"></img>
+            <div th:if="!${gym.getUser().getProfile_pic().isEmpty()}">
+                <img class="card-action1" th:src="${gym.getUser().getProfile_pic()}" style="height: 75px; width: 75px; border: 2px solid #f3cd15;"></img>
+            </div>
+            <div th:if="${gym.getUser().getProfile_pic().isEmpty()}">
+                <img class="card-action1" th:src="@{../img/placeholder.png}" style="height: 75px; width: 75px; border: 2px solid #f3cd15;"></img>
+            </div>
+
             <div class="card-content1" style="height: 50%; ">
                 <div class="card-text1" style="height: 35px">Hosted by: <span th:text="${gym.getUser().username}"></span>
                 </div>

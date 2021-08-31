@@ -77,13 +77,11 @@ public class PostController {
             isPostOwner = currentUser.getId() == gym.getUser().getId();
         }
         //Comment
-        model.addAttribute("theFirstOne", gym.getPictures().get(0).getId());
         model.addAttribute("gyms", gym);
         model.addAttribute("schedule", new Schedule());
         model.addAttribute("reviews", reviews);
         model.addAttribute("isPostOwner", isPostOwner);
         model.addAttribute("pictures", gym.getPictures());
-        System.out.println(gym.getPictures().get(0).getId());
 
         return "gym/gym-page";
     }
