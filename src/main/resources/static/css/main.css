@@ -360,6 +360,7 @@ label {
     border: 2px solid #f3cd15;
     color: #f3cd15;
 }
+
 .input-field{
     padding-bottom: 5%;
 }
@@ -426,12 +427,14 @@ a {
     background-color: #840000FF;
     color: #f3cd15;
     border-radius: 0 0 8px 8px;
+    border: 1px solid #f3cd15;
 }
 
 .card-button1:hover {
     text-decoration: none;
     background-color: #f3cd15;
     color: #840000FF;
+    border: 1px solid #840000FF;
 }
 
 .card-button2 {
@@ -441,12 +444,20 @@ a {
     width: 100%;
     background-color: #840000FF;
     color: #f3cd15;
+    border: 1px solid #f3cd15;
 }
 
 .card-button2:hover {
     text-decoration: none;
     background-color: #f3cd15;
     color: #840000FF;
+    border: 1px solid #840000FF;
+}
+
+.profile-btn:hover {
+    background-color: #f3cd15;
+    color: #840000FF;
+    border: 1px solid #840000FF;
 }
 
 

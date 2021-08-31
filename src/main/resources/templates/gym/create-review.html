@@ -33,18 +33,18 @@
                         <br>
                         <div class="form-text">
                             <label for="body">Review</label>
-                            <input id="body" class="validate inputs" type="text" th:field="*{body}"/>
+                            <textarea id="body" class="validate inputs" style="border: 1px solid #f3cd15" rows="3" cols="30" th:field="*{body}"/>
                             <br>
                         </div>
                         <div class="form-text">
                             <div class="mb-3">
-                                <img id="oldpic" th:src="*{picture}" alt="Review pictures" style="height: 250px">
+<!--                                <img id="oldpic" th:src="*{picture}" style="height: 250px">-->
                                 <br>
                                 <div id="thumbnail-container"></div>
-                                <label for="fileupload">Select a photo to upload</label>
+                                <label for="fileupload"></label>
                                 <input th:value="*{picture}" class="validate inputs" type="hidden" id="fileupload"
                                        th:field="*{picture}">
-                                <button id="picker" class="select btn btn-danger btn-outline-warning" type="button">Pick
+                                <button id="picker" class="select btn" type="button">Pick
                                     Photo
                                 </button>
                             </div>
