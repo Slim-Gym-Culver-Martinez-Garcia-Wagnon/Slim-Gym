@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>SlimGym</title>
@@ -17,7 +18,7 @@ Do you like the idea of having a gym all to yourself?<br>
 Would you like to have access to private gyms all over the country?<br>
 If the answer is "YES" then SlimGym is for you!<br></p>
 
-    <a th:href="@{/sign-up}" id="home-create" type="button" class="btn">Book a session today!</a>
+    <a sec:authorize="!isAuthenticated()" th:href="@{/sign-up}" id="home-create" type="button" class="btn">Book a session today!</a>
 </div>
 
 <th:block th:include="partials/scripts.html :: script"/>
