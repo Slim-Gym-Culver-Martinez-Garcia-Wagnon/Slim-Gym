@@ -103,7 +103,7 @@
     <h3 class="heading2" style="text-align: center; border-bottom: 4px solid #f3cd15;
     margin-top: 20px; text-shadow: 1px 1px 1px #f3cd15;">Gyms you have reviewed</h3>
     <div class="row d-flex justify-content-around" style="padding: 10px;">
-        <div class="d-flex row" th:each="review : ${reviews}" style="margin-top: 24px;width:100%;">
+        <div class="d-flex row" th:each="review : ${reviews}" style="margin-top: 24px; width:100%;">
             <div class="card-sl " style="width:100%; border: none">
                 <div class="card-content1 container-fluid d-flex row" style="background-color: #868686">
                     <div class="mr-2">
@@ -165,8 +165,8 @@
                             </div>
                         </div>
                     </div>
-                    <form th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">
-                        <button class="btn">Delete Review</button>
+                    <form class="d-flex" th:action="@{/review/{id}/delete(id = ${review.id})}" method="post">
+                        <button class="btn mt-auto mb-3">Delete Review</button>
                     </form>
                 </div>
             </div>
